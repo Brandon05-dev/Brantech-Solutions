@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
+import { Packages } from "@/components/sections/packages";
+import { Stats } from "@/components/sections/stats";
 import { Portfolio } from "@/components/sections/portfolio";
 import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
@@ -19,6 +21,8 @@ const Index = () => {
       <Navigation onContactClick={handleContactClick} />
       <Hero onContactClick={handleContactClick} />
       <Services onContactClick={handleContactClick} />
+      <Packages onContactClick={handleContactClick} />
+      <Stats onContactClick={handleContactClick} />
       <Portfolio onContactClick={handleContactClick} />
       <About onContactClick={handleContactClick} />
       <Contact />
