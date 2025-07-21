@@ -9,7 +9,8 @@ import {
   ArrowRight,
   Award,
   Lightbulb,
-  Shield
+  Shield,
+  Eye
 } from "lucide-react";
 
 interface AboutProps {
@@ -56,13 +57,25 @@ export function About({ onContactClick }: AboutProps) {
           </p>
         </div>
 
-        {/* Mission statement */}
-        <div className="bg-gradient-primary rounded-2xl p-8 text-center mb-16 text-primary-foreground">
-          <Target className="w-12 h-12 mx-auto mb-4 opacity-90" />
-          <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-          <p className="text-lg text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
-            Brantech Solutions is your trusted partner for building high-quality software, AI systems, IoT prototypes, and digital products that scale. We bridge the gap between innovative ideas and practical solutions that transform businesses across Africa and beyond.
-          </p>
+        {/* Mission and Vision statements */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Mission statement */}
+          <div className="bg-gradient-primary rounded-2xl p-8 text-center text-primary-foreground">
+            <Target className="w-12 h-12 mx-auto mb-4 opacity-90" />
+            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+            <p className="text-lg text-primary-foreground/90 leading-relaxed">
+              To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.
+            </p>
+          </div>
+
+          {/* Vision statement */}
+          <div className="bg-gradient-primary rounded-2xl p-8 text-center text-primary-foreground">
+            <Eye className="w-12 h-12 mx-auto mb-4 opacity-90" />
+            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+            <p className="text-lg text-primary-foreground/90 leading-relaxed">
+              To be the trusted digital partner that transforms how businesses build, launch, and scale making modern tech accessible, affordable, and impactful for everyone.
+            </p>
+          </div>
         </div>
 
         {/* Founder section */}
@@ -79,8 +92,12 @@ export function About({ onContactClick }: AboutProps) {
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 {/* Profile image */}
                 <div className="flex-shrink-0">
-                  <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-4xl lg:text-5xl font-bold shadow-glow">
-                    BO
+                  <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
+                    <img 
+                      src="/me.jpg" 
+                      alt="Brandon Omutiti - Founder & Lead Developer"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
 
@@ -102,6 +119,7 @@ export function About({ onContactClick }: AboutProps) {
 
                   <Button
                     variant="outline"
+                    onClick={() => window.open("https://www.linkedin.com/in/brandon-omutiti-400ab4362/", "_blank")}
                     className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
                     <Linkedin className="w-4 h-4 mr-2" />
@@ -143,53 +161,6 @@ export function About({ onContactClick }: AboutProps) {
               </Card>
             ))}
           </div>
-        </div>
-
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Card className="bg-card border-border">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-4 h-4 bg-yellow-400 rounded-sm" />
-                ))}
-              </div>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                "Brantech Solutions transformed our operations completely. Their IoT solution reduced our downtime by 70% and the team was incredibly professional throughout the entire process."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-                  JD
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">John Doe</p>
-                  <p className="text-sm text-muted-foreground">CTO, Manufacturing Corp</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card border-border">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-4 h-4 bg-yellow-400 rounded-sm" />
-                ))}
-              </div>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                "The AI analytics dashboard they built for us has revolutionized our decision-making process. We now have insights we never had before, and the ROI has been exceptional."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-                  SM
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Sarah Miller</p>
-                  <p className="text-sm text-muted-foreground">CEO, FinTech Solutions</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* CTA section */}

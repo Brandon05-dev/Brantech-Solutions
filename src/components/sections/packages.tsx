@@ -37,7 +37,7 @@ export function Packages({ onContactClick }: PackagesProps) {
         "Email & chat support",
         "1 free update after launch"
       ],
-      cta: "Get Started",
+      cta: "Buy Now",
       popular: false,
       color: "bg-card"
     },
@@ -54,7 +54,7 @@ export function Packages({ onContactClick }: PackagesProps) {
         "Priority support",
         "2 free updates after launch"
       ],
-      cta: "Get Started",
+      cta: "Buy Now",
       popular: true,
       color: "bg-card"
     },
@@ -71,7 +71,7 @@ export function Packages({ onContactClick }: PackagesProps) {
         "Dedicated manager for your project",
         "3 months of free support & updates"
       ],
-      cta: "Talk to Us",
+      cta: "Buy Now",
       popular: false,
       color: "bg-card"
     },
@@ -82,14 +82,14 @@ export function Packages({ onContactClick }: PackagesProps) {
       price: "Custom Quote",
       description: "Enterprise-level solutions",
       features: [
-        "Everything in Prime — plus more!",
+        "Everything in Prime plus more!",
         "Full custom online system for large businesses",
         "Special features just for your business",
         "Dedicated team, faster delivery",
         "Full support & updates for 6 months",
         "Personal check-ins with our experts"
       ],
-      cta: "Talk to Us",
+      cta: "Buy Now",
       popular: false,
       color: "bg-card"
     }
@@ -183,25 +183,6 @@ export function Packages({ onContactClick }: PackagesProps) {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center bg-secondary/30 rounded-2xl p-8">
-          <h3 className="text-xl font-semibold text-foreground mb-4">
-            Not sure what you need?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Let's talk — we'll help you pick the right plan or build one just for you.
-          </p>
-          <Button
-            variant="default"
-            size="lg"
-            onClick={onContactClick}
-            className="transition-all duration-300"
-          >
-            <MessageCircle className="mr-2 w-4 h-4" />
-            Start Free Consultation
-          </Button>
         </div>
       </div>
     </section>

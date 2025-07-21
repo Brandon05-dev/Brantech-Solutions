@@ -91,34 +91,6 @@ export function Stats({ onContactClick }: StatsProps) {
             </Card>
           ))}
         </div>
-
-        {/* CTA section */}
-        <div className="text-center bg-gradient-primary rounded-2xl p-8 text-primary-foreground">
-          <h3 className="text-2xl font-bold mb-4">
-            Ready to Join Our Success Stories?
-          </h3>
-          <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
-            Let's talk about your project and see how we can help you achieve similar results for your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={onContactClick}
-              className="bg-background text-foreground hover:bg-secondary transition-all duration-300"
-            >
-              <ArrowRight className="mr-2 w-4 h-4" />
-              Start Your Project
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300"
-            >
-              View Full Portfolio
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );

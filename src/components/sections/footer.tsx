@@ -11,11 +11,22 @@ import {
   Send,
   ArrowUp
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,29 +168,52 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted-foreground">
-            <p>© {currentYear} Brantech Solutions. All rights reserved.</p>
-            <div className="flex gap-4">
-              <button className="hover:text-primary transition-colors duration-200">
-                Privacy Policy
-              </button>
-              <button className="hover:text-primary transition-colors duration-200">
-                Terms of Service
-              </button>
+        <div className="py-6 border-t border-border flex justify-center items-center">
+          <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <p>© {currentYear} Brantech Solutions. All rights reserved.</p>
+              <div className="flex gap-4">
+                <Link 
+                  to="/privacy-policy" 
+                  className="hover:text-primary transition-colors duration-200"
+                >
+                  Privacy Policy
+                </Link>
+                <Link 
+                  to="/terms-of-service" 
+                  className="hover:text-primary transition-colors duration-200"
+                >
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 text-xs">
+              <span>Powered by</span>
+              <a 
+                href="https://linkedin.com/in/brandon-omutiti-400ab4362/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+              >
+                Brandon Omutiti
+              </a>
             </div>
           </div>
-
-          {/* Back to top */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={scrollToTop}
-            className="h-10 w-10 p-0 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-          >
-            <ArrowUp className="w-4 h-4" />
-          </Button>
         </div>
+
+        {/* Floating Back to Top Button */}
+        {showScrollTop && (
+          <div className="fixed bottom-6 right-6 z-50">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={scrollToTop}
+              className="h-12 w-12 p-0 rounded-full bg-background/80 backdrop-blur-sm border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <ArrowUp className="w-5 h-5" />
+            </Button>
+          </div>
+        )}
       </div>
     </footer>
   );

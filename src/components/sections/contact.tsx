@@ -13,7 +13,8 @@ import {
   Send, 
   Github, 
   Linkedin, 
-  Twitter 
+  Twitter,
+  MessageSquare
 } from "lucide-react";
 
 export function Contact() {
@@ -161,13 +162,16 @@ export function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div 
+                  className="flex items-center gap-3 cursor-pointer hover:bg-secondary/50 p-2 rounded-lg transition-colors duration-300"
+                  onClick={() => window.open("https://wa.me/254790889066", "_blank")}
+                >
                   <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary" />
+                    <MessageSquare className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium text-foreground">WhatsApp</p>
-                    <p className="text-muted-foreground">+254 700 000 000</p>
+                    <p className="text-muted-foreground">+254 790 889 066</p>
                   </div>
                 </div>
 
@@ -183,48 +187,25 @@ export function Contact() {
               </CardContent>
             </Card>
 
-            {/* Social links */}
-            <Card className="bg-card border-border">
-              <CardHeader>
-                <CardTitle className="text-xl text-foreground">Follow Us</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  >
-                    <Github className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  >
-                    <Twitter className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Response time */}
             <Card className="bg-gradient-primary text-primary-foreground">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-6 h-6" />
                 </div>
-                <h3 className="font-semibold mb-2">Quick Response</h3>
-                <p className="text-primary-foreground/90 text-sm">
+                <h3 className="font-semibold mb-2"></h3>
+                <p className="text-primary-foreground/90 text-sm mb-4">
                   We typically respond to all inquiries within 24 hours. For urgent projects, feel free to reach out via WhatsApp.
                 </p>
+                <Button
+                  onClick={() => window.open("https://wa.me/254790889066?text=Hi! I'm interested in your services and would like to discuss my project.", "_blank")}
+                  variant="secondary"
+                  size="sm"
+                  className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition-all duration-300"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Quick Response
+                </Button>
               </CardContent>
             </Card>
           </div>

@@ -103,25 +103,6 @@ export function Services({ onContactClick }: ServicesProps) {
             </Card>
           ))}
         </div>
-
-        {/* CTA section */}
-        <div className="text-center bg-gradient-primary rounded-2xl p-8 text-primary-foreground">
-          <h3 className="text-2xl font-bold mb-4">
-            Ready to Transform Your Business?
-          </h3>
-          <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
-            Let's discuss your project and create a tailored solution that drives real results for your business.
-          </p>
-          <Button
-            variant="secondary"
-            size="lg"
-            onClick={onContactClick}
-            className="bg-background text-foreground hover:bg-secondary transition-all duration-300"
-          >
-            Start Your Project Today
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
       </div>
     </section>
   );

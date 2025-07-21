@@ -157,24 +157,6 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
             </Card>
           ))}
         </div>
-
-        {/* CTA section */}
-        <div className="text-center bg-secondary rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-foreground mb-4">
-            Ready to Build Your Success Story?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Let's discuss your project and create a solution that delivers exceptional results for your business.
-          </p>
-          <Button
-            size="lg"
-            onClick={onContactClick}
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
-          >
-            Start Your Project
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
       </div>
     </section>
   );
