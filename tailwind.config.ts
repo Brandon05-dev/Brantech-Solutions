@@ -76,7 +76,11 @@ export default {
 			},
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
-				'glow': 'var(--shadow-glow)'
+				'glow': 'var(--shadow-glow)',
+				'emerald': 'var(--shadow-emerald)',
+				'blue': 'var(--shadow-blue)',
+				'purple': 'var(--shadow-purple)',
+				'gold': 'var(--shadow-gold)'
 			},
 			keyframes: {
 				'accordion-down': {

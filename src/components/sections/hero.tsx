@@ -38,20 +38,20 @@ export function Hero({ onContactClick }: HeroProps) {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in" style={{ animationDelay: "0.6s" }}>
             <Button
-              onClick={onContactClick}
+              onClick={() => window.open("https://calendly.com/brantech-solutions/30min", "_blank")}
               size="lg"
               className="bg-gradient-primary hover:shadow-glow transition-all duration-300 group"
             >
-              Start Your Project
+              Book Free Call
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               variant="outline"
               size="lg"
-              onClick={() => document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={onContactClick}
               className="hover:bg-secondary transition-colors duration-300"
             >
-              View Our Work
+              Start Your Project
             </Button>
           </div>
 

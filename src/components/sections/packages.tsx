@@ -116,7 +116,17 @@ export function Packages({ onContactClick }: PackagesProps) {
           {packages.map((pkg, index) => (
             <Card 
               key={pkg.name}
-              className={`group relative hover:shadow-elegant transition-all duration-300 border-border hover:border-primary/20 animate-fade-in ${pkg.color} ${pkg.popular ? 'ring-2 ring-primary scale-105' : ''}`}
+              className={`group relative transition-all duration-300 border-border animate-fade-in ${pkg.color} ${
+                pkg.popular 
+                  ? 'ring-2 ring-primary scale-105 hover:shadow-gold' 
+                  : index === 0 
+                    ? 'hover:shadow-emerald'
+                    : index === 1
+                      ? 'hover:shadow-blue' 
+                      : index === 3
+                        ? 'hover:shadow-purple'
+                        : 'hover:shadow-elegant'
+              } hover:border-primary/20`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {pkg.popular && (
@@ -162,7 +172,10 @@ export function Packages({ onContactClick }: PackagesProps) {
                 
                 <Button
                   variant={pkg.popular ? "default" : "outline"}
-                  onClick={onContactClick}
+                  onClick={pkg.name === "Free Plan" 
+                    ? () => window.open("https://calendly.com/brantech-solutions/30min", "_blank")
+                    : onContactClick
+                  }
                   className="w-full transition-all duration-300"
                 >
                   {pkg.cta}
