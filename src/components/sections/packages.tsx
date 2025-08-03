@@ -28,7 +28,7 @@ export function Packages({ onContactClick }: PackagesProps) {
       ],
       cta: "Buy Now",
       popular: false,
-      highlight: "Common"
+      highlight: null
     },
     {
       icon: Rocket,
