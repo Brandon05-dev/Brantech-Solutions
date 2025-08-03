@@ -81,7 +81,7 @@ export function Hero({ onContactClick }: HeroProps) {
 
             {/* Subtext */}
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              Brantech Solutions empowers startups, SMEs, and enterprises to innovate and grow through custom software, AI, IoT, and digital solutions tailored for Africa's dynamic market.
+              Brantech Solutions empowers startups, SMEs, and enterprises to innovate and grow through custom software, AI, cybersecurity, and digital solutions tailored for Africa's dynamic market.
             </p>
 
             {/* Contact CTA */}

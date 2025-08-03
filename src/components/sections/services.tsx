@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { 
   Code2, 
   Brain, 
-  Radio, 
+  Shield, 
   Smartphone, 
   Users, 
   ArrowRight 
@@ -28,10 +28,10 @@ export function Services({ onContactClick }: ServicesProps) {
       features: ["Predictive Analytics", "Natural Language Processing", "Computer Vision", "Automation"]
     },
     {
-      icon: Radio,
-      title: "IoT Solutions", 
-      description: "Connect your physical world to the digital realm with smart sensors, devices, and comprehensive IoT ecosystems.",
-      features: ["Smart Sensors", "Device Management", "Data Analytics", "Cloud Integration"]
+      icon: Shield,
+      title: "Cybersecurity", 
+      description: "Protect your digital assets with comprehensive security solutions, threat detection, and robust defense mechanisms.",
+      features: ["Security Audits", "Threat Detection", "Data Protection", "Compliance Management"]
     },
     {
       icon: Smartphone,
