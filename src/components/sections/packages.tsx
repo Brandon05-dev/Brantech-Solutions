@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, MessageCircle, Rocket, TrendingUp, Crown, Star } from "lucide-react";
+import { Check, X, MessageCircle, Rocket, TrendingUp, Crown } from "lucide-react";
 
 interface PackagesProps {
   onContactClick?: () => void;
@@ -12,86 +12,84 @@ export function Packages({ onContactClick }: PackagesProps) {
     {
       icon: MessageCircle,
       name: "Free Plan",
-      price: "FREE",
-      description: "Perfect for getting started",
+      price: "$0",
+      description: "Perfect for consultation and planning",
       features: [
-        "Free 30-min consultation",
-        "Get expert advice on your website idea", 
-        "Rough cost & timeline estimate",
-        "Ask any questions, no cost"
+        { name: "Custom Website Design and Development Consultation", included: true },
+        { name: "Basic Security Assessment", included: true },
+        { name: "SEO Optimization", included: false },
+        { name: "Digital Marketing", included: false },
+        { name: "Support", included: false },
+        { name: "Hosting", included: false },
+        { name: "Responsive Design", included: false },
+        { name: "Cybersecurity Implementation", included: false },
+        { name: "Dedicated Account Manager", included: false },
+        { name: "E-commerce Solutions (if applicable)", included: false }
       ],
-      cta: "Start for Free",
+      cta: "Buy Now",
       popular: false,
-      color: "bg-secondary"
+      highlight: "Common"
     },
     {
       icon: Rocket,
-      name: "Launch Plan",
-      badge: "Silver",
-      price: "From KSHS 25,000",
-      description: "Great for small businesses",
+      name: "Basic Plan",
+      price: "KSHS 25,000",
+      description: "Essential features for small businesses",
       features: [
-        "A simple custom website for your business",
-        "Mobile-friendly design",
-        "Basic search engine setup",
-        "Email & chat support",
-        "1 free update after launch"
+        { name: "Custom Website Design and Development", included: true },
+        { name: "Basic SEO Optimization", included: true },
+        { name: "Standard Support", included: true },
+        { name: "Shared Hosting (Basic); 1 Year", included: true },
+        { name: "Responsive Design", included: true },
+        { name: "Basic Security Setup (SSL, Firewall)", included: true },
+        { name: "Cybersecurity Consulting", included: false },
+        { name: "Dedicated Account Manager", included: false },
+        { name: "E-commerce Solutions (if applicable)", included: false }
       ],
       cta: "Buy Now",
       popular: false,
-      color: "bg-card"
+      highlight: null
     },
     {
       icon: TrendingUp,
-      name: "Scale Plan",
-      badge: "Gold",
-      price: "From KSHS 50,000",
+      name: "Standard Plan",
+      price: "KSHS 30,000",
       description: "Perfect for growing businesses",
       features: [
-        "Custom website with more pages & features",
-        "Better search engine boost",
-        "Connect with online payments if needed",
-        "Priority support",
-        "2 free updates after launch"
+        { name: "Custom Website Design and Development", included: true },
+        { name: "Enhanced SEO and Digital Marketing", included: true },
+        { name: "Priority Support", included: true },
+        { name: "Shared Hosting (Advanced); 1 Year", included: true },
+        { name: "Responsive Design", included: true },
+        { name: "Enhanced Security Package (WAF, DDoS Protection)", included: true },
+        { name: "Cybersecurity Audit & Consultation", included: true },
+        { name: "Dedicated Account Manager", included: true },
+        { name: "E-commerce Solutions (if applicable)", included: true }
       ],
       cta: "Buy Now",
       popular: true,
-      color: "bg-card"
+      highlight: null
     },
     {
       icon: Crown,
-      name: "Prime Plan",
-      badge: "Diamond",
-      price: "Custom Quote",
-      description: "For established businesses",
+      name: "Premium Plan",
+      price: "KSHS 35,000",
+      description: "Complete solution for established businesses",
       features: [
-        "Full website or online store for your business",
-        "Strong SEO to help people find you",
-        "Extra tools — booking, payments, newsletters",
-        "Dedicated manager for your project",
-        "3 months of free support & updates"
+        { name: "Custom Website Design and Development", included: true },
+        { name: "Advanced SEO and Digital Marketing", included: true },
+        { name: "24/7 Support", included: true },
+        { name: "Dedicated Hosting (Advanced); 1 Year", included: true },
+        { name: "Responsive Design", included: true },
+        { name: "Complete Cybersecurity Suite", included: true },
+        { name: "Security Monitoring & Threat Detection", included: true },
+        { name: "Compliance Management (GDPR, Data Protection)", included: true },
+        { name: "Dedicated Account Manager", included: true },
+        { name: "E-commerce Solutions (if applicable)", included: true }
       ],
       cta: "Buy Now",
       popular: false,
-      color: "bg-card"
-    },
-    {
-      icon: Star,
-      name: "Platinum Plan",
-      badge: "Premium",
-      price: "Custom Quote",
-      description: "Enterprise-level solutions",
-      features: [
-        "Everything in Prime plus more!",
-        "Full custom online system for large businesses",
-        "Special features just for your business",
-        "Dedicated team, faster delivery",
-        "Full support & updates for 6 months",
-        "Personal check-ins with our experts"
-      ],
-      cta: "Buy Now",
-      popular: false,
-      color: "bg-card"
+      highlight: null
     }
   ];
 
@@ -101,57 +99,55 @@ export function Packages({ onContactClick }: PackagesProps) {
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-            Our Packages
+            Pricing
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            Affordable Plans for Every Business
+            Check Our Affordable Pricing
           </h2>
           <p className="text-lg text-muted-foreground">
-            We help you get online, grow your business, and succeed with the right website and digital solutions. Pick the plan that fits your budget — or chat with us for a custom plan.
+            Choose the perfect plan for your business needs. All plans include professional website development with modern design and functionality.
           </p>
         </div>
 
         {/* Packages grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {packages.map((pkg, index) => (
             <Card 
               key={pkg.name}
-              className={`group relative transition-all duration-300 border-border animate-fade-in ${pkg.color} ${
+              className={`group relative transition-all duration-300 border-border animate-fade-in bg-card ${
                 pkg.popular 
-                  ? 'ring-2 ring-primary scale-105 hover:shadow-gold' 
-                  : index === 0 
-                    ? 'hover:shadow-emerald'
-                    : index === 1
-                      ? 'hover:shadow-blue' 
-                      : index === 3
-                        ? 'hover:shadow-purple'
-                        : 'hover:shadow-elegant'
-              } hover:border-primary/20`}
+                  ? 'ring-2 ring-primary scale-105 hover:shadow-2xl shadow-lg border-primary/50' 
+                  : 'hover:shadow-xl hover:border-primary/20'
+              }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {pkg.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground">
+                  <Badge className="bg-primary text-primary-foreground px-3 py-1">
                     Most Popular
+                  </Badge>
+                </div>
+              )}
+
+              {pkg.highlight && (
+                <div className="absolute -top-3 right-4">
+                  <Badge variant="outline" className="bg-secondary text-secondary-foreground px-2 py-1 text-xs">
+                    {pkg.highlight}
                   </Badge>
                 </div>
               )}
               
               <CardHeader className="text-center pb-4">
-                <div className={`w-12 h-12 ${pkg.popular ? 'bg-gradient-primary' : 'bg-secondary'} rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300`}>
-                  <pkg.icon className={`w-6 h-6 ${pkg.popular ? 'text-primary-foreground' : 'text-primary'}`} />
+                <div className={`w-16 h-16 ${pkg.popular ? 'bg-gradient-to-r from-primary to-primary/80' : 'bg-secondary'} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300`}>
+                  <pkg.icon className={`w-8 h-8 ${pkg.popular ? 'text-primary-foreground' : 'text-primary'}`} />
                 </div>
                 
-                <div className="space-y-2">
-                  <CardTitle className="text-lg text-foreground">
-                    {pkg.name}
-                  </CardTitle>
-                  {pkg.badge && (
-                    <Badge variant="outline" className="text-xs">
-                      {pkg.badge}
-                    </Badge>
-                  )}
-                  <div className="text-2xl font-bold text-primary">
+                <CardTitle className="text-xl text-foreground mb-2">
+                  {pkg.name}
+                </CardTitle>
+                
+                <div className="mb-3">
+                  <div className={`text-3xl font-bold ${pkg.popular ? 'text-primary' : 'text-foreground'} mb-2`}>
                     {pkg.price}
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -161,11 +157,17 @@ export function Packages({ onContactClick }: PackagesProps) {
               </CardHeader>
               
               <CardContent className="pt-0">
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-3 mb-8">
                   {pkg.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                      <span className="leading-relaxed">{feature}</span>
+                    <li key={idx} className="flex items-start gap-3 text-sm">
+                      {feature.included ? (
+                        <Check className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      ) : (
+                        <X className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
+                      )}
+                      <span className={`leading-relaxed ${feature.included ? 'text-muted-foreground' : 'text-muted-foreground/60 line-through'}`}>
+                        {feature.name}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -176,13 +178,31 @@ export function Packages({ onContactClick }: PackagesProps) {
                     ? () => window.open("https://calendly.com/brantech-solutions/30min", "_blank")
                     : onContactClick
                   }
-                  className="w-full transition-all duration-300"
+                  className={`w-full transition-all duration-300 ${
+                    pkg.popular 
+                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg' 
+                      : 'hover:bg-primary hover:text-primary-foreground'
+                  }`}
                 >
                   {pkg.cta}
                 </Button>
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Additional info */}
+        <div className="text-center">
+          <p className="text-muted-foreground mb-4">
+            Need a custom solution or have questions about our plans?
+          </p>
+          <Button 
+            variant="outline" 
+            onClick={onContactClick}
+            className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          >
+            Contact Us for Custom Quote
+          </Button>
         </div>
       </div>
     </section>
