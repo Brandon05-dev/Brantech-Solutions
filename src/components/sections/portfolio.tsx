@@ -2,74 +2,65 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 interface PortfolioProps {
   onContactClick?: () => void;
 }
 
 export function Portfolio({ onContactClick }: PortfolioProps) {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
   const projects = [
     {
-      title: "E-Commerce Platform",
-      client: "Retail Startup",
-      description: "Built a complete e-commerce solution with inventory management, payment processing, and real-time analytics dashboard.",
-      challenge: "Client needed a scalable platform to handle growing customer base and inventory complexity.",
-      solution: "Developed a microservices architecture with React frontend, Node.js backend, and PostgreSQL database.",
-      outcome: "40% increase in sales, 60% reduction in inventory management time, improved customer satisfaction.",
-      techStack: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop"
+      title: "BMI Leather Shop",
+      status: "Live",
+      description: "Premium e-commerce platform for luxury leather goods featuring elegant product showcase, secure payment processing, and intuitive shopping experience. Built with modern web technologies to deliver seamless user interaction and robust inventory management.",
+      techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
+      liveUrl: "https://brandon05-dev.github.io/BMI-Leather-Art-Design/",
+      githubUrl: "https://github.com/brandon05-dev/BMI-Leather-Art-Design"
     },
     {
-      title: "IoT Monitoring System",
-      client: "Manufacturing Company",
-      description: "Developed an IoT solution for real-time equipment monitoring with predictive maintenance capabilities.",
-      challenge: "Client experienced frequent equipment failures leading to costly downtime.",
-      solution: "Implemented sensor network with ML algorithms for predictive analysis and automated alerts.",
-      outcome: "70% reduction in unplanned downtime, 30% decrease in maintenance costs, improved operational efficiency.",
-      techStack: ["Python", "TensorFlow", "InfluxDB", "React", "MQTT"],
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop"
+      title: "UniAssist Hub",
+      status: "Live",
+      description: "Comprehensive university student assistance platform connecting students with academic resources, peer support, and administrative services. Features real-time chat, document sharing, and personalized dashboard for enhanced campus life experience.",
+      techStack: ["React", "Node.js", "MongoDB"],
+      image: "https://brandon-omutiti.vercel.app/Images/uniassisthub%20Project.png",
+      liveUrl: "https://uniassisthub-v2.onrender.com/",
+      githubUrl: "https://github.com/brandon05-dev"
     },
     {
-      title: "AI-Powered Analytics Dashboard",
-      client: "Financial Services",
-      description: "Created an intelligent dashboard providing real-time insights and automated reporting for financial data.",
-      challenge: "Manual reporting processes were time-consuming and prone to errors.",
-      solution: "Built ML-powered analytics with automated data processing and visualization.",
-      outcome: "90% reduction in report generation time, improved accuracy, enhanced decision-making capabilities.",
-      techStack: ["Python", "React", "D3.js", "FastAPI", "Redis"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop"
+      title: "CleanKili",
+      status: "Under Construction",
+      description: "Environmental sustainability platform promoting waste management and recycling initiatives in Kilimani Locality. Features interactive maps, waste tracking, reward systems, and community engagement tools to drive positive environmental impact.",
+      techStack: ["Vue.js", "Python", "Django", "PostgreSQL"],
+      image: "https://brandon-omutiti.vercel.app/Images/Cleankili%20project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
     },
     {
-      title: "Mobile Learning Platform",
-      client: "Education Provider",
-      description: "Developed a comprehensive mobile learning platform with interactive courses and progress tracking.",
-      challenge: "Client needed to reach students in remote areas with limited internet connectivity.",
-      solution: "Built offline-capable progressive web app with adaptive content delivery.",
-      outcome: "300% increase in student engagement, 50% improvement in course completion rates.",
-      techStack: ["React Native", "Node.js", "MongoDB", "PWA", "GraphQL"],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop"
+      title: "Shinda Play",
+      status: "Under Construction",
+      description: "Shinda Play is an interactive eFootball gaming and entertainment platform designed for passionate football gamers and esports fans. It brings players together for competitive multiplayer matches, live tournaments, and social interactions all powered by modern web technologies that ensure smooth gameplay, real-time updates, and an engaging community experience.",
+      techStack: ["React", "WebSocket", "Express", "Redis"],
+      image: "https://brandon-omutiti.vercel.app/Images/Shinda%20Play%20Project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
     },
     {
-      title: "Supply Chain Management",
-      client: "Logistics Company",
-      description: "Built an integrated supply chain management system with real-time tracking and automated workflows.",
-      challenge: "Client struggled with visibility across their supply chain operations.",
-      solution: "Developed comprehensive tracking system with API integrations and automated notifications.",
-      outcome: "50% improvement in delivery times, 35% reduction in operational costs, enhanced customer satisfaction.",
-      techStack: ["Vue.js", "Django", "PostgreSQL", "Redis", "Docker"],
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop"
-    },
-    {
-      title: "Healthcare Management System",
-      client: "Healthcare Provider",
-      description: "Developed a patient management system with appointment scheduling and telemedicine capabilities.",
-      challenge: "Client needed to streamline patient care and enable remote consultations.",
-      solution: "Built secure, HIPAA-compliant platform with video conferencing and electronic health records.",
-      outcome: "60% increase in patient satisfaction, 40% reduction in administrative overhead, improved care delivery.",
-      techStack: ["React", "Node.js", "MySQL", "WebRTC", "AWS"],
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop"
+      title: "Maal Traders Platform",
+      status: "Under Construction",
+      description: "Comprehensive trading bootcamp and educational platform designed to teach modern trading strategies, market analysis, and financial literacy. Features interactive learning modules, real-time market simulations, progress tracking, and community-driven learning experiences for aspiring traders.",
+      techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
+      image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
     }
   ];
+
+  // Only show first 2 projects initially, or all if showAllProjects is true
+  const displayedProjects = showAllProjects ? projects : projects.slice(0, 2);
 
   return (
     <section id="portfolio" className="py-20 bg-background">
@@ -77,31 +68,40 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-            Our Portfolio
+            Featured Projects
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            Success Stories That Inspire
+            Some Things I've Built
           </h2>
           <p className="text-lg text-muted-foreground">
-            Discover how we've helped businesses across various industries achieve their goals through innovative technology solutions.
+            Here are some of my recent projects that showcase my skills in full-stack development and modern web technologies.
           </p>
         </div>
 
         {/* Projects grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <Card 
               key={project.title}
               className="group hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project image */}
-              <div className="aspect-video overflow-hidden bg-muted">
+              <div className="aspect-video overflow-hidden bg-muted relative">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
+                {/* Status badge */}
+                <div className="absolute top-4 right-4">
+                  <Badge 
+                    variant={project.status === "Live" ? "default" : "secondary"}
+                    className={project.status === "Live" ? "bg-green-500 hover:bg-green-600" : ""}
+                  >
+                    {project.status}
+                  </Badge>
+                </div>
               </div>
 
               <CardHeader>
@@ -110,13 +110,24 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                     <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </CardTitle>
-                    <p className="text-sm text-muted-foreground">{project.client}</p>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                    {project.liveUrl && (
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-8 w-8 p-0"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="h-8 w-8 p-0"
+                      onClick={() => window.open(project.githubUrl, '_blank')}
+                    >
                       <Github className="w-4 h-4" />
                     </Button>
                   </div>
@@ -128,21 +139,6 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                   {project.description}
                 </p>
 
-                <div className="space-y-3 mb-4">
-                  <div>
-                    <span className="font-semibold text-foreground text-sm">Challenge:</span>
-                    <p className="text-sm text-muted-foreground">{project.challenge}</p>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground text-sm">Solution:</span>
-                    <p className="text-sm text-muted-foreground">{project.solution}</p>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground text-sm">Outcome:</span>
-                    <p className="text-sm text-muted-foreground">{project.outcome}</p>
-                  </div>
-                </div>
-
                 <div className="mb-4">
                   <span className="font-semibold text-foreground text-sm mb-2 block">Tech Stack:</span>
                   <div className="flex flex-wrap gap-2">
@@ -153,10 +149,48 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                     ))}
                   </div>
                 </div>
+
+                <div className="flex gap-2 mt-4">
+                  {project.liveUrl && (
+                    <Button 
+                      variant="default" 
+                      size="sm"
+                      onClick={() => window.open(project.liveUrl, '_blank')}
+                      className="flex-1"
+                    >
+                      Live Demo
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
+                  )}
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => window.open(project.githubUrl, '_blank')}
+                    className="flex-1"
+                  >
+                    GitHub
+                    <Github className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* Show More/Less Button */}
+        {projects.length > 2 && (
+          <div className="text-center">
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => setShowAllProjects(!showAllProjects)}
+              className="px-8 py-3"
+            >
+              {showAllProjects ? "Show Less" : "More Projects"}
+              <ArrowRight className={`w-4 h-4 ml-2 transition-transform duration-200 ${showAllProjects ? "rotate-90" : ""}`} />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
