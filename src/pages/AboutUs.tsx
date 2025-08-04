@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/ui/navigation";
 import { About } from "@/components/sections/about";
 import { Footer } from "@/components/sections/footer";
-import { Chatbot } from "@/components/ui/chatbot";
 import { useNavigate } from "react-router-dom";
 
 const AboutUsPage = () => {
@@ -24,7 +23,6 @@ const AboutUsPage = () => {
         <About onContactClick={handleContactClick} />
       </div>
       <Footer />
-      <Chatbot />
     </div>
   );
 };

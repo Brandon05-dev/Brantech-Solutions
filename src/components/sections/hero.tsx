@@ -43,7 +43,7 @@ export function Hero({ onContactClick }: HeroProps) {
               {/* Icon image with floating animation - transparent background */}
               <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] flex items-center justify-center animate-float">
                 <img 
-                  src="/src/components/images/BS Icon.png" 
+                  src="/BS Icon.png" 
                   alt="Brantech Solutions" 
                   className="w-full h-full object-contain cursor-pointer transition-all duration-300"
                   style={{
