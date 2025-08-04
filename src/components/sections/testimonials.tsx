@@ -82,7 +82,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
 
         {/* Testimonials Carousel */}
         <div className="relative max-w-7xl mx-auto px-4 md:px-0">
-          <div className="flex justify-center items-center gap-4 md:gap-8">
+          <div className="flex justify-center items-stretch gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {getDisplayedTestimonials().map((testimonial, index) => {
               const isCenter = testimonial.position === 'center';
               const isLeft = testimonial.position === 'left';
@@ -91,64 +91,72 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
               return (
                 <div
                   key={`${testimonial.name}-${currentIndex}-${index}`}
-                  className={`transition-all duration-700 ease-in-out ${
+                  className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
                     isCenter 
-                      ? 'scale-105 opacity-100 z-10 w-full max-w-sm md:max-w-none md:w-80' 
-                      : 'scale-90 opacity-60 z-0 hidden md:block w-70'
+                      ? 'scale-105 opacity-100 z-10 w-full max-w-sm md:w-64 lg:w-72 xl:w-80' 
+                      : 'scale-90 opacity-60 z-0 hidden md:block md:w-64 lg:w-72 xl:w-80'
                   } ${
-                    isLeft ? 'md:-translate-x-4' : isRight ? 'md:translate-x-4' : ''
+                    isLeft ? 'lg:-translate-x-4 xl:-translate-x-6' : isRight ? 'lg:translate-x-4 xl:translate-x-6' : ''
                   }`}
-                  style={{
-                    minHeight: '420px'
-                  }}
                 >
-                  <Card className={`h-full bg-card border-border shadow-lg hover:shadow-xl transition-all duration-300 ${
-                    isCenter ? 'ring-2 ring-primary/20' : ''
-                  }`}>
+                  <Card 
+                    className={`h-full bg-card border-border shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      isCenter ? 'ring-2 ring-primary/20' : ''
+                    }`} 
+                    style={{ 
+                      minHeight: '450px', 
+                      maxHeight: '450px'
+                    }}
+                  >
                     <CardContent className="p-6 md:p-8 h-full flex flex-col justify-between">
                       {/* Star Rating */}
-                      <div className="flex items-center justify-center gap-1 mb-4">
+                      <div className="flex items-center justify-center gap-1 mb-2 flex-shrink-0">
                         {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
                           <Star 
                             key={i} 
-                            className="w-4 h-4 fill-yellow-400 text-yellow-400" 
+                            className="w-5 h-5 fill-yellow-400 text-yellow-400" 
                           />
                         ))}
                         {testimonial.rating % 1 !== 0 && (
                           <div className="relative">
-                            <Star className="w-4 h-4 text-gray-300" />
+                            <Star className="w-5 h-5 text-gray-300" />
                             <div className="absolute inset-0 overflow-hidden w-1/2">
-                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
                         )}
                         {[...Array(5 - Math.ceil(testimonial.rating))].map((_, i) => (
                           <Star 
                             key={i + Math.ceil(testimonial.rating)} 
-                            className="w-4 h-4 text-gray-300" 
+                            className="w-5 h-5 text-gray-300" 
                           />
                         ))}
                       </div>
 
                       {/* Testimonial Content */}
-                      <blockquote className={`text-muted-foreground leading-relaxed italic mb-6 text-center flex-grow flex items-center ${
-                        isCenter ? 'text-base' : 'text-sm'
-                      }`}>
-                        <span>"{testimonial.content}"</span>
-                      </blockquote>
+                      <div className="flex-1 flex items-center justify-center mb-6">
+                        <blockquote 
+                          className="text-muted-foreground leading-7 italic text-center text-base h-full max-h-[200px] overflow-hidden"
+                          style={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 8,
+                            WebkitBoxOrient: 'vertical'
+                          }}
+                        >
+                          <span>"{testimonial.content}"</span>
+                        </blockquote>
+                      </div>
 
                       {/* Author Info */}
-                      <div className="flex flex-col items-center gap-3 mt-auto">
-                        <div className={`bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-semibold ${
-                          isCenter ? 'w-12 h-12 text-base' : 'w-10 h-10 text-sm'
-                        }`}>
+                      <div className="flex flex-col items-center gap-2 flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg">
                           {testimonial.initials}
                         </div>
                         <div className="text-center">
-                          <p className={`font-semibold text-foreground ${isCenter ? 'text-base' : 'text-sm'}`}>
+                          <p className="font-semibold text-foreground text-lg mb-1 leading-tight">
                             {testimonial.name}
                           </p>
-                          <p className={`text-muted-foreground ${isCenter ? 'text-sm' : 'text-xs'}`}>
+                          <p className="text-muted-foreground text-sm leading-tight">
                             {testimonial.role}
                           </p>
                         </div>
@@ -161,13 +169,6 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes slideTestimonials {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${100 * testimonials.length}%); }
-        }
-      `}</style>
     </section>
   );
 }
