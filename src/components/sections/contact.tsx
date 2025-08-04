@@ -54,11 +54,8 @@ export function Contact() {
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
             Contact Us
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            Let's Build Something Amazing Together
-          </h2>
           <p className="text-lg text-muted-foreground">
-            Ready to transform your business with cutting-edge technology? Get in touch and let's discuss your project.
+            Ready to transform your business with cutting edge technology? Get in touch and let's discuss your project.
           </p>
         </div>
 
@@ -69,7 +66,7 @@ export function Contact() {
               <CardHeader>
                 <CardTitle className="text-2xl text-foreground flex items-center gap-2">
                   <MessageCircle className="w-6 h-6 text-primary" />
-                  Start Your Project
+                  Get in Touch
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -99,20 +96,9 @@ export function Contact() {
                       />
                     </div>
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="company" className="text-foreground">Company</Label>
-                    <Input
-                      id="company"
-                      value={formData.company}
-                      onChange={(e) => handleChange("company", e.target.value)}
-                      placeholder="Your company name (optional)"
-                      className="border-border focus:border-primary"
-                    />
-                  </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="projectDetails" className="text-foreground">Project Details *</Label>
+                    <Label htmlFor="projectDetails" className="text-foreground">Message *</Label>
                     <Textarea
                       id="projectDetails"
                       value={formData.projectDetails}
@@ -149,7 +135,7 @@ export function Contact() {
             {/* Contact details */}
             <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-xl text-foreground">Get in Touch</CardTitle>
+                <CardTitle className="text-xl text-foreground"></CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-3">
