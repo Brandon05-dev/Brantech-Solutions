@@ -25,6 +25,20 @@ export function Navigation({ onContactClick }: NavigationProps) {
     { label: "Contact Us", href: "#contact", isRoute: false, section: "contact" },
   ];
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup function to reset overflow when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +74,10 @@ export function Navigation({ onContactClick }: NavigationProps) {
   }, [location.pathname]);
 
   const scrollToSection = (href: string, isRoute: boolean, section: string) => {
+    // Close mobile menu immediately for better UX
+    setIsOpen(false);
+    
+    // Set active section
     setActiveSection(section);
     
     if (isRoute) {
@@ -72,22 +90,30 @@ export function Navigation({ onContactClick }: NavigationProps) {
       if (location.pathname === "/") {
         // We're on home page, scroll to section
         const element = document.querySelector(href);
-        element?.scrollIntoView({ behavior: "smooth" });
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       } else {
         // We're on a different page, navigate to home page with hash
         navigate(`/${href}`);
         // After navigation, scroll to the section
         setTimeout(() => {
           const element = document.querySelector(href);
-          element?.scrollIntoView({ behavior: "smooth" });
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }, 100);
       }
     }
-    setIsOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+      isOpen 
+        ? "bg-background border-b border-border shadow-lg" 
+        : "bg-background/80 backdrop-blur-md border-b border-border"
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -131,42 +157,91 @@ export function Navigation({ onContactClick }: NavigationProps) {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
+              className={cn(
+                "relative z-50 p-2 rounded-lg transition-all duration-200",
+                isOpen 
+                  ? "bg-primary/10 text-primary border border-primary/20" 
+                  : "hover:bg-accent"
               )}
+            >
+              <div className="relative w-6 h-6 flex items-center justify-center">
+                {isOpen ? (
+                  <X className="h-5 w-5 transition-transform duration-200 rotate-90" />
+                ) : (
+                  <Menu className="h-5 w-5 transition-transform duration-200" />
+                )}
+              </div>
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div
-          className={cn(
-            "md:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-md transition-all duration-300",
-            isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          )}
-        >
-          <div className="px-4 py-8 space-y-6">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.section;
-              return (
-                <button
-                  key={item.label}
-                  onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
-                  className={cn(
-                    "block w-full text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors duration-200",
-                    isActive && "text-primary font-semibold"
-                  )}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {isOpen && (
+          <>
+            {/* Overlay/Shadow Background */}
+            <div
+              className="md:hidden fixed inset-0 top-16 bg-black/50 backdrop-blur-sm transition-all duration-300 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Mobile Menu Content */}
+            <div
+              className={cn(
+                "md:hidden fixed inset-x-0 top-16 bg-background/95 backdrop-blur-md border-b border-border shadow-2xl transition-all duration-300 z-50",
+                isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"
+              )}
+            >
+              <div className="px-6 py-8 space-y-4 max-h-[70vh] overflow-y-auto">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.section;
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
+                      className={cn(
+                        "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-from-top-4 fade-in-0",
+                        "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
+                        isActive 
+                          ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
+                          : "text-muted-foreground"
+                      )}
+                      style={{
+                        animationDelay: `${index * 75}ms`,
+                        animationDuration: '300ms'
+                      }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{item.label}</span>
+                        {isActive && (
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+                
+                {/* Contact CTA in mobile menu */}
+                <div className="pt-6 mt-6 border-t border-border">
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Ready to start your project?
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        if (onContactClick) onContactClick();
+                        setIsOpen(false);
+                      }}
+                      className="w-full"
+                      size="lg"
+                    >
+                      Get Started
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </nav>
   );

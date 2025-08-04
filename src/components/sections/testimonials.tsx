@@ -81,7 +81,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto px-4 md:px-0">
           <div className="flex justify-center items-center gap-4 md:gap-8">
             {getDisplayedTestimonials().map((testimonial, index) => {
               const isCenter = testimonial.position === 'center';
@@ -93,13 +93,12 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                   key={`${testimonial.name}-${currentIndex}-${index}`}
                   className={`transition-all duration-700 ease-in-out ${
                     isCenter 
-                      ? 'scale-105 opacity-100 z-10' 
-                      : 'scale-90 opacity-60 z-0'
+                      ? 'scale-105 opacity-100 z-10 w-full max-w-sm md:max-w-none md:w-80' 
+                      : 'scale-90 opacity-60 z-0 hidden md:block w-70'
                   } ${
                     isLeft ? 'md:-translate-x-4' : isRight ? 'md:translate-x-4' : ''
                   }`}
                   style={{
-                    width: isCenter ? '320px' : '280px',
                     minHeight: '420px'
                   }}
                 >
@@ -159,61 +158,6 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                 </div>
               );
             })}
-          </div>
-          
-          {/* Mobile single card view */}
-          <div className="md:hidden">
-            <div className="flex justify-center">
-              <div className="w-full max-w-sm">
-                <Card className="bg-card border-border shadow-xl">
-                  <CardContent className="p-6">
-                    {/* Star Rating */}
-                    <div className="flex items-center justify-center gap-1 mb-4">
-                      {[...Array(Math.floor(testimonials[currentIndex].rating))].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className="w-4 h-4 fill-yellow-400 text-yellow-400" 
-                        />
-                      ))}
-                      {testimonials[currentIndex].rating % 1 !== 0 && (
-                        <div className="relative">
-                          <Star className="w-4 h-4 text-gray-300" />
-                          <div className="absolute inset-0 overflow-hidden w-1/2">
-                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          </div>
-                        </div>
-                      )}
-                      {[...Array(5 - Math.ceil(testimonials[currentIndex].rating))].map((_, i) => (
-                        <Star 
-                          key={i + Math.ceil(testimonials[currentIndex].rating)} 
-                          className="w-4 h-4 text-gray-300" 
-                        />
-                      ))}
-                    </div>
-
-                    {/* Testimonial Content */}
-                    <blockquote className="text-muted-foreground leading-relaxed italic mb-6 text-center">
-                      "{testimonials[currentIndex].content}"
-                    </blockquote>
-
-                    {/* Author Info */}
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-                        {testimonials[currentIndex].initials}
-                      </div>
-                      <div className="text-center">
-                        <p className="font-semibold text-foreground">
-                          {testimonials[currentIndex].name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonials[currentIndex].role}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
           </div>
         </div>
       </div>
