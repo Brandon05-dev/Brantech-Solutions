@@ -13,7 +13,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
     {
       name: "Adrian Adagala",
       role: "Co-Founder, MAAL TD",
-      content: "Brandon is not just a skilled software engineer he's part of the family behind MAAL Trading. We trust him with our vision to build an investment and trading platform that empowers young people in our community. It's a dream we've nurtured for years, and having him on board brings us closer to that goal.",
+      content: "Brandon is not just a skilled software engineer he's part of the family behind MAAL Trading. We trust him with our vision to build an investment and trading platform that empowers young people in our community.",
       rating: 5,
       initials: "AA"
     },
@@ -27,72 +27,45 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
     {
       name: "CEO BMI Leather Art Shop",
       role: "BMI Leather Art Shop",
-      content: "At BMI Leather Art Shop, every piece tells a story of timeless quality and care. Our goal is simple: beautiful leather goods that last. Thank you for trusting us and thanks to Brantech Solution for building our online shop to share this craft with you.",
+      content: "At BMI Leather Art Shop, every piece tells a story of timeless quality and care. Our goal is simple: beautiful leather goods that last. Thank you for trusting us and thanks to Brantech Solution for building our online shop.",
       rating: 4.5,
       initials: "AA"
     },
     {
       name: "James Kimanzi",
-      role: "Group Leader, CleanKili",
-      content: "Brantech Solution gave us the technical support and practical advice we needed to launch CleanKili's website. Their team was always ready to guide us and share ideas that made our work better. We're excited to keep growing this project with their continued support.",
+      role: "Team Lead, CleanKili",
+      content: "Brantech Solution gave us the technical support and practical advice we needed to launch CleanKili's website. Their team was always ready to guide us and share ideas that made our work better.",
       rating: 4,
       initials: "JK"
     }
   ];
 
-  // Auto-rotate testimonials every 4 seconds
+  // Duplicate testimonials for infinite loop effect
+  const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
+  // Auto-rotate testimonials every 5.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 4000);
+    }, 5500);
 
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  // Get testimonial position style based on index relative to current
-  const getTestimonialStyle = (index: number) => {
-    const position = (index - currentIndex + testimonials.length) % testimonials.length;
+  // Get three testimonials to display (previous, current, next)
+  const getDisplayedTestimonials = () => {
+    const prevIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    const nextIndex = (currentIndex + 1) % testimonials.length;
     
-    switch (position) {
-      case 0: // Center (current)
-        return {
-          transform: 'translateX(0%) scale(1.1)',
-          opacity: 1,
-          zIndex: 3,
-          filter: 'brightness(1.1) contrast(1.2)'
-        };
-      case 1: // Right
-        return {
-          transform: 'translateX(80%) scale(0.9)',
-          opacity: 0.7,
-          zIndex: 2,
-          filter: 'brightness(0.8)'
-        };
-      case testimonials.length - 1: // Left
-        return {
-          transform: 'translateX(-80%) scale(0.9)',
-          opacity: 0.7,
-          zIndex: 2,
-          filter: 'brightness(0.8)'
-        };
-      default:
-        return {
-          transform: 'translateX(0%) scale(0.8)',
-          opacity: 0.3,
-          zIndex: 1,
-          filter: 'brightness(0.6)'
-        };
-    }
-  };
-
-  // Get text style based on position
-  const getTextStyle = (index: number) => {
-    const position = (index - currentIndex + testimonials.length) % testimonials.length;
-    return position === 0 ? 'text-foreground' : 'text-muted-foreground';
+    return [
+      { ...testimonials[prevIndex], position: 'left' },
+      { ...testimonials[currentIndex], position: 'center' },
+      { ...testimonials[nextIndex], position: 'right' }
+    ];
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-background">
+    <section id="testimonials" className="py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -107,74 +80,150 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
           </p>
         </div>
 
-        {/* Testimonials - Rotating Carousel */}
-        <div className="relative h-96 overflow-hidden">
-          <div className="flex items-center justify-center h-full">
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={`${testimonial.name}-${index}`}
-                className="absolute bg-card border-border hover:shadow-xl transition-all duration-1000 ease-in-out w-80 h-80"
-                style={getTestimonialStyle(index)}
-              >
-                <CardContent className="p-6 flex flex-col h-full">
-                  {/* Star Rating */}
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400" 
-                      />
-                    ))}
-                    {testimonial.rating % 1 !== 0 && (
-                      <div className="relative">
-                        <Star className="w-4 h-4 text-gray-300" />
-                        <div className="absolute inset-0 overflow-hidden w-1/2">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        {/* Testimonials Carousel */}
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex justify-center items-center gap-4 md:gap-8">
+            {getDisplayedTestimonials().map((testimonial, index) => {
+              const isCenter = testimonial.position === 'center';
+              const isLeft = testimonial.position === 'left';
+              const isRight = testimonial.position === 'right';
+              
+              return (
+                <div
+                  key={`${testimonial.name}-${currentIndex}-${index}`}
+                  className={`transition-all duration-700 ease-in-out ${
+                    isCenter 
+                      ? 'scale-105 opacity-100 z-10' 
+                      : 'scale-90 opacity-60 z-0'
+                  } ${
+                    isLeft ? 'md:-translate-x-4' : isRight ? 'md:translate-x-4' : ''
+                  }`}
+                  style={{
+                    width: isCenter ? '320px' : '280px',
+                    minHeight: '420px'
+                  }}
+                >
+                  <Card className={`h-full bg-card border-border shadow-lg hover:shadow-xl transition-all duration-300 ${
+                    isCenter ? 'ring-2 ring-primary/20' : ''
+                  }`}>
+                    <CardContent className="p-6 md:p-8 h-full flex flex-col justify-between">
+                      {/* Star Rating */}
+                      <div className="flex items-center justify-center gap-1 mb-4">
+                        {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className="w-4 h-4 fill-yellow-400 text-yellow-400" 
+                          />
+                        ))}
+                        {testimonial.rating % 1 !== 0 && (
+                          <div className="relative">
+                            <Star className="w-4 h-4 text-gray-300" />
+                            <div className="absolute inset-0 overflow-hidden w-1/2">
+                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            </div>
+                          </div>
+                        )}
+                        {[...Array(5 - Math.ceil(testimonial.rating))].map((_, i) => (
+                          <Star 
+                            key={i + Math.ceil(testimonial.rating)} 
+                            className="w-4 h-4 text-gray-300" 
+                          />
+                        ))}
+                      </div>
+
+                      {/* Testimonial Content */}
+                      <blockquote className={`text-muted-foreground leading-relaxed italic mb-6 text-center flex-grow flex items-center ${
+                        isCenter ? 'text-base' : 'text-sm'
+                      }`}>
+                        <span>"{testimonial.content}"</span>
+                      </blockquote>
+
+                      {/* Author Info */}
+                      <div className="flex flex-col items-center gap-3 mt-auto">
+                        <div className={`bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-semibold ${
+                          isCenter ? 'w-12 h-12 text-base' : 'w-10 h-10 text-sm'
+                        }`}>
+                          {testimonial.initials}
+                        </div>
+                        <div className="text-center">
+                          <p className={`font-semibold text-foreground ${isCenter ? 'text-base' : 'text-sm'}`}>
+                            {testimonial.name}
+                          </p>
+                          <p className={`text-muted-foreground ${isCenter ? 'text-sm' : 'text-xs'}`}>
+                            {testimonial.role}
+                          </p>
                         </div>
                       </div>
-                    )}
-                    {[...Array(5 - Math.ceil(testimonial.rating))].map((_, i) => (
-                      <Star 
-                        key={i + Math.ceil(testimonial.rating)} 
-                        className="w-4 h-4 text-gray-300" 
-                      />
-                    ))}
-                  </div>
-
-                  {/* Testimonial Content */}
-                  <blockquote className={`mb-6 leading-relaxed text-sm italic flex-grow overflow-hidden ${getTextStyle(index)}`}>
-                    "{testimonial.content}"
-                  </blockquote>
-
-                  {/* Author Info */}
-                  <div className="flex items-center gap-3 mt-auto">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm flex-shrink-0">
-                      {testimonial.initials}
-                    </div>
-                    <div className="min-w-0">
-                      <p className={`font-semibold text-sm truncate ${getTextStyle(index)}`}>{testimonial.name}</p>
-                      <p className={`text-xs truncate ${index === ((currentIndex + testimonials.length) % testimonials.length) ? 'text-muted-foreground' : 'text-gray-400'}`}>{testimonial.role}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    </CardContent>
+                  </Card>
+                </div>
+              );
+            })}
           </div>
+          
+          {/* Mobile single card view */}
+          <div className="md:hidden">
+            <div className="flex justify-center">
+              <div className="w-full max-w-sm">
+                <Card className="bg-card border-border shadow-xl">
+                  <CardContent className="p-6">
+                    {/* Star Rating */}
+                    <div className="flex items-center justify-center gap-1 mb-4">
+                      {[...Array(Math.floor(testimonials[currentIndex].rating))].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className="w-4 h-4 fill-yellow-400 text-yellow-400" 
+                        />
+                      ))}
+                      {testimonials[currentIndex].rating % 1 !== 0 && (
+                        <div className="relative">
+                          <Star className="w-4 h-4 text-gray-300" />
+                          <div className="absolute inset-0 overflow-hidden w-1/2">
+                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          </div>
+                        </div>
+                      )}
+                      {[...Array(5 - Math.ceil(testimonials[currentIndex].rating))].map((_, i) => (
+                        <Star 
+                          key={i + Math.ceil(testimonials[currentIndex].rating)} 
+                          className="w-4 h-4 text-gray-300" 
+                        />
+                      ))}
+                    </div>
 
-          {/* Navigation Dots */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentIndex ? 'bg-primary' : 'bg-gray-300'
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
+                    {/* Testimonial Content */}
+                    <blockquote className="text-muted-foreground leading-relaxed italic mb-6 text-center">
+                      "{testimonials[currentIndex].content}"
+                    </blockquote>
+
+                    {/* Author Info */}
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-semibold">
+                        {testimonials[currentIndex].initials}
+                      </div>
+                      <div className="text-center">
+                        <p className="font-semibold text-foreground">
+                          {testimonials[currentIndex].name}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonials[currentIndex].role}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes slideTestimonials {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${100 * testimonials.length}%); }
+        }
+      `}</style>
     </section>
   );
 }
