@@ -126,6 +126,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                 src="/BS Icon.png" 
                 alt="Brantech Solutions" 
                 className="w-full h-full object-contain"
+                loading="eager"
               />
             </div>
           </div>

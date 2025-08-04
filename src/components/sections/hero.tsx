@@ -46,6 +46,7 @@ export function Hero({ onContactClick }: HeroProps) {
                   src="/BS Icon.png" 
                   alt="Brantech Solutions" 
                   className="w-full h-full object-contain cursor-pointer transition-all duration-300"
+                  loading="eager"
                   style={{
                     filter: 'drop-shadow(0 0 0 transparent)',
                     transition: 'filter 0.3s ease-in-out, transform 0.3s ease-in-out'
