@@ -8,7 +8,6 @@ import { Portfolio } from "@/components/sections/portfolio";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
-import { CustomerSupport } from "@/components/ui/customer-support";
 
 const Index = () => {
   const handleContactClick = () => {
@@ -27,7 +26,6 @@ const Index = () => {
       <Testimonials onContactClick={handleContactClick} />
       <Contact />
       <Footer />
-      <CustomerSupport />
     </div>
   );
 };

@@ -47,7 +47,7 @@ export function Chatbot() {
   const botResponses = {
     greeting: [
       "Hello! Welcome to Brantech Solutions. We're here to empower students, startups, and SMEs across Africa with innovative digital solutions. How can I help you today?",
-      "Hi there! I'm Sarah from Brantech Support. We specialize in bridging the gap between brilliant ideas and practical digital implementation for Africa's youth and business community. What would you like to know?",
+      "Hi there! I'm Temi from Brantech Support. We specialize in bridging the gap between brilliant ideas and practical digital implementation for Africa's youth and business community. What would you like to know?",
       "Welcome to Brantech Solutions! We're passionate about supporting African innovators with affordable, accessible technology solutions. How can I assist you?"
     ],
     services: [
@@ -262,16 +262,35 @@ export function Chatbot() {
       {/* Chat toggle button */}
       {!isOpen && (
         <div className="fixed bottom-6 right-6 z-50">
-          <Button
-            onClick={() => setIsOpen(true)}
-            className="h-16 w-16 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 group border-2 border-white/10 backdrop-blur-sm"
-            size="sm"
-          >
-            <div className="relative">
-              <MessageCircle className="w-7 h-7 text-white group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+          <div className="relative flex items-center gap-2 sm:gap-3">
+            {/* Text bubble that appears when closed */}
+            <div className="bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
+              <div className="flex flex-col text-center">
+                <span className="font-semibold">
+                  <span className="hidden sm:inline">Ask Temi anything 💬</span>
+                  <span className="sm:hidden">Ask Temi 💬</span>
+                </span>
+                <span className="text-xs opacity-90 mt-1">
+                  <span className="hidden sm:inline">Our Customer Assistance</span>
+                  <span className="sm:hidden">Customer Support</span>
+                </span>
+              </div>
+              
+              {/* Speech bubble arrow */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 w-0 h-0 border-l-[8px] sm:border-l-[12px] border-l-primary border-t-[6px] sm:border-t-[8px] border-t-transparent border-b-[6px] sm:border-b-[8px] border-b-transparent"></div>
             </div>
-          </Button>
+            
+            <Button
+              onClick={() => setIsOpen(true)}
+              className="h-16 w-16 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 border-2 border-primary/20 flex items-center justify-center"
+              style={{
+                animation: 'float 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate'
+              }}
+              size="sm"
+            >
+              <span className="text-3xl">👩🏽‍💼</span>
+            </Button>
+          </div>
         </div>
       )}
 
@@ -290,11 +309,8 @@ export function Chatbot() {
             <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-4 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 text-lg">
-                      👩🏽‍💼
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 text-lg">
+                    👩🏽‍💼
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">Temi - Customer Support</h3>
@@ -345,7 +361,7 @@ export function Chatbot() {
                         >
                           {message.sender === "bot" && (
                             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
-                              👩🏽‍💼
+                              <span className="text-lg">👩🏽‍💼</span>
                             </div>
                           )}
                           <div
@@ -369,7 +385,7 @@ export function Chatbot() {
                       {isTyping && (
                         <div className="flex gap-3 justify-start animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
                           <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
-                            👩🏽‍💼
+                            <span className="text-lg">👩🏽‍💼</span>
                           </div>
                           <div className="bg-slate-700/80 text-slate-300 rounded-2xl rounded-bl-md px-4 py-3 text-sm border border-slate-600/50 backdrop-blur-sm">
                             <div className="flex gap-1">

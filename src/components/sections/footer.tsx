@@ -8,25 +8,14 @@ import {
   Linkedin, 
   Twitter, 
   Mail, 
-  Send,
-  ArrowUp
+  Send
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export function Footer() {
   const [email, setEmail] = useState("");
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,10 +26,6 @@ export function Footer() {
       });
       setEmail("");
     }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const currentYear = new Date().getFullYear();
@@ -200,20 +185,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Floating Back to Top Button */}
-        {showScrollTop && (
-          <div className="fixed bottom-6 right-6 z-50">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={scrollToTop}
-              className="h-12 w-12 p-0 rounded-full bg-background/80 backdrop-blur-sm border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <ArrowUp className="w-5 h-5" />
-            </Button>
-          </div>
-        )}
       </div>
     </footer>
   );
