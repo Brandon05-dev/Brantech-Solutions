@@ -19,36 +19,34 @@ export function Stats({ onContactClick }: StatsProps) {
       icon: Globe,
       number: "25+",
       label: "Websites Launched",
-      description: "Live projects across Africa"
+      description: "Live projects across Africa",
+      color: "blue"
     },
     {
       icon: Building2,
       number: "30+", 
       label: "Businesses Helped",
-      description: "From startups to enterprises"
+      description: "From startups to enterprises",
+      color: "green"
     },
     {
       icon: Users,
       number: "5+",
       label: "Countries Reached",
-      description: "International client base"
+      description: "International client base",
+      color: "purple"
     },
     {
       icon: Star,
       number: "4.9/5",
       label: "Client Rating",
-      description: "Satisfaction guaranteed"
-    },
-    {
-      icon: TrendingUp,
-      number: "150%",
-      label: "Average Growth",
-      description: "Client business increase"
+      description: "Satisfaction guaranteed",
+      color: "orange"
     }
   ];
 
   return (
-    <section id="stats" className="py-20 bg-secondary/30">
+    <section id="stats" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -56,40 +54,81 @@ export function Stats({ onContactClick }: StatsProps) {
             Our Impact
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            Our Work So Far
+            Transforming Businesses <span className="text-primary">Across Africa</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real results for real businesses. Here's what we've achieved together with our amazing clients.
+            Real results for real businesses. Here's the impact we've created together with our amazing clients.
           </p>
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-          {stats.map((stat, index) => (
-            <Card 
-              key={stat.label}
-              className="group text-center hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
-                  <stat.icon className="w-6 h-6 text-primary-foreground" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {stats.map((stat, index) => {
+            // Define color schemes for each stat
+            const colorSchemes = {
+              blue: {
+                icon: "text-blue-600",
+                number: "text-blue-600"
+              },
+              green: {
+                icon: "text-green-600",
+                number: "text-green-600"
+              },
+              purple: {
+                icon: "text-purple-600",
+                number: "text-purple-600"
+              },
+              orange: {
+                icon: "text-orange-600",
+                number: "text-orange-600"
+              }
+            };
+            
+            const colors = colorSchemes[stat.color];
+            
+            return (
+              <div 
+                key={stat.label}
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Icon */}
+                <div className="w-16 h-16 bg-transparent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-500">
+                  <stat.icon className={`w-8 h-8 ${colors.icon} transition-colors duration-500`} />
                 </div>
                 
-                <div className="text-3xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                {/* Number */}
+                <div className={`text-4xl font-bold ${colors.number} mb-3 group-hover:scale-105 transition-transform duration-300`}>
                   {stat.number}
                 </div>
                 
-                <h3 className="font-semibold text-foreground mb-2">
+                {/* Label */}
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                   {stat.label}
                 </h3>
                 
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                {/* Description */}
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {stat.description}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <p className="text-muted-foreground mb-6 text-lg">
+            Ready to become our next success story?
+          </p>
+          <Button 
+            onClick={onContactClick}
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+          >
+            Start Your Project
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </div>
     </section>

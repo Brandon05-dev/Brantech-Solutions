@@ -6,7 +6,6 @@ import { Packages } from "@/components/sections/packages";
 import { Stats } from "@/components/sections/stats";
 import { Portfolio } from "@/components/sections/portfolio";
 import { Testimonials } from "@/components/sections/testimonials";
-import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 import { Chatbot } from "@/components/ui/chatbot";
@@ -24,7 +23,6 @@ const Index = () => {
       <Services onContactClick={handleContactClick} />
       <Portfolio onContactClick={handleContactClick} />
       <Packages onContactClick={handleContactClick} />
-      <FAQ onContactClick={handleContactClick} />
       <Stats onContactClick={handleContactClick} />
       <Testimonials onContactClick={handleContactClick} />
       <Contact />

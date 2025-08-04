@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,20 +11,57 @@ interface NavigationProps {
 
 export function Navigation({ onContactClick }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
 
   const navItems = [
-    { label: "Home", href: "#home", isRoute: false },
-    { label: "About Us", href: "/about-us", isRoute: true },
-    { label: "Services", href: "#services", isRoute: false },
-    { label: "Packages", href: "#packages", isRoute: false },
-    { label: "Testimonials", href: "#testimonials", isRoute: false },
-    { label: "FAQ", href: "#faq", isRoute: false },
-    { label: "Contact Us", href: "#contact", isRoute: false },
+    { label: "Home", href: "#home", isRoute: false, section: "home" },
+    { label: "About Us", href: "/about-us", isRoute: true, section: "about-us" },
+    { label: "Services", href: "#services", isRoute: false, section: "services" },
+    { label: "Packages", href: "#packages", isRoute: false, section: "packages" },
+    { label: "Testimonials", href: "#testimonials", isRoute: false, section: "testimonials" },
+    { label: "FAQ", href: "/faq", isRoute: true, section: "faq" },
+    { label: "Contact Us", href: "#contact", isRoute: false, section: "contact" },
   ];
 
-  const scrollToSection = (href: string, isRoute: boolean) => {
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (location.pathname === "/") {
+        const sections = ["home", "services", "packages", "testimonials", "contact"];
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= 100 && rect.bottom >= 100;
+          }
+          return false;
+        });
+        if (currentSection) {
+          setActiveSection(currentSection);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
+
+  // Set active section based on current route
+  useEffect(() => {
+    if (location.pathname === "/about-us") {
+      setActiveSection("about-us");
+    } else if (location.pathname === "/faq") {
+      setActiveSection("faq");
+    } else if (location.pathname === "/") {
+      setActiveSection("home");
+    }
+  }, [location.pathname]);
+
+  const scrollToSection = (href: string, isRoute: boolean, section: string) => {
+    setActiveSection(section);
+    
     if (isRoute) {
       // Navigate to the route
       navigate(href);
@@ -69,15 +106,21 @@ export function Navigation({ onContactClick }: NavigationProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href, item.isRoute)}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.section;
+              return (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
+                  className={cn(
+                    "text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium",
+                    isActive && "text-primary font-semibold"
+                  )}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
             <ThemeToggle />
           </div>
 
@@ -107,15 +150,21 @@ export function Navigation({ onContactClick }: NavigationProps) {
           )}
         >
           <div className="px-4 py-8 space-y-6">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href, item.isRoute)}
-                className="block w-full text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.section;
+              return (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
+                  className={cn(
+                    "block w-full text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors duration-200",
+                    isActive && "text-primary font-semibold"
+                  )}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

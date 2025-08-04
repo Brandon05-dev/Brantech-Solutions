@@ -30,6 +30,13 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
       content: "At BMI Leather Art Shop, every piece tells a story of timeless quality and care. Our goal is simple: beautiful leather goods that last. Thank you for trusting us and thanks to Brantech Solution for building our online shop to share this craft with you.",
       rating: 4.5,
       initials: "AA"
+    },
+    {
+      name: "James Kimanzi",
+      role: "Group Leader, CleanKili",
+      content: "Brantech Solution gave us the technical support and practical advice we needed to launch CleanKili's website. Their team was always ready to guide us and share ideas that made our work better. We're excited to keep growing this project with their continued support.",
+      rating: 4,
+      initials: "JK"
     }
   ];
 

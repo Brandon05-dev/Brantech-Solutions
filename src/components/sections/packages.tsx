@@ -14,6 +14,7 @@ export function Packages({ onContactClick }: PackagesProps) {
       name: "Free Plan",
       price: "$0",
       description: "Perfect for consultation and planning",
+      iconColor: "blue",
       features: [
         { name: "Custom Website Design and Development Consultation", included: true },
         { name: "Basic Security Assessment", included: true },
@@ -35,6 +36,7 @@ export function Packages({ onContactClick }: PackagesProps) {
       name: "Basic Plan",
       price: "KSHS 25,000",
       description: "Essential features for small businesses",
+      iconColor: "green",
       features: [
         { name: "Custom Website Design and Development", included: true },
         { name: "Basic SEO Optimization", included: true },
@@ -55,6 +57,7 @@ export function Packages({ onContactClick }: PackagesProps) {
       name: "Standard Plan",
       price: "KSHS 30,000",
       description: "Perfect for growing businesses",
+      iconColor: "purple",
       features: [
         { name: "Custom Website Design and Development", included: true },
         { name: "Enhanced SEO and Digital Marketing", included: true },
@@ -75,6 +78,7 @@ export function Packages({ onContactClick }: PackagesProps) {
       name: "Premium Plan",
       price: "KSHS 35,000",
       description: "Complete solution for established businesses",
+      iconColor: "orange",
       features: [
         { name: "Custom Website Design and Development", included: true },
         { name: "Advanced SEO and Digital Marketing", included: true },
@@ -110,85 +114,105 @@ export function Packages({ onContactClick }: PackagesProps) {
         </div>
 
         {/* Packages grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {packages.map((pkg, index) => (
-            <Card 
-              key={pkg.name}
-              className={`group relative transition-all duration-300 border-border animate-fade-in bg-card ${
-                pkg.popular 
-                  ? 'ring-2 ring-primary scale-105 hover:shadow-2xl shadow-lg border-primary/50' 
-                  : 'hover:shadow-xl hover:border-primary/20'
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {pkg.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground px-3 py-1">
-                    Most Popular
-                  </Badge>
-                </div>
-              )}
-
-              {pkg.highlight && (
-                <div className="absolute -top-3 right-4">
-                  <Badge variant="outline" className="bg-secondary text-secondary-foreground px-2 py-1 text-xs">
-                    {pkg.highlight}
-                  </Badge>
-                </div>
-              )}
-              
-              <CardHeader className="text-center pb-4">
-                <div className={`w-16 h-16 ${pkg.popular ? 'bg-gradient-to-r from-primary to-primary/80' : 'bg-secondary'} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300`}>
-                  <pkg.icon className={`w-8 h-8 ${pkg.popular ? 'text-primary-foreground' : 'text-primary'}`} />
-                </div>
-                
-                <CardTitle className="text-xl text-foreground mb-2">
-                  {pkg.name}
-                </CardTitle>
-                
-                <div className="mb-3">
-                  <div className={`text-3xl font-bold ${pkg.popular ? 'text-primary' : 'text-foreground'} mb-2`}>
-                    {pkg.price}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 max-w-7xl mx-auto">
+          {packages.map((pkg, index) => {
+            // Define color schemes for each icon
+            const colorSchemes = {
+              blue: {
+                icon: "text-blue-600"
+              },
+              green: {
+                icon: "text-green-600"
+              },
+              purple: {
+                icon: "text-purple-600"
+              },
+              orange: {
+                icon: "text-orange-600"
+              }
+            };
+            
+            const colors = colorSchemes[pkg.iconColor];
+            
+            return (
+              <Card 
+                key={pkg.name}
+                className={`group relative transition-all duration-300 border-border animate-fade-in bg-card ${
+                  pkg.popular 
+                    ? 'ring-2 ring-primary scale-105 hover:shadow-2xl shadow-lg border-primary/50' 
+                    : 'hover:shadow-xl hover:border-primary/20'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-primary text-primary-foreground px-3 py-1">
+                      Most Popular
+                    </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    {pkg.description}
-                  </p>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="pt-0">
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm">
-                      {feature.included ? (
-                        <Check className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      ) : (
-                        <X className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
-                      )}
-                      <span className={`leading-relaxed ${feature.included ? 'text-muted-foreground' : 'text-muted-foreground/60 line-through'}`}>
-                        {feature.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                )}
+
+                {pkg.highlight && (
+                  <div className="absolute -top-3 right-4">
+                    <Badge variant="outline" className="bg-secondary text-secondary-foreground px-2 py-1 text-xs">
+                      {pkg.highlight}
+                    </Badge>
+                  </div>
+                )}
                 
-                <Button
-                  variant={pkg.popular ? "default" : "outline"}
-                  onClick={pkg.name === "Free Plan" 
-                    ? () => window.open("https://calendly.com/brantech-solutions/30min", "_blank")
-                    : onContactClick
-                  }
-                  className={`w-full transition-all duration-300 ${
-                    pkg.popular 
-                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg' 
-                      : 'hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                >
-                  {pkg.cta}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader className="text-center pb-4">
+                  <div className="w-16 h-16 bg-transparent rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300">
+                    <pkg.icon className={`w-8 h-8 ${colors.icon}`} />
+                  </div>
+                  
+                  <CardTitle className="text-xl text-foreground mb-2">
+                    {pkg.name}
+                  </CardTitle>
+                  
+                  <div className="mb-3">
+                    <div className={`text-3xl font-bold ${pkg.popular ? 'text-primary' : 'text-foreground'} mb-2`}>
+                      {pkg.price}
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {pkg.description}
+                    </p>
+                  </div>
+                </CardHeader>
+                
+                <CardContent className="pt-0">
+                  <ul className="space-y-3 mb-8">
+                    {pkg.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm">
+                        {feature.included ? (
+                          <Check className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        ) : (
+                          <X className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
+                        )}
+                        <span className={`leading-relaxed ${feature.included ? 'text-muted-foreground' : 'text-muted-foreground/60 line-through'}`}>
+                          {feature.name}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button
+                    variant={pkg.popular ? "default" : "outline"}
+                    onClick={pkg.name === "Free Plan" 
+                      ? () => window.open("https://calendly.com/brantech-solutions/30min", "_blank")
+                      : onContactClick
+                    }
+                    className={`w-full transition-all duration-300 ${
+                      pkg.popular 
+                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg' 
+                        : 'hover:bg-primary hover:text-primary-foreground'
+                    }`}
+                  >
+                    {pkg.cta}
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Additional info */}
