@@ -4,12 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Target, 
   Heart, 
-  Users, 
   Linkedin, 
   ArrowRight,
-  Award,
-  Lightbulb,
-  Shield,
   Eye
 } from "lucide-react";
 
@@ -20,22 +16,44 @@ interface AboutProps {
 export function About({ onContactClick }: AboutProps) {
   const values = [
     {
-      icon: Lightbulb,
+      svg: (
+        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M9 18h6" />
+          <path d="M10 22h4" />
+          <path d="M12 2a6 6 0 0 0-4 10c0 1.5.5 2 1 3h6c.5-1 .9-1.5 1-3a6 6 0 0 0-4-10z" />
+        </svg>
+      ),
       title: "Innovation",
       description: "We embrace cutting-edge technologies and creative solutions to solve complex challenges."
     },
     {
-      icon: Shield,
+      svg: (
+        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M12 2l7 4v6c0 5-3.3 9.7-7 10-3.7-.3-7-5-7-10V6l7-4z" />
+        </svg>
+      ),
       title: "Integrity",
       description: "We build trust through transparency, reliability, and ethical business practices."
     },
     {
-      icon: Users,
+      svg: (
+        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3z" />
+          <path d="M6 11c1.7 0 3-1.3 3-3S7.7 5 6 5 3 6.3 3 8s1.3 3 3 3z" />
+          <path d="M2 19c0-2.2 3-4 7-4s7 1.8 7 4" />
+          <path d="M16 16c-.1-.2-.2-.4-.4-.6" />
+        </svg>
+      ),
       title: "Collaboration",
       description: "We work closely with our clients as partners to achieve shared success."
     },
     {
-      icon: Award,
+      svg: (
+        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M12 2l2.6 5.3L20 8l-4 3.6L17 18l-5-2.6L7 18l1-6.4L4 8l5.4-.7L12 2z" />
+          <path d="M12 22v-6" />
+        </svg>
+      ),
       title: "Excellence",
       description: "We deliver high-quality solutions that exceed expectations and drive real results."
     }
@@ -60,61 +78,72 @@ export function About({ onContactClick }: AboutProps) {
         {/* Mission and Vision statements */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Mission statement */}
-          <div className="bg-gradient-primary rounded-2xl p-8 text-center text-primary-foreground">
-            <Target className="w-12 h-12 mx-auto mb-4 opacity-90" />
-            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-            <p className="text-lg text-primary-foreground/90 leading-relaxed">
-              To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.
-            </p>
+          <div className="group relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90 rounded-3xl p-8 text-center text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-primary/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Target className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors duration-300">Our Mission</h3>
+              <p className="text-lg text-primary-foreground/95 leading-relaxed group-hover:text-white/95 transition-colors duration-300">
+                To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.
+              </p>
+              <div className="mt-6 flex justify-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Accessible</span>
+                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Affordable</span>
+              </div>
+            </div>
           </div>
 
           {/* Vision statement */}
-          <div className="bg-gradient-primary rounded-2xl p-8 text-center text-primary-foreground">
-            <Eye className="w-12 h-12 mx-auto mb-4 opacity-90" />
-            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-            <p className="text-lg text-primary-foreground/90 leading-relaxed">
-              To be the trusted digital partner that transforms how businesses build, launch, and scale making modern tech accessible, affordable, and impactful for everyone.
-            </p>
+          <div className="group relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90 rounded-3xl p-8 text-center text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-primary/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Eye className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors duration-300">Our Vision</h3>
+              <p className="text-lg text-primary-foreground/95 leading-relaxed group-hover:text-white/95 transition-colors duration-300">
+                To be the trusted digital partner that transforms how businesses build, launch, and scale making modern tech accessible, affordable, and impactful for everyone.
+              </p>
+              <div className="mt-6 flex justify-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Innovation</span>
+                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Impact</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Founder section */}
+        {/* Founder / Team profiles section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Meet the Founder</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">The Team</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Visionary leadership driving innovation and excellence in technology solutions.
             </p>
           </div>
 
-          <Card className="max-w-4xl mx-auto bg-card border-border hover:shadow-elegant transition-all duration-300">
-            <CardContent className="p-8">
-              <div className="flex flex-col lg:flex-row items-center gap-8">
-                {/* Profile image */}
-                <div className="flex-shrink-0">
-                  <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img 
-                      src="/me.jpg" 
-                      alt="Brandon Omutiti - Founder & Lead Developer"
-                      className="w-full h-full object-cover"
-                    />
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+            {/* Founder - Brandon */}
+            <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
+                    <img src="/me.jpg" alt="Brandon Omutiti - Founder & Lead Developer" className="w-full h-full object-cover" />
                   </div>
-                </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground">Brandon Omutiti</h4>
+                    <p className="text-primary font-medium text-sm">Founder & Lead Developer</p>
+                  </div>
 
-                {/* Bio content */}
-                <div className="flex-1 text-center lg:text-left">
-                  <h4 className="text-2xl font-bold text-foreground mb-2">Brandon Omutiti</h4>
-                  <p className="text-primary font-medium mb-4">Founder & Lead Developer</p>
-                  
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    Brandon Omutiti is the visionary behind Brantech Solutions. With a passion for solving complex challenges through simple digital solutions, he leads the team with a commitment to quality, agility, and impact. His expertise spans across software development, AI implementation, and IoT systems, with a deep understanding of the unique challenges facing businesses in Africa.
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Brandon leads Brantech Solutions with a focus on quality, agility, and meaningful impact. He specializes in full-stack development, AI, and IoT.
                   </p>
 
-                  <div className="flex flex-wrap gap-3 mb-6 justify-center lg:justify-start">
-                    <Badge variant="secondary">Full-Stack Development</Badge>
-                    <Badge variant="secondary">AI & Machine Learning</Badge>
-                    <Badge variant="secondary">IoT Systems</Badge>
-                    <Badge variant="secondary">Tech Leadership</Badge>
+                  <div className="flex flex-wrap gap-2 mb-3 justify-center">
+                    <Badge variant="secondary">Full-Stack</Badge>
+                    <Badge variant="secondary">AI</Badge>
+                    <Badge variant="secondary">IoT</Badge>
                   </div>
 
                   <Button
@@ -123,12 +152,114 @@ export function About({ onContactClick }: AboutProps) {
                     className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
                     <Linkedin className="w-4 h-4 mr-2" />
-                    Connect on LinkedIn
+                    LinkedIn
                   </Button>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            {/* Co-Founder - Placeholder 1 */}
+            <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
+                    <img src="/BS Icon.png" alt="Co-Founder" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground">Amina Njoroge</h4>
+                    <p className="text-primary font-medium text-sm">Co-Founder & CTO</p>
+                  </div>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Amina oversees our technical strategy and architecture. She brings a strong background in scalable systems and cloud-native design.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-3 justify-center">
+                    <Badge variant="secondary">Cloud</Badge>
+                    <Badge variant="secondary">Systems</Badge>
+                    <Badge variant="secondary">Architecture</Badge>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open("https://www.linkedin.com/", "_blank")}
+                    className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Head of Product - Placeholder 2 */}
+            <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
+                    <img src="/BS Icon.png" alt="Head of Product" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground">John Kamau</h4>
+                    <p className="text-primary font-medium text-sm">Head of Product</p>
+                  </div>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    John leads product strategy and delivery, ensuring our solutions solve real customer problems and deliver measurable value.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-3 justify-center">
+                    <Badge variant="secondary">PM</Badge>
+                    <Badge variant="secondary">Design</Badge>
+                    <Badge variant="secondary">Strategy</Badge>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open("https://www.linkedin.com/", "_blank")}
+                    className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Head of Marketing - New Profile */}
+            <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
+                    <img src="/BS Icon.png" alt="Head of Marketing" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground">Sarah Wanjiku</h4>
+                    <p className="text-primary font-medium text-sm">Head of Marketing</p>
+                  </div>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Sarah drives our brand strategy and customer engagement initiatives. She specializes in digital marketing, content strategy, and growth optimization.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-3 justify-center">
+                    <Badge variant="secondary">Marketing</Badge>
+                    <Badge variant="secondary">Growth</Badge>
+                    <Badge variant="secondary">Content</Badge>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open("https://www.linkedin.com/", "_blank")}
+                    className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Company values */}
@@ -148,8 +279,10 @@ export function About({ onContactClick }: AboutProps) {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
-                    <value.icon className="w-6 h-6 text-primary-foreground" />
+                  <div className="mb-6 flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300">
+                    <div className="w-16 h-16 text-primary group-hover:text-primary/80 transition-colors duration-300">
+                      {value.svg}
+                    </div>
                   </div>
                   <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {value.title}
@@ -163,25 +296,7 @@ export function About({ onContactClick }: AboutProps) {
           </div>
         </div>
 
-        {/* CTA section */}
-        <div className="text-center bg-gradient-primary rounded-2xl p-8 text-primary-foreground">
-          <Heart className="w-12 h-12 mx-auto mb-4 opacity-90" />
-          <h3 className="text-2xl font-bold mb-4">
-            Ready to Build Your Next Big Idea?
-          </h3>
-          <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
-            Let's talk today and discover how we can help transform your business with innovative technology solutions.
-          </p>
-          <Button
-            variant="secondary"
-            size="lg"
-            onClick={onContactClick}
-            className="bg-background text-foreground hover:bg-secondary transition-all duration-300"
-          >
-            Start the Conversation
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
+  {/* CTA removed as requested */}
       </div>
     </section>
   );

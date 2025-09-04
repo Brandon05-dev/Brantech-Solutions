@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, MessageCircle, ArrowLeft } from "lucide-react";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/sections/footer";
@@ -74,10 +74,6 @@ const FAQ = () => {
     }
   };
 
-  const handleBackToHome = () => {
-    navigate("/");
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation onContactClick={handleContactClick} />
@@ -86,21 +82,12 @@ const FAQ = () => {
       <section className="pt-32 pb-20 bg-gradient-to-br from-primary/5 to-secondary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <Button
-              variant="ghost"
-              onClick={handleBackToHome}
-              className="mb-8 hover:bg-secondary/20"
-            >
-              <ArrowLeft className="mr-2 w-4 h-4" />
-              Back to Home
-            </Button>
-            
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-6 py-3 rounded-full text-sm font-medium mb-8">
               Frequently Asked Questions
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-8">
-              Everything You Need to <span className="text-primary">Know</span>
+              Everything You Need to Know
             </h1>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
@@ -151,33 +138,45 @@ const FAQ = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-12 max-w-4xl mx-auto">
-            <MessageCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h3 className="text-3xl font-bold text-foreground mb-4">
-              Still Have Questions?
-            </h3>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We're here to help! Get in touch with our team for personalized answers 
-              and to discuss your specific project needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                variant="default"
-                size="lg"
-                onClick={handleContactClick}
-                className="transition-all duration-300 hover:scale-105"
-              >
-                <MessageCircle className="mr-2 w-5 h-5" />
-                Contact Us
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => window.open("https://calendly.com/brantech-solutions/30min", "_blank")}
-                className="transition-all duration-300 hover:scale-105"
-              >
-                Schedule a Call
-              </Button>
+          <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto border border-primary/10 shadow-xl">
+            {/* Background decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full blur-2xl"></div>
+            
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <MessageCircle className="w-10 h-10 text-primary-foreground" />
+              </div>
+              
+              <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                Still Have Questions?
+              </h3>
+              
+              <p className="text-lg lg:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+                We're here to help! Get in touch with our team for personalized answers 
+                and to discuss your specific project needs.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="default"
+                  size="lg"
+                  onClick={() => window.open("https://wa.me/254790889066", "_blank")}
+                  className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
+                >
+                  <MessageCircle className="mr-3 w-5 h-5" />
+                  Contact Us
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => window.open("https://calendly.com/brandonomutiti05/30min", "_blank")}
+                  className="border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
+                >
+                  Schedule a Call
+                </Button>
+              </div>
             </div>
           </div>
         </div>

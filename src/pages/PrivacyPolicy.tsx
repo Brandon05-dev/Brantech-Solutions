@@ -103,7 +103,7 @@ const PrivacyPolicy = () => {
                 Learn how we collect, use, and safeguard your data.
               </p>
               <div className="text-sm text-muted-foreground">
-                Last updated: December 2024
+                Effective Date: September 4, 2025
               </div>
             </div>
           </div>
@@ -178,6 +178,89 @@ const PrivacyPolicy = () => {
                   <p className="text-muted-foreground leading-relaxed">
                     We may update this Privacy Policy occasionally. We will post any changes on this page and update the "Last updated" date.
                   </p>
+                </CardContent>
+              </Card>
+
+              {/* Appended full policy text provided by user */}
+              <Card className="bg-card border-border">
+                <CardHeader>
+                  <CardTitle className="text-xl text-foreground">Full Privacy Policy</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <p className="text-lg font-semibold">🔒 Privacy Policy for Brantech Solutions</p>
+                    <p className="text-muted-foreground">Effective Date: September 4, 2025</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">1. Information We Collect</h3>
+                    <p className="text-muted-foreground">We may collect the following types of information:</p>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li><strong>Personal Information:</strong> Name, email address, phone number, and other details you provide when contacting us or filling out forms.</li>
+                      <li><strong>Business Information:</strong> Details related to your company if you engage with us for web development, digital marketing, or other services.</li>
+                      <li><strong>Usage Data:</strong> IP addresses, browser type, device details, and how you interact with our website.</li>
+                      <li><strong>Cookies:</strong> We may use cookies to improve user experience, track site performance, and deliver relevant content.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">2. How We Use Your Information</h3>
+                    <p className="text-muted-foreground">We use the information collected to:</p>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Provide and improve our services.</li>
+                      <li>Respond to inquiries and customer support requests.</li>
+                      <li>Send updates, newsletters, or promotional materials (you may opt-out at any time).</li>
+                      <li>Analyze site usage and improve user experience.</li>
+                      <li>Comply with legal and regulatory requirements.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">3. Information Sharing</h3>
+                    <p className="text-muted-foreground">We do not sell, rent, or trade your personal information. We may share your information only in these cases:</p>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>With trusted third-party service providers who help us operate our business (e.g., hosting, analytics, payment processing).</li>
+                      <li>To comply with legal obligations, government requests, or to protect our rights.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">4. Data Security</h3>
+                    <p className="text-muted-foreground">We implement reasonable technical and organizational measures to protect your information. However, no system is 100% secure, and we cannot guarantee absolute protection against unauthorized access.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">5. Your Rights</h3>
+                    <p className="text-muted-foreground">You have the right to:</p>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Access, update, or request deletion of your personal information.</li>
+                      <li>Opt-out of receiving marketing communications.</li>
+                      <li>Request details of how your data is processed.</li>
+                    </ul>
+                    <p className="text-muted-foreground">To exercise these rights, please contact us at <a className="text-primary" href="mailto:info@brantechsolutions.net">info@brantechsolutions.net</a>.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">6. Third-Party Links</h3>
+                    <p className="text-muted-foreground">Our website may contain links to third-party websites. We are not responsible for the privacy practices of external sites. We encourage you to review their privacy policies before providing any information.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">7. Children’s Privacy</h3>
+                    <p className="text-muted-foreground">Our services are not directed to children under 13. We do not knowingly collect personal information from minors. If you believe we have collected such information, please contact us immediately.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">8. Changes to This Policy</h3>
+                    <p className="text-muted-foreground">We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated “Effective Date.”</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold">9. Contact Us</h3>
+                    <p className="text-muted-foreground">If you have questions or concerns about this Privacy Policy or how we handle your data, contact us at:</p>
+                    <p className="text-muted-foreground"><span className="font-medium">Email:</span> <a className="text-primary" href="mailto:info@brantechsolutions.net">info@brantechsolutions.net</a></p>
+                    <p className="text-muted-foreground"><span className="font-medium">Website:</span> <a className="text-primary" href="https://www.brantechsolutions.net">www.brantechsolutions.net</a></p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
