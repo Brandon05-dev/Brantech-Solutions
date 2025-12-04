@@ -131,42 +131,42 @@ export function Stats({ onContactClick }: StatsProps) {
               {/* First set of logos - repeated multiple times for continuous effect */}
               {[...Array(3)].map((_, setIndex) => (
                 <div key={`set-${setIndex}`} className="flex gap-12 items-center px-6">
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company1.png"
                       alt="Company 1"
                       className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
                     />
                   </div>
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company2.png"
                       alt="Company 2"
                       className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
                     />
                   </div>
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company3.png"
                       alt="Company 3"
                       className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
                     />
                   </div>
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company1.png"
                       alt="Company 1"
                       className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
                     />
                   </div>
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company2.png"
                       alt="Company 2"
                       className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
                     />
                   </div>
-                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company3.png"
                       alt="Company 3"
