@@ -116,6 +116,69 @@ export function Stats({ onContactClick }: StatsProps) {
           })}
         </div>
 
+        {/* Trusted By Section - Company Logos Slideshow */}
+        <div className="mt-20 mb-12">
+          <h3 className="text-center text-2xl font-bold text-foreground mb-8">
+            Trusted by Leading Companies
+          </h3>
+          <div className="relative overflow-hidden">
+            {/* Gradient overlays */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10"></div>
+            
+            {/* Scrolling container */}
+            <div className="flex animate-scroll">
+              {/* First set of logos - repeated multiple times for continuous effect */}
+              {[...Array(3)].map((_, setIndex) => (
+                <div key={`set-${setIndex}`} className="flex gap-12 items-center px-6">
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company1.png"
+                      alt="Company 1"
+                      className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company2.png"
+                      alt="Company 2"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company3.png"
+                      alt="Company 3"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company1.png"
+                      alt="Company 1"
+                      className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company2.png"
+                      alt="Company 2"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/company3.png"
+                      alt="Company 3"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Call to Action */}
         <div className="text-center">
           <p className="text-muted-foreground mb-6 text-lg">
