@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Code2, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavigationProps {
   onContactClick?: () => void;
@@ -12,13 +18,25 @@ interface NavigationProps {
 export function Navigation({ onContactClick }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const services = [
+    { label: "Website Design & Development", id: "service-web", route: "/services/web-development" },
+    { label: "Mobile Development", id: "service-mobile", route: "/services/mobile-development" },
+    { label: "Cybersecurity", id: "service-security", route: "/services/cybersecurity" },
+    { label: "E-Commerce Solutions", id: "service-ecommerce", route: "/services/ecommerce" },
+    { label: "Website Maintenance & Support", id: "service-maintenance", route: "/services/maintenance" },
+    { label: "SEO & Digital Marketing", id: "service-seo", route: "/services/seo-marketing" },
+    { label: "Content Management Systems", id: "service-cms", route: "/services/cms" },
+  ];
 
   const navItems = [
     { label: "Home", href: "#home", isRoute: false, section: "home" },
     { label: "About Us", href: "/about-us", isRoute: true, section: "about-us" },
-    { label: "Services", href: "#services", isRoute: false, section: "services" },
+    { label: "Services", href: "#services", isRoute: false, section: "services", hasDropdown: true },
+    { label: "Projects", href: "#portfolio", isRoute: false, section: "portfolio" },
     { label: "Packages", href: "#packages", isRoute: false, section: "packages" },
     { label: "Testimonials", href: "#testimonials", isRoute: false, section: "testimonials" },
     { label: "FAQ", href: "/faq", isRoute: true, section: "faq" },
@@ -43,7 +61,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
   useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === "/") {
-        const sections = ["home", "services", "packages", "testimonials", "contact"];
+        const sections = ["home", "services", "portfolio", "packages", "testimonials", "contact"];
         const currentSection = sections.find(section => {
           const element = document.getElementById(section);
           if (element) {
@@ -135,6 +153,43 @@ export function Navigation({ onContactClick }: NavigationProps) {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
+              
+              if (item.hasDropdown && item.label === "Services") {
+                return (
+                  <DropdownMenu key={item.label}>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className={cn(
+                          "text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium flex items-center gap-1",
+                          isActive && "text-primary font-semibold"
+                        )}
+                      >
+                        {item.label}
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-64">
+                      <DropdownMenuItem
+                        onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
+                        className="cursor-pointer font-medium"
+                      >
+                        View All Services
+                      </DropdownMenuItem>
+                      <div className="h-px bg-border my-1" />
+                      {services.map((service) => (
+                        <DropdownMenuItem
+                          key={service.id}
+                          onClick={() => navigate(service.route)}
+                          className="cursor-pointer"
+                        >
+                          {service.label}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
+              
               return (
                 <button
                   key={item.label}
@@ -195,6 +250,66 @@ export function Navigation({ onContactClick }: NavigationProps) {
               <div className="px-6 py-8 space-y-4 max-h-[70vh] overflow-y-auto">
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.section;
+                  
+                  if (item.hasDropdown && item.label === "Services") {
+                    return (
+                      <div key={item.label} className="space-y-2">
+                        <button
+                          onClick={() => {
+                            setMobileServicesOpen(!mobileServicesOpen);
+                          }}
+                          className={cn(
+                            "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-from-top-4 fade-in-0",
+                            "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
+                            isActive 
+                              ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
+                              : "text-muted-foreground"
+                          )}
+                          style={{
+                            animationDelay: `${index * 75}ms`,
+                            animationDuration: '300ms'
+                          }}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>{item.label}</span>
+                            <ChevronDown className={cn(
+                              "h-4 w-4 transition-transform duration-200",
+                              mobileServicesOpen && "rotate-180"
+                            )} />
+                          </div>
+                        </button>
+                        
+                        {mobileServicesOpen && (
+                          <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 fade-in-0">
+                            <button
+                              onClick={() => {
+                                scrollToSection(item.href, item.isRoute, item.section);
+                                setMobileServicesOpen(false);
+                              }}
+                              className="block w-full text-left px-4 py-2 rounded-lg text-base font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                            >
+                              View All Services
+                            </button>
+                            <div className="h-px bg-border" />
+                            {services.map((service) => (
+                              <button
+                                key={service.id}
+                                onClick={() => {
+                                  navigate(service.route);
+                                  setMobileServicesOpen(false);
+                                  setIsOpen(false);
+                                }}
+                                className="block w-full text-left px-4 py-2 rounded-lg text-sm text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                              >
+                                {service.label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  
                   return (
                     <button
                       key={item.label}
