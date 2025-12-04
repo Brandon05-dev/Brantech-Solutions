@@ -2,21 +2,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface PortfolioProps {
   onContactClick?: () => void;
 }
 
 export function Portfolio({ onContactClick }: PortfolioProps) {
-  const [showAllProjects, setShowAllProjects] = useState(false);
+  const navigate = useNavigate();
 
   const projects = [
     {
       title: "Glamongo Spa",
       status: "Live",
       category: "Beauty & Wellness",
-      description: "Sophisticated spa and beauty booking platform featuring elegant design and seamless appointment scheduling. Professional services with effortless appointment management, showcasing modern beauty industry standards and user-friendly interface for enhanced customer experience.",
+      description: "Elegant spa booking platform with seamless appointment scheduling and professional service management.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       image: "/glamongo-spa.png",
       liveUrl: "https://glamongospa.netlify.app/",
@@ -26,7 +26,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       title: "BMI Leather Shop",
       status: "Live",
       category: "E-Commerce",
-      description: "Premium e-commerce platform for luxury leather goods featuring elegant product showcase, secure payment processing, and intuitive shopping experience. Built with modern web technologies to deliver seamless user interaction and robust inventory management.",
+      description: "Premium e-commerce platform for luxury leather goods with secure payments and elegant product showcase.",
       techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
       image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
       liveUrl: "https://brandon05-dev.github.io/BMI-Leather-Art-Design/",
@@ -36,7 +36,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       title: "UniAssist Hub",
       status: "Live",
       category: "Education",
-      description: "Comprehensive university student assistance platform connecting students with academic resources, peer support, and administrative services. Features real-time chat, document sharing, and personalized dashboard for enhanced campus life experience.",
+      description: "University student assistance platform with real-time chat, document sharing, and personalized dashboard.",
       techStack: ["React", "Node.js", "MongoDB"],
       image: "https://brandon-omutiti.vercel.app/Images/uniassisthub%20Project.png",
       liveUrl: "https://uniassisthub-v2.onrender.com/",
@@ -46,7 +46,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       title: "CleanKili",
       status: "Under Construction",
       category: "Sustainability",
-      description: "Environmental sustainability platform promoting waste management and recycling initiatives in Kilimani Locality. Features interactive maps, waste tracking, reward systems, and community engagement tools to drive positive environmental impact.",
+      description: "Environmental platform for waste management and recycling with interactive maps and community engagement.",
       techStack: ["Vue.js", "Python", "Django", "PostgreSQL"],
       image: "https://brandon-omutiti.vercel.app/Images/Cleankili%20project.png",
       liveUrl: null,
@@ -56,7 +56,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       title: "Shinda Play",
       status: "Under Construction",
       category: "Entertainment",
-      description: "Shinda Play is an interactive eFootball gaming and entertainment platform designed for passionate football gamers and esports fans. It brings players together for competitive multiplayer matches, live tournaments, and social interactions all powered by modern web technologies that ensure smooth gameplay, real-time updates, and an engaging community experience.",
+      description: "Interactive eFootball gaming platform with competitive multiplayer matches, live tournaments, and real-time updates.",
       techStack: ["React", "WebSocket", "Express", "Redis"],
       image: "https://brandon-omutiti.vercel.app/Images/Shinda%20Play%20Project.png",
       liveUrl: null,
@@ -66,7 +66,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       title: "Maal Traders Platform",
       status: "Under Construction",
       category: "Education",
-      description: "Comprehensive trading bootcamp and educational platform designed to teach modern trading strategies, market analysis, and financial literacy. Features interactive learning modules, real-time market simulations, progress tracking, and community-driven learning experiences for aspiring traders.",
+      description: "Trading bootcamp platform with interactive modules, market simulations, and progress tracking for aspiring traders.",
       techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
       image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
       liveUrl: null,
@@ -74,8 +74,8 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     }
   ];
 
-  // Only show first 2 projects initially, or all if showAllProjects is true
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, 2);
+  // Only show first 3 projects
+  const displayedProjects = projects.slice(0, 3);
 
   return (
     <section id="portfolio" className="py-20 bg-background">
@@ -94,7 +94,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
         </div>
 
         {/* Projects grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayedProjects.map((project, index) => (
             <Card 
               key={project.title}
@@ -126,26 +126,6 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                       {project.title}
                     </CardTitle>
                   </div>
-                  <div className="flex gap-2">
-                    {project.liveUrl && (
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="h-8 w-8 p-0"
-                        onClick={() => window.open(project.liveUrl, '_blank')}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </Button>
-                    )}
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="h-8 w-8 p-0"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                    >
-                      <Github className="w-4 h-4" />
-                    </Button>
-                  </div>
                 </div>
               </CardHeader>
 
@@ -165,47 +145,46 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                   </div>
                 </div>
 
-                <div className="flex gap-2 mt-4">
-                  {project.liveUrl && (
+                <div className="mt-4 flex justify-center">
+                  {project.liveUrl ? (
                     <Button 
                       variant="default" 
                       size="sm"
                       onClick={() => window.open(project.liveUrl, '_blank')}
-                      className="flex-1"
+                      className="w-auto px-6"
                     >
-                      Live Demo
+                      Visit Site
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
+                  ) : (
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => window.open(project.githubUrl, '_blank')}
+                      className="w-auto px-6"
+                    >
+                      GitHub
+                      <Github className="w-4 h-4 ml-2" />
+                    </Button>
                   )}
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
-                    className="flex-1"
-                  >
-                    GitHub
-                    <Github className="w-4 h-4 ml-2" />
-                  </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Show More/Less Button */}
-        {projects.length > 2 && (
-          <div className="text-center">
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => setShowAllProjects(!showAllProjects)}
-              className="px-8 py-3"
-            >
-              {showAllProjects ? "Show Less" : "More Projects"}
-              <ArrowRight className={`w-4 h-4 ml-2 transition-transform duration-200 ${showAllProjects ? "rotate-90" : ""}`} />
-            </Button>
-          </div>
-        )}
+        {/* Show More Button */}
+        <div className="text-center">
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={() => navigate('/projects')}
+            className="px-8 py-3"
+          >
+            View All Projects
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </div>
       </div>
     </section>
   );

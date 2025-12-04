@@ -16,6 +16,7 @@ import ECommerce from "./pages/services/ECommerce";
 import WebsiteMaintenance from "./pages/services/WebsiteMaintenance";
 import SEOMarketing from "./pages/services/SEOMarketing";
 import CMS from "./pages/services/CMS";
+import { Projects } from "./pages/Projects";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />

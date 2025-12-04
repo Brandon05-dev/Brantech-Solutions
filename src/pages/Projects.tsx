@@ -1,0 +1,177 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
+import { Navigation } from "@/components/ui/navigation";
+import { Footer } from "@/components/sections/footer";
+
+export function Projects() {
+  const handleContactClick = () => {
+    window.location.href = "/#contact";
+  };
+  const projects = [
+    {
+      title: "Glamongo Spa",
+      status: "Live",
+      category: "Beauty & Wellness",
+      description: "Elegant spa booking platform with seamless appointment scheduling and professional service management.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+      image: "/glamongo-spa.png",
+      liveUrl: "https://glamongospa.netlify.app/",
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "BMI Leather Shop",
+      status: "Live",
+      category: "E-Commerce",
+      description: "Premium e-commerce platform for luxury leather goods with secure payments and elegant product showcase.",
+      techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
+      liveUrl: "https://brandon05-dev.github.io/BMI-Leather-Art-Design/",
+      githubUrl: "https://github.com/brandon05-dev/BMI-Leather-Art-Design"
+    },
+    {
+      title: "UniAssist Hub",
+      status: "Live",
+      category: "Education",
+      description: "University student assistance platform with real-time chat, document sharing, and personalized dashboard.",
+      techStack: ["React", "Node.js", "MongoDB"],
+      image: "https://brandon-omutiti.vercel.app/Images/uniassisthub%20Project.png",
+      liveUrl: "https://uniassisthub-v2.onrender.com/",
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "CleanKili",
+      status: "Under Construction",
+      category: "Sustainability",
+      description: "Environmental platform for waste management and recycling with interactive maps and community engagement.",
+      techStack: ["Vue.js", "Python", "Django", "PostgreSQL"],
+      image: "https://brandon-omutiti.vercel.app/Images/Cleankili%20project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "Shinda Play",
+      status: "Under Construction",
+      category: "Entertainment",
+      description: "Interactive eFootball gaming platform with competitive multiplayer matches, live tournaments, and real-time updates.",
+      techStack: ["React", "WebSocket", "Express", "Redis"],
+      image: "https://brandon-omutiti.vercel.app/Images/Shinda%20Play%20Project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "Maal Traders Platform",
+      status: "Under Construction",
+      category: "Education",
+      description: "Trading bootcamp platform with interactive modules, market simulations, and progress tracking for aspiring traders.",
+      techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
+      image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/brandon05-dev"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation onContactClick={handleContactClick} />
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Page header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              All Projects
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+              Our Portfolio
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Explore all our projects showcasing full-stack development and modern web technologies.
+            </p>
+          </div>
+
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+              <Card 
+                key={project.title}
+                className="group hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 overflow-hidden animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Project image */}
+                <div className="aspect-video overflow-hidden bg-muted relative">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Status badge */}
+                  <div className="absolute top-4 right-4">
+                    <Badge 
+                      variant={project.status === "Live" ? "default" : "secondary"}
+                      className={project.status === "Live" ? "bg-green-500 hover:bg-green-600" : ""}
+                    >
+                      {project.status}
+                    </Badge>
+                  </div>
+                </div>
+
+                <CardHeader>
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                        {project.title}
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
+
+                <CardContent>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="mb-4">
+                    <span className="font-semibold text-foreground text-sm mb-2 block">Tech Stack:</span>
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex justify-center">
+                    {project.liveUrl ? (
+                      <Button 
+                        variant="default" 
+                        size="sm"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        className="w-auto px-6"
+                      >
+                        Visit Site
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </Button>
+                    ) : (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        className="w-auto px-6"
+                      >
+                        GitHub
+                        <Github className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </div>
+  );
+}

@@ -60,7 +60,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
     { label: "Home", href: "#home", isRoute: false, section: "home" },
     { label: "About Us", href: "/about-us", isRoute: true, section: "about-us" },
     { label: "Services", href: "#services", isRoute: false, section: "services", hasDropdown: true },
-    { label: "Projects", href: "#portfolio", isRoute: false, section: "portfolio" },
+    { label: "Projects", href: "/projects", isRoute: true, section: "projects" },
     { label: "Packages", href: "#packages", isRoute: false, section: "packages" },
     { label: "Testimonials", href: "#testimonials", isRoute: false, section: "testimonials" },
     { label: "FAQ", href: "/faq", isRoute: true, section: "faq" },
@@ -110,6 +110,8 @@ export function Navigation({ onContactClick }: NavigationProps) {
       setActiveSection("about-us");
     } else if (location.pathname === "/faq") {
       setActiveSection("faq");
+    } else if (location.pathname === "/projects") {
+      setActiveSection("projects");
     } else if (location.pathname === "/") {
       setActiveSection("home");
     }
