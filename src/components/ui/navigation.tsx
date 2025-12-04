@@ -194,30 +194,37 @@ export function Navigation({ onContactClick }: NavigationProps) {
                     <DropdownMenuTrigger asChild>
                       <button
                         className={cn(
-                          "text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium flex items-center gap-1",
+                          "text-muted-foreground hover:text-primary transition-all duration-200 font-medium flex items-center gap-1",
+                          "hover:scale-105 active:scale-95",
+                          "group",
                           isActive && "text-primary font-semibold"
                         )}
                       >
                         {item.label}
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-64">
+                    <DropdownMenuContent align="start" className="w-72">
                       <DropdownMenuItem
                         onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
-                        className="cursor-pointer font-medium"
+                        className="cursor-pointer font-semibold text-primary hover:bg-primary/20 animate-in slide-in-from-top-4 fade-in-0"
+                        style={{ animationDelay: "0ms", animationDuration: "400ms" }}
                       >
                         View All Services
                       </DropdownMenuItem>
-                      <div className="h-px bg-border my-1" />
-                      {services.map((service) => (
+                      <div className="h-px bg-border my-2 animate-in fade-in-0" style={{ animationDelay: "100ms", animationDuration: "300ms" }} />
+                      {services.map((service, index) => (
                         <DropdownMenuItem
                           key={service.id}
                           onClick={() => {
                             navigate(service.route);
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }}
-                          className="cursor-pointer"
+                          className="cursor-pointer animate-in slide-in-from-top-4 fade-in-0"
+                          style={{ 
+                            animationDelay: `${150 + (index * 80)}ms`,
+                            animationDuration: "500ms"
+                          }}
                         >
                           {service.label}
                         </DropdownMenuItem>
@@ -317,13 +324,13 @@ export function Navigation({ onContactClick }: NavigationProps) {
                         </button>
                         
                         {mobileServicesOpen && (
-                          <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 fade-in-0">
+                          <div className="ml-2 space-y-1 animate-in slide-in-from-top-2 fade-in-0">
                             <button
                               onClick={() => {
                                 scrollToSection(item.href, item.isRoute, item.section);
                                 setMobileServicesOpen(false);
                               }}
-                              className="block w-full text-left px-4 py-2 rounded-lg text-base font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                              className="block w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                             >
                               View All Services
                             </button>
@@ -337,7 +344,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                                   setMobileServicesOpen(false);
                                   setIsOpen(false);
                                 }}
-                                className="block w-full text-left px-4 py-2 rounded-lg text-sm text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                                className="block w-full text-left px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                               >
                                 {service.label}
                               </button>

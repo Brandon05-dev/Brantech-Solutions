@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 interface PortfolioProps {
   onContactClick?: () => void;
@@ -20,6 +21,26 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       image: "/glamongo-spa.png",
       liveUrl: "https://glamongospa.netlify.app/",
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "Belo Digital",
+      status: "Live",
+      category: "Digital Marketing",
+      description: "Modern digital marketing agency platform showcasing creative services, portfolio, and client success stories.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      image: "/belo-digital.png",
+      liveUrl: "https://belodigital.netlify.app/",
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
+      title: "Maal Traders Platform",
+      status: "Live",
+      category: "Education",
+      description: "Trading bootcamp platform with interactive modules, market simulations, and progress tracking for aspiring traders.",
+      techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
+      image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
+      liveUrl: "https://maaltraders.netlify.app/",
       githubUrl: "https://github.com/brandon05-dev"
     },
     {
@@ -54,28 +75,44 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     },
     {
       title: "Shinda Play",
-      status: "Under Construction",
+      status: "Live",
       category: "Entertainment",
       description: "Interactive eFootball gaming platform with competitive multiplayer matches, live tournaments, and real-time updates.",
       techStack: ["React", "WebSocket", "Express", "Redis"],
       image: "https://brandon-omutiti.vercel.app/Images/Shinda%20Play%20Project.png",
-      liveUrl: null,
+      liveUrl: "https://shindaplay.netlify.app/",
       githubUrl: "https://github.com/brandon05-dev"
     },
-    {
-      title: "Maal Traders Platform",
-      status: "Under Construction",
-      category: "Education",
-      description: "Trading bootcamp platform with interactive modules, market simulations, and progress tracking for aspiring traders.",
-      techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
-      image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
-      liveUrl: null,
-      githubUrl: "https://github.com/brandon05-dev"
-    }
   ];
 
   // Only show first 3 projects
   const displayedProjects = projects.slice(0, 3);
+
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.6, 
+        ease: [0.22, 1, 0.36, 1]
+      },
+    },
+  };
 
   return (
     <section id="portfolio" className="py-20 bg-background">
@@ -94,13 +131,21 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
         </div>
 
         {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {displayedProjects.map((project, index) => (
-            <Card 
+            <motion.div
               key={project.title}
-              className="group hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 overflow-hidden animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              variants={cardVariants}
             >
+              <Card 
+                className="group hover:shadow-elegant transition-all duration-500 bg-card border-border hover:border-primary/20 overflow-hidden h-full hover:-translate-y-2 hover:scale-[1.02]"
+              >
               {/* Project image */}
               <div className="aspect-video overflow-hidden bg-muted relative">
                 <img
@@ -170,8 +215,9 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                 </div>
               </CardContent>
             </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Show More Button */}
         <div className="text-center">
