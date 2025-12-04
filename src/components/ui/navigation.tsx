@@ -19,6 +19,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,6 +31,29 @@ export function Navigation({ onContactClick }: NavigationProps) {
     { label: "Website Maintenance & Support", id: "service-maintenance", route: "/services/maintenance" },
     { label: "SEO & Digital Marketing", id: "service-seo", route: "/services/seo-marketing" },
     { label: "Content Management Systems", id: "service-cms", route: "/services/cms" },
+  ];
+
+  const projectCategories = [
+    { 
+      label: "E-Commerce", 
+      id: "ecommerce-projects",
+      projects: ["BMI Leather Shop"]
+    },
+    { 
+      label: "Education", 
+      id: "education-projects",
+      projects: ["UniAssist Hub", "Maal Traders Platform"]
+    },
+    { 
+      label: "Entertainment", 
+      id: "entertainment-projects",
+      projects: ["Shinda Play"]
+    },
+    { 
+      label: "Sustainability", 
+      id: "sustainability-projects",
+      projects: ["CleanKili"]
+    },
   ];
 
   const navItems = [
@@ -91,6 +115,11 @@ export function Navigation({ onContactClick }: NavigationProps) {
     }
   }, [location.pathname]);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const scrollToSection = (href: string, isRoute: boolean, section: string) => {
     // Close mobile menu immediately for better UX
     setIsOpen(false);
@@ -137,7 +166,10 @@ export function Navigation({ onContactClick }: NavigationProps) {
           {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer group" 
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
           >
             <div className="w-28 h-28 rounded-xl flex items-center justify-center overflow-hidden">
               <img 
@@ -179,7 +211,10 @@ export function Navigation({ onContactClick }: NavigationProps) {
                       {services.map((service) => (
                         <DropdownMenuItem
                           key={service.id}
-                          onClick={() => navigate(service.route)}
+                          onClick={() => {
+                            navigate(service.route);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }}
                           className="cursor-pointer"
                         >
                           {service.label}
@@ -189,7 +224,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                   </DropdownMenu>
                 );
               }
-              
+
               return (
                 <button
                   key={item.label}
@@ -296,6 +331,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                                 key={service.id}
                                 onClick={() => {
                                   navigate(service.route);
+                                  window.scrollTo({ top: 0, behavior: "smooth" });
                                   setMobileServicesOpen(false);
                                   setIsOpen(false);
                                 }}

@@ -45,15 +45,14 @@ export function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div className="group cursor-pointer">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="relative">
-                  <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-blue transition-all duration-500 group-hover:scale-110">
-                    <Code2 className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-primary rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                <div className="w-28 h-28 rounded-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-all duration-500">
+                  <img 
+                    src="/BS Icon.png" 
+                    alt="Brantech Solutions" 
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
                 </div>
-                <span className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                  Brantech Solutions
-                </span>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed text-sm max-w-sm">

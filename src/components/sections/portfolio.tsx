@@ -15,6 +15,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     {
       title: "BMI Leather Shop",
       status: "Live",
+      category: "E-Commerce",
       description: "Premium e-commerce platform for luxury leather goods featuring elegant product showcase, secure payment processing, and intuitive shopping experience. Built with modern web technologies to deliver seamless user interaction and robust inventory management.",
       techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
       image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
@@ -24,6 +25,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     {
       title: "UniAssist Hub",
       status: "Live",
+      category: "Education",
       description: "Comprehensive university student assistance platform connecting students with academic resources, peer support, and administrative services. Features real-time chat, document sharing, and personalized dashboard for enhanced campus life experience.",
       techStack: ["React", "Node.js", "MongoDB"],
       image: "https://brandon-omutiti.vercel.app/Images/uniassisthub%20Project.png",
@@ -33,6 +35,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     {
       title: "CleanKili",
       status: "Under Construction",
+      category: "Sustainability",
       description: "Environmental sustainability platform promoting waste management and recycling initiatives in Kilimani Locality. Features interactive maps, waste tracking, reward systems, and community engagement tools to drive positive environmental impact.",
       techStack: ["Vue.js", "Python", "Django", "PostgreSQL"],
       image: "https://brandon-omutiti.vercel.app/Images/Cleankili%20project.png",
@@ -42,6 +45,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     {
       title: "Shinda Play",
       status: "Under Construction",
+      category: "Entertainment",
       description: "Shinda Play is an interactive eFootball gaming and entertainment platform designed for passionate football gamers and esports fans. It brings players together for competitive multiplayer matches, live tournaments, and social interactions all powered by modern web technologies that ensure smooth gameplay, real-time updates, and an engaging community experience.",
       techStack: ["React", "WebSocket", "Express", "Redis"],
       image: "https://brandon-omutiti.vercel.app/Images/Shinda%20Play%20Project.png",
@@ -51,6 +55,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     {
       title: "Maal Traders Platform",
       status: "Under Construction",
+      category: "Education",
       description: "Comprehensive trading bootcamp and educational platform designed to teach modern trading strategies, market analysis, and financial literacy. Features interactive learning modules, real-time market simulations, progress tracking, and community-driven learning experiences for aspiring traders.",
       techStack: ["React", "Node.js", "Express", "MongoDB", "Chart.js"],
       image: "https://brandon-omutiti.vercel.app/Images/FX%20Traders%20project.png",
