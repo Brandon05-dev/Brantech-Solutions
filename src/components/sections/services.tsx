@@ -19,43 +19,57 @@ export function Services({ onContactClick }: ServicesProps) {
       icon: Globe,
       title: "Website Design and Development",
       description: "Custom websites and web applications built with modern technologies. From simple business sites to complex enterprise solutions.",
-      hoverColor: "blue"
+      hoverColor: "blue",
+      useImage: true,
+      imageSrc: "/Web1.png"
     },
     {
       icon: Smartphone,
       title: "Mobile Development",
       description: "Native and cross-platform mobile applications for iOS and Android. User-friendly interfaces and seamless performance.",
-      hoverColor: "purple"
+      hoverColor: "purple",
+      useImage: true,
+      imageSrc: "/mobile dev.png"
     },
     {
       icon: Shield,
       title: "Cybersecurity",
       description: "Advanced cybersecurity solutions to protect your digital assets. Security audits, threat monitoring, and incident response.",
-      hoverColor: "red"
+      hoverColor: "red",
+      useImage: true,
+      imageSrc: "/cybersec .png"
     },
     {
       icon: ShoppingCart,
       title: "E-Commerce Solutions",
       description: "Complete online store development and management. From product catalogs to payment processing and inventory management.",
-      hoverColor: "green"
+      hoverColor: "green",
+      useImage: true,
+      imageSrc: "/eccomerce.png"
     },
     {
       icon: Wrench,
       title: "Website Maintenance and Support",
       description: "Ongoing website maintenance, updates, and technical support. Keep your website secure, fast, and up-to-date.",
-      hoverColor: "orange"
+      hoverColor: "orange",
+      useImage: true,
+      imageSrc: "/web 2.png"
     },
     {
       icon: Search,
       title: "SEO and Digital Marketing",
       description: "Comprehensive digital marketing strategies to grow your online presence. SEO, social media, and content marketing.",
-      hoverColor: "pink"
+      hoverColor: "pink",
+      useImage: true,
+      imageSrc: "/seo.png"
     },
     {
       icon: FileText,
       title: "Content Management Systems (CMS)",
       description: "Custom CMS solutions for easy content management. WordPress, Drupal, and custom-built systems for seamless content updates.",
-      hoverColor: "indigo"
+      hoverColor: "indigo",
+      useImage: true,
+      imageSrc: "/cms.png"
     }
   ];
 
@@ -157,10 +171,16 @@ export function Services({ onContactClick }: ServicesProps) {
                 
                 {/* Content */}
                 <div className="relative z-10">
-                  {/* Icon */}
-                  <div className={`flex items-center justify-center w-16 h-16 ${colors.iconBg} rounded-xl mb-6 group-hover:scale-110 transition-all duration-500`}>
-                    <IconComponent className={`h-8 w-8 ${colors.iconColor} transition-colors duration-500`} />
-                  </div>
+                  {/* Icon or Image */}
+                  {service.useImage && service.imageSrc ? (
+                    <div className="w-full h-48 rounded-xl mb-6 overflow-hidden group-hover:scale-105 transition-all duration-500">
+                      <img src={service.imageSrc} alt={service.title} className="w-full h-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className={`flex items-center justify-center w-16 h-16 ${colors.iconBg} rounded-xl mb-6 group-hover:scale-110 transition-all duration-500`}>
+                      <IconComponent className={`h-8 w-8 ${colors.iconColor} transition-colors duration-500`} />
+                    </div>
+                  )}
 
                   {/* Title */}
                   <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${colors.titleHover} transition-colors duration-300`}>
