@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { Chatbot } from "@/components/ui/chatbot";
 import { FloatingButtons } from "@/components/ui/floating-buttons";
 import Index from "./pages/Index";
@@ -54,6 +55,7 @@ const App = () => (
         </Routes>
         <FloatingButtons />
         <Chatbot />
+        <Analytics />
       </BrowserRouter>
     </ThemeProvider>
   </QueryClientProvider>
