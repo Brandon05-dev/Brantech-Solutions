@@ -151,42 +151,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-foreground text-lg relative">
-              Stay Updated
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-primary rounded-full"></div>
-            </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Subscribe to our newsletter for tech insights and project updates.
-            </p>
-            <form onSubmit={handleNewsletter} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </Label>
-                <div className="relative group">
-                  <Input
-                    id="newsletter-email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="pl-10 border-border/50 focus:border-primary bg-background/50 backdrop-blur-sm rounded-xl transition-all duration-300 group-hover:shadow-glow"
-                    required
-                  />
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors duration-300" />
-                </div>
-              </div>
-              <Button
-                type="submit"
-                className="w-full bg-gradient-primary hover:shadow-glow hover:scale-105 transition-all duration-300 rounded-xl h-11 font-medium group"
-                size="sm"
-              >
-                Subscribe
-                <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </form>
+          {/* Developer Illustration */}
+          <div className="space-y-6 flex flex-col items-center justify-center">
+            <div className="w-full max-w-xs">
+              <img 
+                src="/footer.png" 
+                alt="Developer working" 
+                className="w-full h-auto object-contain"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
 
