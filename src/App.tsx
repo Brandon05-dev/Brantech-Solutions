@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Chatbot } from "@/components/ui/chatbot";
+import { FloatingButtons } from "@/components/ui/floating-buttons";
 import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/services/cms" element={<CMS />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingButtons />
         <Chatbot />
       </BrowserRouter>
     </ThemeProvider>

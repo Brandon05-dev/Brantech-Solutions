@@ -24,14 +24,7 @@ interface Message {
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "👋 Hello! I'm Brantech AI, your intelligent assistant powered by advanced conversational technology. I'm here to help you explore our services, answer technical questions, discuss pricing, or guide you through starting your digital transformation journey. Think of me as your expert consultant available 24/7!\n\nI can help with:\n• Service details & recommendations\n• Technical specifications\n• Pricing & timeline estimates\n• Portfolio & case studies\n• Booking consultations\n\nWhat brings you to Brantech Solutions today?",
-      sender: "bot",
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -46,83 +39,83 @@ export function Chatbot() {
 
   const botResponses = {
     greeting: [
-      "Hello! Welcome to Brantech Solutions 👋. I'm your AI assistant, here to help you explore our comprehensive digital services. Founded by Brandon Omutiti, we're transforming how African businesses and startups leverage technology. Whether you need web development, mobile apps, AI solutions, or cybersecurity, I'm here to guide you. What would you like to know?",
-      "Hi there! I'm the Brantech AI assistant 🤖. We're a leading software development company based in Kenya, serving clients across Africa and beyond. Our founder, Brandon, built this company on the vision of making enterprise-grade technology accessible to everyone. From e-commerce platforms to AI-powered solutions, we've got you covered. How can I help you today?",
-      "Welcome to Brantech Solutions! 🚀 I'm an advanced AI assistant trained on all our company services and expertise. We specialize in full-stack development, mobile applications, cybersecurity, SEO, and AI integration. Our team has delivered 200+ successful projects across Africa. I'm here to answer any questions you have - technical, pricing, timeline, or strategy. What brings you here today?"
+      "Hello! I'm Temi, your customer support assistant. How can I help you today?",
+      "Hi there! Welcome to Brantech Solutions. I'm Temi, here to assist you. What would you like to know?",
+      "Hey! I'm Temi from Brantech customer support. What brings you here?"
     ],
     services: [
-      "Brantech Solutions offers a comprehensive suite of professional digital services:\n\n🌐 **Web Development**: Custom websites, progressive web apps, e-commerce platforms, CMS integration (WordPress, custom solutions), responsive design, and performance optimization.\n\n📱 **Mobile Development**: Native iOS/Android apps, cross-platform solutions (React Native, Flutter), app store deployment, and ongoing maintenance.\n\n🔒 **Cybersecurity**: Security audits, penetration testing, data protection consulting, GDPR compliance, secure architecture design, and 24/7 monitoring.\n\n🤖 **AI & Automation**: Custom chatbot development, process automation, machine learning integration, predictive analytics, and intelligent business tools.\n\n🎨 **UI/UX Design**: User research, wireframing, prototyping, brand identity, and conversion-optimized interfaces.\n\n🚀 **SEO & Digital Marketing**: Technical SEO, content strategy, social media management, PPC campaigns, and growth hacking.\n\n💼 **Business Solutions**: CRM systems, inventory management, financial dashboards, and workflow automation.\n\nWhich service would you like to explore in detail?",
-      "We provide enterprise-grade services tailored for businesses of all sizes:\n\n**Website Design & Development**: From landing pages to complex web applications. We build fast, secure, scalable websites using React, TypeScript, Node.js, and modern frameworks.\n\n**E-Commerce Solutions**: Complete online stores with payment integration (Stripe, M-Pesa, PayPal), inventory management, order tracking, and analytics.\n\n**Mobile App Development**: iOS and Android apps for business productivity, e-commerce, education, and social networking. Full app lifecycle support.\n\n**Cybersecurity Services**: Protect your digital assets with our comprehensive security audits, vulnerability assessments, and ongoing protection strategies.\n\n**AI Integration**: Implement chatbots, automation workflows, data analysis tools, and machine learning models to enhance efficiency.\n\n**Website Maintenance**: Monthly updates, security patches, performance optimization, content management, and technical support.\n\n**SEO & Marketing**: Improve visibility with our data-driven SEO strategies, content marketing, and social media management.\n\nEvery service includes dedicated support and training. What's your project focus?"
+      "We offer web development, mobile apps, e-commerce platforms, cybersecurity, AI solutions, SEO and marketing, plus UI/UX design. Which interests you?",
+      "Our services include building websites, mobile applications, online stores, AI integration, cybersecurity protection, digital marketing, and design. What would you like to know more about?"
     ],
     students: [
-      "Absolutely! Brantech is dedicated to empowering students across Africa. We offer CV writing services, professional portfolio websites, campus platform development, project assistance, and affordable digital solutions tailored for university students and young professionals. We understand student budgets!",
-      "Yes! We're passionate about supporting African students. Our services include: Professional CV enhancement, Portfolio website creation, Academic project assistance, Campus innovation platforms, and budget-friendly digital solutions to help you showcase your skills and land opportunities."
+      "Yes! We offer CV writing, portfolio websites, and affordable digital solutions for students. Student discounts available!",
+      "Absolutely! We help students with professional portfolios, CV services, and budget-friendly websites."
     ],
     ecommerce: [
-      "Definitely! We design and develop fully functional e-commerce websites for businesses of all sizes. Our e-commerce solutions include: Product catalog management, Secure payment integration (M-Pesa, card payments), Inventory management systems, Mobile-responsive design, and ongoing maintenance. What type of products are you looking to sell?",
-      "Yes! E-commerce is one of our core specialties. We create complete online stores with: Custom design, Payment gateway integration, Order management, Customer accounts, SEO optimization, and mobile optimization. We've helped many African businesses go digital successfully."
+      "Yes! We build e-commerce sites with payment integration (M-Pesa, Stripe), inventory management, and mobile design. What are you selling?",
+      "Absolutely! We create online stores with secure payments, product management, and order tracking."
     ],
     apps: [
-      "Absolutely! We develop custom mobile applications for both Android and iOS platforms. Our app development services include: Native app development, Cross-platform solutions, Business apps, Educational platforms, E-commerce apps, and IoT integrations. What kind of mobile app do you have in mind?",
-      "Yes! Mobile app development is a key service. We create: Business productivity apps, Learning platforms, E-commerce mobile apps, Social networking apps, and innovative startup solutions. We focus on user-friendly designs that work perfectly on African mobile networks."
+      "Yes! We build Android and iOS apps using native or cross-platform tech. What kind of app do you need?",
+      "Absolutely! We develop mobile apps for business, e-commerce, education, and social networking."
     ],
     cybersecurity: [
-      "Cybersecurity is crucial in today's digital world! We offer: Comprehensive security audits, Vulnerability testing and assessment, Data protection consulting, Security training for staff, Secure system implementation, and ongoing security monitoring. We help protect African businesses from digital threats.",
-      "Yes! Our cybersecurity services include: Website security audits, Data breach prevention, Secure coding practices, Staff security training, GDPR compliance consulting, and 24/7 security monitoring. We make cybersecurity accessible for small businesses and startups."
+      "We offer security audits, vulnerability testing, data protection, and 24/7 monitoring. Want a free security assessment?",
+      "Yes! We provide security audits, breach prevention, and compliance consulting for businesses of all sizes."
     ],
     ai: [
-      "We're excited about AI possibilities! Our AI services include: Custom chatbot development (like this one!), Process automation tools, Smart data analysis, AI-powered customer service, Intelligent business insights, and AI integration consulting. We help businesses leverage AI to improve efficiency and customer experience.",
-      "AI is transforming business! We offer: Chatbot development for customer support, Automated workflow solutions, Predictive analytics, Smart recommendation systems, and AI consulting. We make artificial intelligence accessible and practical for African businesses."
+      "We build AI chatbots, automation tools, and smart analytics. Like this chatbot you're using! Interested?",
+      "We offer chatbot development, workflow automation, and AI consulting to boost efficiency."
     ],
     pricing: [
-      "We understand that African startups and students often work with limited budgets, so we've designed our pricing to be accessible. Every project is unique, and we provide custom quotes based on your specific needs. We also offer free initial consultations and flexible payment plans. Would you like a personalized quote?",
-      "Our pricing is specifically designed for the African market - affordable yet professional. We offer: Free consultations, Flexible payment options, Student discounts, Startup-friendly packages, and transparent pricing with no hidden costs. Let's discuss your project to provide an accurate quote."
+      "Pricing varies by project. Basic websites start at $500. We offer free consultations and flexible payment plans. Want a quote?",
+      "We provide affordable, transparent pricing with flexible payment options and student discounts. Ready for a free consultation?"
     ],
     timeline: [
-      "Project timelines depend on complexity and scope. Typically: Basic websites take 2-4 weeks, E-commerce sites take 4-6 weeks, Mobile apps take 6-12 weeks, and Custom software can take 2-6 months. We always provide realistic timelines upfront and keep you updated throughout the development process.",
-      "We pride ourselves on efficient delivery! Standard timelines: Simple websites (2-3 weeks), Business websites (3-5 weeks), E-commerce platforms (5-8 weeks), Mobile applications (8-16 weeks). We provide detailed project schedules and regular progress updates."
+      "Timelines: Basic websites (2-4 weeks), E-commerce (4-6 weeks), Mobile apps (6-12 weeks). What are you building?",
+      "Delivery times: Websites (2-5 weeks), E-commerce (5-8 weeks), Apps (8-16 weeks). We keep you updated throughout."
     ],
     location: [
-      "Brantech Solutions is proudly based in Kenya, serving clients across Africa and beyond. While we focus on empowering African startups, students, and SMEs, we work remotely with clients worldwide. Our team understands the unique challenges and opportunities in the African tech ecosystem.",
-      "We're based in Nairobi, Kenya, but our impact reaches across Africa! We work remotely with clients from Cape Town to Cairo, understanding local markets, payment systems (like M-Pesa), and the unique needs of African businesses. Where are you located?"
+      "We're based in Nairobi, Kenya, serving clients across Africa and globally. We work remotely worldwide.",
+      "Based in Kenya, working with clients across Africa and beyond. We understand M-Pesa and local markets!"
     ],
     contact: [
-      "You can reach us in several ways: Continue chatting here for immediate responses, Email us at info@brantech.co.ke, Fill out our contact form on the website, or Schedule a free consultation call. We typically respond within 24 hours and offer free initial consultations!",
-      "Getting in touch is easy! You can: Chat with me right here, Send us an email at info@brantech.co.ke, Use our website contact form, or Book a free consultation call. We're always excited to discuss new projects and help bring your ideas to life!"
+      "Email us at info@brantech.co.ke, WhatsApp +254 790 889066, or continue chatting here!",
+      "Reach us via email at info@brantech.co.ke, WhatsApp at +254 790 889066, or book a free consultation."
     ],
     training: [
-      "Absolutely! We believe in empowering our clients with knowledge. Our training services include: Staff onboarding for new systems, Technical workshops, Digital literacy training, Website management tutorials, Social media marketing guidance, and ongoing support. We ensure you're confident using your new digital tools.",
-      "Yes! Training is a crucial part of our service. We offer: System administration training, Content management workshops, Digital marketing guidance, Cybersecurity awareness training, and ongoing technical support. We want you to be fully independent with your digital solutions."
+      "Yes! We provide staff training, system onboarding, and ongoing support for all our projects.",
+      "Absolutely! Training is included with every project - we ensure you're confident using your new systems."
     ],
     maintenance: [
-      "Ongoing support is essential! Our maintenance services include: Regular security updates, Content updates and changes, Performance optimization, Bug fixes and troubleshooting, Backup management, and 24/7 technical support. We ensure your digital assets continue performing at their best.",
-      "We provide comprehensive maintenance packages: Monthly security updates, Performance monitoring, Content management support, Technical troubleshooting, Regular backups, and emergency support. Your digital solutions will always stay current and secure."
+      "We offer maintenance packages with security updates, backups, bug fixes, and 24/7 support starting at $50/month.",
+      "Yes! Maintenance includes updates, monitoring, backups, and technical support to keep your site secure."
     ],
     portfolio: [
-      "We're proud of our diverse portfolio! We've successfully delivered: E-commerce platforms for African retailers, Campus management systems for universities, Mobile learning apps for students, IoT monitoring systems for agriculture, Financial analytics dashboards, and innovative startup platforms. Check our Portfolio section for detailed case studies!",
-      "Our portfolio showcases real impact across Africa: Student portfolio websites that landed jobs, E-commerce sites that boosted sales by 300%, Mobile apps with 50K+ downloads, Security systems that prevented breaches, and educational platforms serving thousands of students. Each project delivered measurable results!"
+      "Check out our Projects page for featured work like Glamongo Spa booking platform, Belo Digital marketing site, Maal Traders e-commerce store with M-Pesa integration, and Shinda Play gaming platform. Each project has measurable results.",
+      "Our portfolio showcases diverse solutions from spa management systems to online stores. Visit the Projects page to see detailed case studies with client testimonials and success metrics."
     ],
     partnership: [
-      "We love collaborating with like-minded innovators! We're open to: Strategic partnerships, Joint ventures, Referral programs, Technology partnerships, Academic collaborations, and community initiatives. Whether you're a developer, designer, business, or institution, let's explore how we can work together to empower more African entrepreneurs!",
-      "Partnerships drive innovation! We collaborate through: Developer partnerships, Design agency alliances, University partnerships, Startup incubator relationships, and community tech initiatives. We believe in building a stronger African tech ecosystem together."
+      "We're open to partnerships, referral programs, and collaborations. Let's discuss how we can work together!",
+      "Yes! We partner with developers, agencies, universities, and businesses. Interested in collaborating?"
     ],
     consultation: [
-      "We offer completely FREE initial consultations with no obligations! During our consultation, we'll: Understand your goals and challenges, Provide expert recommendations, Discuss timeline and budget options, Answer all your questions, and create a custom proposal. It's a great way to explore possibilities without any commitment!",
-      "Our free consultations are comprehensive and valuable. We'll: Analyze your current situation, Recommend the best solutions, Provide honest timelines and budgets, Share relevant case studies, and give you actionable insights even if you don't hire us. Book yours today!"
+      "We offer FREE consultations with no obligation. Book a call to discuss your project and get expert advice!",
+      "Yes! Free 30-minute consultations available. We'll discuss your goals, timeline, and provide recommendations."
     ],
     company: [
-      "**About Brantech Solutions:**\n\nFounded by Brandon Omutiti, a passionate software developer and visionary entrepreneur, Brantech Solutions is a leading technology company based in Kenya, serving clients across Africa and globally.\n\n**Our Mission**: To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.\n\n**Our Vision**: To be the trusted digital partner that transforms how businesses build, launch, and scale—making modern tech accessible, affordable, and impactful for everyone.\n\n**Core Values**:\n• Innovation: Embracing cutting-edge technologies\n• Integrity: Building trust through transparency\n• Collaboration: Working as true partners\n• Excellence: Delivering beyond expectations\n\n**Our Team**: Led by Brandon Omutiti (Founder & Lead Developer), we're a dedicated team of software engineers, designers, and digital strategists committed to delivering world-class solutions.\n\n**Track Record**: 200+ projects delivered, 95% client satisfaction, serving businesses from startups to established enterprises across multiple industries.\n\nWe specialize in full-stack development, AI integration, cybersecurity, and digital transformation. What aspect would you like to know more about?",
-      "**Brantech Solutions - Your Digital Transformation Partner**\n\n**Leadership**: Founded and led by Brandon Omutiti, a skilled software developer who specializes in building dynamic, high-performing products that deliver seamless user experiences.\n\n**Company Philosophy**: We believe technology should empower, not complicate. Every solution we build is designed to be intuitive, scalable, and impactful.\n\n**What Sets Us Apart**:\n✓ African-focused with global standards\n✓ Affordable pricing without compromising quality\n✓ Comprehensive support and training\n✓ Agile development methodology\n✓ Transparent communication\n✓ Proven track record across industries\n\n**Services Portfolio**: Web development, mobile apps, e-commerce, cybersecurity, AI solutions, SEO, and ongoing maintenance.\n\n**Client Success**: We've helped businesses increase online sales by 300%, students land dream jobs with professional portfolios, and startups launch their digital presence successfully.\n\n**Technology Stack**: React, TypeScript, Node.js, Python, Flutter, AWS, and modern frameworks ensuring your solutions are built on solid, future-proof foundations.\n\nWe're not just developers—we're strategic partners invested in your success. How can we help transform your business?"
+      "Founded by Brandon Omutiti, we're a Kenya-based technology company that has delivered over 200 projects across Africa and globally. We specialize in full-stack development, AI integration, and cybersecurity. Our mission is making modern technology simple, affordable, and truly useful for every entrepreneur and business.",
+      "Brantech Solutions is led by Brandon Omutiti, a passionate software developer and entrepreneur. We're a dedicated team serving clients from startups to established enterprises with 95% client satisfaction. Our vision is to be the trusted digital partner that transforms how businesses build, launch, and scale."
     ],
     success: [
-      "We measure success by our clients' achievements: Over 200 successful projects delivered, 95% client satisfaction rate, Helped 50+ startups launch their digital presence, Supported 100+ students with career-boosting portfolios, Average 250% increase in client online engagement, and countless success stories across Africa!",
-      "Our track record speaks volumes: 3+ years serving the African market, 200+ websites and apps launched, 50+ businesses transformed digitally, 100+ students empowered with professional portfolios, Zero security breaches on our maintained systems, and growing community of satisfied clients!"
+      "We've delivered over 200 projects with 95% client satisfaction. Our clients have seen real results including 300% sales increases for e-commerce businesses, successful startup launches, and graduates landing dream jobs with portfolios we built.",
+      "Our track record includes 200+ successful projects across Africa, serving businesses from startups to established enterprises across multiple industries. We've helped businesses grow, students build winning portfolios, and startups successfully enter the market."
     ],
     default: [
-      "That's an excellent question! 🤔 As an AI trained on Brantech Solutions' complete knowledge base, I can provide detailed information on:\n\n• **Services**: Web development, mobile apps, e-commerce, AI, cybersecurity, SEO\n• **Pricing**: Custom quotes, flexible payment plans, student discounts\n• **Timeline**: Project duration estimates for different solutions\n• **Technology**: Our tech stack and development process\n• **Portfolio**: Success stories and case studies\n• **Company**: About our founder Brandon Omutiti and our mission\n• **Process**: How we work from consultation to delivery\n• **Support**: Training, maintenance, and ongoing assistance\n\nCould you rephrase your question or let me know which area you'd like to explore? I'm here to provide comprehensive, helpful answers just like ChatGPT or Gemini would!",
-      "Great question! 💡 I'm designed to provide intelligent, context-aware responses about everything Brantech Solutions offers. Think of me as your personal guide to understanding:\n\n**Technical Capabilities**: What technologies we use, how we build solutions, our development methodology\n\n**Business Services**: Detailed breakdowns of web development, mobile apps, AI integration, cybersecurity, and more\n\n**Practical Information**: Pricing structures, project timelines, payment options, consultation booking\n\n**Success Metrics**: Our portfolio, client testimonials, measurable results we've achieved\n\n**Strategic Guidance**: Which solutions fit your needs, how to get started, what to expect\n\nI'm constantly learning and can engage in nuanced conversations about your specific requirements. Could you clarify what you're looking for? I'm here to give you detailed, actionable insights!",
-      "I appreciate your question! 🎯 As an advanced AI assistant for Brantech Solutions, I have comprehensive knowledge about:\n\n✓ All our digital services and technical capabilities\n✓ Pricing models and flexible payment structures\n✓ Project timelines and development processes\n✓ Success stories across industries\n✓ Our founder Brandon Omutiti's vision and expertise\n✓ Technology stack and best practices\n✓ How we differ from competitors\n✓ Client onboarding and support systems\n\nI can engage in detailed technical discussions, provide strategic recommendations, or simply answer practical questions about getting started. I'm trained to respond conversationally and helpfully, similar to ChatGPT or Gemini.\n\nWhat specific information would help you most right now? Feel free to ask follow-up questions—I'm here for a real conversation!"
-    ]
+      "I can help with services, pricing, timelines, portfolio, or general questions. What would you like to know?",
+      "I'm here to answer questions about Brantech's services, pricing, projects, or anything else. How can I help?",
+      "Not sure I understood that. Ask me about our services, pricing, timeline, or portfolio. What interests you?"
+    ],
   };
 
   const getBotResponse = (userMessage: string): string => {
@@ -142,7 +135,7 @@ export function Chatbot() {
     
     // Web development - comprehensive keywords
     if (message.match(/\b(website|web development|web design|landing page|web app|responsive|frontend|backend|full stack)\b/)) {
-      return "I'd be happy to discuss web development with you! 🌐\n\nBrantech Solutions specializes in building modern, high-performance websites using cutting-edge technologies like React, TypeScript, and Node.js. We create:\n\n• **Custom Websites**: Tailored to your brand and business needs\n• **E-commerce Platforms**: Full-featured online stores with payment integration\n• **Progressive Web Apps**: Fast, app-like experiences on the web\n• **Responsive Design**: Perfect display on all devices\n• **SEO Optimization**: Built-in search engine optimization\n\nOur typical timeline is 2-4 weeks for standard websites, with ongoing support included. We offer flexible payment plans starting from as low as $500.\n\nWhat type of website are you considering? I can provide more specific information based on your needs.";
+      return "We build modern websites using React, TypeScript, and Node.js. Timeline: 2-4 weeks, starting at $500. What type of site do you need?";
     }
     
     // Services and general what we do - enhanced understanding
@@ -152,72 +145,72 @@ export function Chatbot() {
     
     // Student-specific queries with empathy
     if (message.match(/\b(student|students|cv|resume|portfolio|campus|university|college|graduate|intern|career)\b/)) {
-      return "Great question about student services! 🎓 I understand how important it is to stand out in today's competitive job market.\n\n" + botResponses.students[Math.floor(Math.random() * botResponses.students.length)] + "\n\nWe've helped over 100 students land their dream jobs through professional portfolios and CV services. Our student packages are specially priced with flexible payment options. Would you like to see some student portfolio examples?";
+      return botResponses.students[Math.floor(Math.random() * botResponses.students.length)];
     }
     
     // E-commerce with business insights
     if (message.match(/\b(ecommerce|e-commerce|online store|shop|sell online|retail|marketplace|shopping cart|checkout)\b/)) {
-      return "Excellent! E-commerce is one of our core specialties. 🛒\n\n" + botResponses.ecommerce[Math.floor(Math.random() * botResponses.ecommerce.length)] + "\n\nFun fact: Our e-commerce clients have seen an average 250% increase in online sales within the first 6 months. We integrate with M-Pesa, Stripe, PayPal, and other payment gateways popular in your region.\n\nAre you starting fresh, or do you have an existing business you'd like to move online?";
+      return botResponses.ecommerce[Math.floor(Math.random() * botResponses.ecommerce.length)];
     }
     
     // Mobile app with technical depth
     if (message.match(/\b(mobile app|app|application|android|ios|phone app|mobile development)\b/)) {
-      return "Mobile app development is an exciting area! 📱\n\n" + botResponses.apps[Math.floor(Math.random() * botResponses.apps.length)] + "\n\nWe use React Native for cross-platform apps (iOS + Android from one codebase) and native development for performance-critical apps. Our apps are optimized for African mobile networks and work offline when needed.\n\nTypical timeline: 8-16 weeks depending on complexity. What functionality are you envisioning for your app?";
+      return botResponses.apps[Math.floor(Math.random() * botResponses.apps.length)];
     }
     
     // Cybersecurity with authority
     if (message.match(/\b(security|cyber|cybersecurity|protect|protection|safe|secure|hack|hacker|vulnerability|breach|encryption)\b/)) {
-      return "Security is absolutely critical in today's digital landscape. 🔒\n\n" + botResponses.cybersecurity[Math.floor(Math.random() * botResponses.cybersecurity.length)] + "\n\nDid you know? 60% of small businesses close within 6 months of a cyber attack. We've maintained a 100% security record across all our projects - zero breaches on systems we maintain.\n\nWould you like a free security audit of your current digital assets?";
+      return botResponses.cybersecurity[Math.floor(Math.random() * botResponses.cybersecurity.length)];
     }
     
     // AI and automation with excitement
     if (message.match(/\b(ai|artificial intelligence|machine learning|automation|chatbot|bot|smart|intelligent|neural)\b/)) {
-      return "AI and automation are revolutionizing how businesses operate! 🤖\n\n" + botResponses.ai[Math.floor(Math.random() * botResponses.ai.length)] + "\n\nThis chatbot you're using right now is an example of our AI capabilities! We can integrate AI to:\n• Automate customer support (saving up to 40 hours/week)\n• Analyze data and predict trends\n• Personalize user experiences\n• Streamline business processes\n\nAI implementation typically takes 4-8 weeks. What business process would you like to automate?";
+      return botResponses.ai[Math.floor(Math.random() * botResponses.ai.length)];
     }
     
     // Location with local context
     if (message.match(/\b(where|location|located|based|office|address|kenya|nairobi|africa)\b/)) {
-      return botResponses.location[Math.floor(Math.random() * botResponses.location.length)] + "\n\nWe understand the unique challenges of the African market - from M-Pesa integration to low-bandwidth optimization. We're proudly African, building for Africa and the world. 🌍";
+      return botResponses.location[Math.floor(Math.random() * botResponses.location.length)];
     }
     
     // Pricing with value emphasis
     if (message.match(/\b(price|prices|pricing|cost|costs|quote|budget|affordable|cheap|expensive|pay|payment|fee)\b/)) {
-      return "I appreciate you asking about pricing - transparency is important to us! 💰\n\n" + botResponses.pricing[Math.floor(Math.random() * botResponses.pricing.length)] + "\n\nOur philosophy: Quality doesn't have to be expensive. Here's a rough guide:\n• Basic Website: $500-$1,500\n• E-commerce: $1,500-$5,000\n• Mobile App: $3,000-$15,000\n• Custom Software: $5,000+\n\nAll prices include training, initial support, and documentation. We also offer 50% discounts for students and startups in their first year.\n\nWould you like a detailed quote for your specific project?";
+      return botResponses.pricing[Math.floor(Math.random() * botResponses.pricing.length)];
     }
     
     // Timeline with project management insights
     if (message.match(/\b(how long|timeline|time|duration|when|fast|quick|weeks|months|deadline|delivery)\b/)) {
-      return "Great question about timelines! ⏱️ We pride ourselves on efficient, on-time delivery.\n\n" + botResponses.timeline[Math.floor(Math.random() * botResponses.timeline.length)] + "\n\nWe use agile methodology, which means:\n✓ You see progress every week\n✓ You can provide feedback throughout\n✓ We adapt to changes quickly\n✓ No surprises at the end\n\n95% of our projects are delivered on or ahead of schedule. We'll provide a detailed project roadmap during our free consultation.\n\nDo you have a specific deadline in mind?";
+      return botResponses.timeline[Math.floor(Math.random() * botResponses.timeline.length)];
     }
     
     // Why choose us / comparison
     if (message.match(/\b(why|why should|better|best|difference|compared|versus|vs|choose|recommend)\b/)) {
-      return "Excellent question! Let me share what makes Brantech Solutions unique: 🌟\n\n**Technical Excellence**\n• Modern tech stack (React, TypeScript, Node.js, Python)\n• Clean, maintainable code\n• Mobile-first, responsive design\n• SEO and performance optimized\n\n**Client-Centric Approach**\n• Free consultations with no pressure\n• Transparent pricing - no hidden fees\n• Flexible payment plans\n• Training included with every project\n\n**Proven Results**\n• 200+ successful projects\n• 95% client satisfaction rate\n• Zero security breaches\n• Average 250% ROI for clients\n\n**Local Advantage**\n• Based in Africa, understanding local needs\n• M-Pesa and local payment integration\n• Optimized for African internet speeds\n• Affordable for startups and SMEs\n\nWe're not just developers - we're your growth partners. Ready to transform your business?";
+      return "Modern tech stack, transparent pricing, 200+ successful projects, 95% satisfaction rate, zero security breaches. We're affordable and reliable!";
     }
     
     // Training questions with educational approach
     if (message.match(/\b(train|training|teach|learn|learning|onboard|onboarding|staff|tutorial|guide)\b/)) {
-      return "Education and empowerment are core to our mission! 📚\n\n" + botResponses.training[Math.floor(Math.random() * botResponses.training.length)] + "\n\nWe don't just build and disappear - we ensure you're confident managing your digital assets. Training includes:\n• Live video sessions (Zoom/Teams)\n• Screen recordings for future reference\n• Written documentation\n• 24/7 support for questions\n\nOur clients become independent, confident users. What would you like to learn?";
+      return botResponses.training[Math.floor(Math.random() * botResponses.training.length)];
     }
     
     // Maintenance and support with reliability emphasis
     if (message.match(/\b(maintenance|maintain|support|update|updates|fix|fixes|manage|management|hosting|backup)\b/)) {
-      return "Ongoing support is crucial for digital success! 🛠️\n\n" + botResponses.maintenance[Math.floor(Math.random() * botResponses.maintenance.length)] + "\n\n**Our Maintenance Advantage:**\n• 24/7 monitoring and response\n• Monthly security updates\n• Performance optimization\n• Priority support\n• Regular backups\n• 99.9% uptime guarantee\n\nMaintenance plans start at $50/month. Many clients save thousands by preventing problems before they occur.\n\nWould you like to see our maintenance packages?";
+      return botResponses.maintenance[Math.floor(Math.random() * botResponses.maintenance.length)];
     }
     
     // Portfolio with social proof
     if (message.match(/\b(portfolio|work|projects|project|examples|example|case study|case studies|showcase|gallery)\b/)) {
-      return "I'd love to share our work! 🎨\n\n" + botResponses.portfolio[Math.floor(Math.random() * botResponses.portfolio.length)] + "\n\n**Featured Projects:**\n• Glamongo Spa: Luxury spa booking platform\n• Belo Digital: Digital marketing agency site\n• Maal Traders: E-commerce with M-Pesa\n• Shinda Play: Gaming platform\n\nEach project is a success story with measurable results. You can view detailed case studies on our website's Projects page.\n\nWhat industry are you in? I can share relevant examples!";
+      return botResponses.portfolio[Math.floor(Math.random() * botResponses.portfolio.length)];
     }
     
     // Partnership with collaboration spirit
     if (message.match(/\b(partner|partnership|collaborate|collaboration|join|team up|work together|alliance)\b/)) {
-      return "We love collaboration! 🤝\n\n" + botResponses.partnership[Math.floor(Math.random() * botResponses.partnership.length)] + "\n\nWe believe in growing the African tech ecosystem together. Current partnerships include universities, design agencies, and tech communities.\n\n**Partnership Benefits:**\n• Referral commissions\n• Co-marketing opportunities\n• Shared resources\n• Joint innovation projects\n\nWhat type of partnership interests you?";
+      return botResponses.partnership[Math.floor(Math.random() * botResponses.partnership.length)];
     }
     
     // Consultation with invitation
     if (message.match(/\b(consult|consultation|meeting|call|talk|discuss|chat|free|advice|demo)\b/)) {
-      return "I'd love to connect you with our team! 📞\n\n" + botResponses.consultation[Math.floor(Math.random() * botResponses.consultation.length)] + "\n\n**Consultation Process:**\n1. 30-minute video call (or in-person if in Nairobi)\n2. Understand your goals and challenges\n3. Provide expert recommendations\n4. Discuss timeline and budget\n5. Receive a detailed proposal\n\n**No Commitment Required** - We provide value even if you don't hire us!\n\nReady to book? Click the schedule button or WhatsApp us at +254 790 889066.";
+      return botResponses.consultation[Math.floor(Math.random() * botResponses.consultation.length)];
     }
     
     // Company information with storytelling
@@ -227,22 +220,22 @@ export function Chatbot() {
     
     // Success stories with metrics
     if (message.match(/\b(success|successful|achievement|achievements|results|outcome|track record|experience|clients|testimonial)\b/)) {
-      return "Our success is measured by our clients' growth! 📈\n\n" + botResponses.success[Math.floor(Math.random() * botResponses.success.length)] + "\n\n**Client Testimonials:**\n• \"Brantech transformed our business - sales up 300%!\" - E-commerce Client\n• \"Professional, affordable, delivered on time.\" - Startup Founder\n• \"The portfolio they built landed me my dream job!\" - Graduate\n\nWe don't just build software - we build success stories. Ready to write yours?";
+      return botResponses.success[Math.floor(Math.random() * botResponses.success.length)];
     }
     
     // Contact information with urgency
     if (message.match(/\b(contact|reach|email|phone|call|whatsapp|get in touch|message|connect)\b/)) {
-      return "Let's connect! I'm here to help right now, but here are all the ways to reach Brantech Solutions: 📧\n\n" + botResponses.contact[Math.floor(Math.random() * botResponses.contact.length)] + "\n\n**Fastest Response:**\n💬 WhatsApp: +254 790 889066 (Reply within 1 hour)\n📅 Schedule Call: calendly.com/brandonomutiti05/30min\n📧 Email: info@brantech.co.ke\n\nOr continue chatting with me - I can answer most questions immediately!";
+      return botResponses.contact[Math.floor(Math.random() * botResponses.contact.length)];
     }
     
     // Thank you responses
     if (message.match(/\b(thank|thanks|thank you|appreciate|grateful)\b/)) {
-      return "You're very welcome! 😊 I'm here anytime you need assistance. Is there anything else you'd like to know about Brantech Solutions?\n\nRemember:\n• Free consultations available\n• No obligation to commit\n• We're here to help you succeed\n\nFeel free to ask more questions or schedule a call. We're excited to potentially work with you!";
+      return "You're welcome! Anything else I can help with?";
     }
     
     // Goodbye responses
     if (message.match(/\b(bye|goodbye|see you|talk later|gtg|have to go)\b/)) {
-      return "Thank you for chatting with me! 👋 Feel free to return anytime - I'm always here, 24/7.\n\nBefore you go:\n✓ Save our WhatsApp: +254 790 889066\n✓ Check out our portfolio\n✓ Schedule a free consultation\n\nWishing you success in your digital journey. Hope to hear from you soon! 🚀";
+      return "Goodbye! Feel free to return anytime. WhatsApp us at +254 790 889066 or check our portfolio. Good luck!";
     }
     
     // Jokes and humor - tech-themed
@@ -371,12 +364,12 @@ export function Chatbot() {
             <div className="bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
               <div className="flex flex-col text-center">
                 <span className="font-semibold">
-                  <span className="hidden sm:inline">Ask me anything 🤖</span>
-                  <span className="sm:hidden">Ask AI 🤖</span>
+                  <span className="hidden sm:inline">Ask Temi 🤖</span>
+                  <span className="sm:hidden">Ask Temi 🤖</span>
                 </span>
                 <span className="text-xs opacity-90 mt-1">
-                  <span className="hidden sm:inline">AI-Powered Assistance</span>
-                  <span className="sm:hidden">AI Support</span>
+                  <span className="hidden sm:inline">Customer Support</span>
+                  <span className="sm:hidden">Support</span>
                 </span>
               </div>
               
@@ -417,10 +410,10 @@ export function Chatbot() {
                     👩🏽‍💼
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Brantech AI Assistant</h3>
+                    <h3 className="font-semibold text-white">Temi - Customer Support</h3>
                     <div className="flex items-center gap-2 text-xs text-white/80">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span>Always Online • Powered by AI</span>
+                      <span>Online now</span>
                     </div>
                   </div>
                 </div>
