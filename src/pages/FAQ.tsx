@@ -158,7 +158,7 @@ const FAQ = () => {
                 and to discuss your specific project needs.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Button
                   variant="default"
                   size="lg"
@@ -167,14 +167,6 @@ const FAQ = () => {
                 >
                   <MessageCircle className="mr-3 w-5 h-5" />
                   Contact Us
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => window.open("https://calendly.com/brandonomutiti05/30min", "_blank")}
-                  className="border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
-                >
-                  Schedule a Call
                 </Button>
               </div>
             </div>

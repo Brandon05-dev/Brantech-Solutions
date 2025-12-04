@@ -162,10 +162,10 @@ export function About({ onContactClick }: AboutProps) {
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
             {/* Founder - Brandon */}
             <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
-              <CardContent className="p-6">
+              <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
                     <img src="/me.jpg" alt="Brandon Omutiti - Founder & Lead Developer" className="w-full h-full object-cover" />
@@ -176,13 +176,13 @@ export function About({ onContactClick }: AboutProps) {
                   </div>
 
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Brandon leads Brantech Solutions with a focus on quality, agility, and meaningful impact. He specializes in full-stack development, AI, and IoT.
+                    Brandon is the founder and CEO of Brantech Solutions, as well as a passionate developer. He specializes in building dynamic, high-performing products that deliver seamless user experiences.
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-3 justify-center">
-                    <Badge variant="secondary">Full-Stack</Badge>
-                    <Badge variant="secondary">AI</Badge>
-                    <Badge variant="secondary">IoT</Badge>
+                    <Badge variant="secondary">Full-Stack Development</Badge>
+                    <Badge variant="secondary">Software Engineering</Badge>
+                    <Badge variant="secondary">AI & Machine Learning</Badge>
                   </div>
 
                   <Button
@@ -199,7 +199,7 @@ export function About({ onContactClick }: AboutProps) {
 
             {/* Co-Founder - Placeholder 1 */}
             <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
-              <CardContent className="p-6">
+              <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
                     <img src="/BS Icon.png" alt="Co-Founder" className="w-full h-full object-cover" />
@@ -233,7 +233,7 @@ export function About({ onContactClick }: AboutProps) {
 
             {/* Head of Product - Placeholder 2 */}
             <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
-              <CardContent className="p-6">
+              <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
                     <img src="/BS Icon.png" alt="Head of Product" className="w-full h-full object-cover" />
@@ -267,7 +267,7 @@ export function About({ onContactClick }: AboutProps) {
 
             {/* Head of Marketing - New Profile */}
             <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
-              <CardContent className="p-6">
+              <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
                     <img src="/BS Icon.png" alt="Head of Marketing" className="w-full h-full object-cover" />
