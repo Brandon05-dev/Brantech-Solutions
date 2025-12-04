@@ -75,40 +75,79 @@ export function About({ onContactClick }: AboutProps) {
           </p>
         </div>
 
-        {/* Mission and Vision statements */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* Mission, Vision, and Values */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {/* Mission statement */}
-          <div className="group relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90 rounded-3xl p-8 text-center text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-primary/20">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Target className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors duration-300">Our Mission</h3>
-              <p className="text-lg text-primary-foreground/95 leading-relaxed group-hover:text-white/95 transition-colors duration-300">
-                To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.
-              </p>
-              <div className="mt-6 flex justify-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Accessible</span>
-                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Affordable</span>
+          <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="relative">
+              <img 
+                src="/mission.png" 
+                alt="Our Mission" 
+                className="w-full h-auto object-contain max-h-[300px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
+                <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Our Mission</h3>
+                <p className="text-xs text-white/95 leading-relaxed">
+                  To make modern technology simple, affordable, and truly useful for every entrepreneur, small business, and startup so they can focus on what they do best.
+                </p>
+                <div className="mt-3 flex gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Accessible</span>
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Affordable</span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Vision statement */}
-          <div className="group relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90 rounded-3xl p-8 text-center text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-primary/20">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Eye className="w-8 h-8 text-primary-foreground" />
+          <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="relative">
+              <img 
+                src="/vision.png" 
+                alt="Our Vision" 
+                className="w-full h-auto object-contain max-h-[300px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
+                <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Eye className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Our Vision</h3>
+                <p className="text-xs text-white/95 leading-relaxed">
+                  To be the trusted digital partner that transforms how businesses build, launch, and scale making modern tech accessible, affordable, and impactful for everyone.
+                </p>
+                <div className="mt-3 flex gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Innovation</span>
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Impact</span>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors duration-300">Our Vision</h3>
-              <p className="text-lg text-primary-foreground/95 leading-relaxed group-hover:text-white/95 transition-colors duration-300">
-                To be the trusted digital partner that transforms how businesses build, launch, and scale making modern tech accessible, affordable, and impactful for everyone.
-              </p>
-              <div className="mt-6 flex justify-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Innovation</span>
-                <span className="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Impact</span>
+            </div>
+          </div>
+
+          {/* Values Card */}
+          <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="relative">
+              <img 
+                src="/values.png" 
+                alt="Our Core Values" 
+                className="w-full h-auto object-contain max-h-[300px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
+                <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Heart className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Our Values</h3>
+                <p className="text-xs text-white/95 leading-relaxed">
+                  The principles that guide everything we do and define how we work with our clients and partners.
+                </p>
+                <div className="mt-3 flex gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Excellence</span>
+                  <span className="px-2 py-0.5 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm">Integrity</span>
+                </div>
               </div>
             </div>
           </div>

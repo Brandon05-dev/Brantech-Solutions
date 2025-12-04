@@ -8,7 +8,8 @@ import {
   Linkedin, 
   Twitter, 
   Mail, 
-  Send
+  Send,
+  Instagram
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -58,27 +59,58 @@ export function Footer() {
             <p className="text-muted-foreground leading-relaxed text-sm max-w-sm">
               Transforming businesses across Africa and beyond with innovative technology solutions, AI systems, and digital products that scale.
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <Button
                 variant="outline"
                 size="sm"
                 className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-glow hover:scale-110 transition-all duration-300 group"
+                asChild
               >
-                <Github className="w-5 h-5 group-hover:animate-pulse" />
+                <a href="https://github.com/brandon05-dev" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-5 h-5 group-hover:animate-pulse" />
+                </a>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-blue hover:scale-110 transition-all duration-300 group"
+                asChild
               >
-                <Linkedin className="w-5 h-5 group-hover:animate-pulse" />
+                <a href="https://linkedin.com/company/brantech-solutions" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-5 h-5 group-hover:animate-pulse" />
+                </a>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-purple hover:scale-110 transition-all duration-300 group"
+                asChild
               >
-                <Twitter className="w-5 h-5 group-hover:animate-pulse" />
+                <a href="https://twitter.com/brantech_sol" target="_blank" rel="noopener noreferrer">
+                  <Twitter className="w-5 h-5 group-hover:animate-pulse" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-500 hover:shadow-pink hover:scale-110 transition-all duration-300 group"
+                asChild
+              >
+                <a href="https://www.instagram.com/brantech_solutions_official?igsh=eXVmbmx0MDMxdndh" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="w-5 h-5 group-hover:animate-pulse" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 hover:text-cyan-500 hover:shadow-cyan hover:scale-110 transition-all duration-300 group"
+                asChild
+              >
+                <a href="https://www.tiktok.com/@brantech.solution?_r=1&_t=ZM-91x4CAFweue" target="_blank" rel="noopener noreferrer">
+                  <svg className="w-5 h-5 group-hover:animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                  </svg>
+                </a>
               </Button>
             </div>
           </div>
@@ -91,35 +123,31 @@ export function Footer() {
             </h3>
             <ul className="space-y-4">
               {[
-                { label: "Home", href: "#home", type: "scroll" },
-                { label: "Services", href: "#services", type: "scroll" },
-                { label: "Portfolio", href: "#portfolio", type: "scroll" },
-                { label: "About", href: "#about", type: "scroll" },
-                { label: "Testimonials", href: "#testimonials", type: "scroll" },
+                { label: "Home", href: "/", type: "link" },
+                { label: "Services", href: "/#services", type: "link" },
+                { label: "Portfolio", href: "/projects", type: "link" },
+                { label: "About", href: "/about-us", type: "link" },
+                { label: "Testimonials", href: "/#testimonials", type: "link" },
                 { label: "FAQ", href: "/faq", type: "link" },
-                { label: "Contact", href: "#contact", type: "scroll" }
+                { label: "Contact", href: "/#contact", type: "link" }
               ].map((link) => (
                 <li key={link.label}>
-                  {link.type === "scroll" ? (
-                    <button
-                      onClick={() => {
-                        const element = document.querySelector(link.href);
-                        element?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-muted-foreground hover:text-primary transition-all duration-300 text-sm font-medium hover:translate-x-1 flex items-center group"
-                    >
-                      <span className="w-0 h-0.5 bg-primary rounded-full group-hover:w-4 transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="text-muted-foreground hover:text-primary transition-all duration-300 text-sm font-medium hover:translate-x-1 flex items-center group"
-                    >
-                      <span className="w-0 h-0.5 bg-primary rounded-full group-hover:w-4 transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                      {link.label}
-                    </Link>
-                  )}
+                  <Link
+                    to={link.href}
+                    className="text-muted-foreground hover:text-primary transition-all duration-300 text-sm font-medium hover:translate-x-1 flex items-center group"
+                    onClick={() => {
+                      if (link.href.includes('#')) {
+                        setTimeout(() => {
+                          const hash = link.href.split('#')[1];
+                          const element = document.getElementById(hash);
+                          element?.scrollIntoView({ behavior: "smooth" });
+                        }, 100);
+                      }
+                    }}
+                  >
+                    <span className="w-0 h-0.5 bg-primary rounded-full group-hover:w-4 transition-all duration-300 mr-0 group-hover:mr-2"></span>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -133,19 +161,22 @@ export function Footer() {
             </h3>
             <ul className="space-y-4">
               {[
-                "Website Design and Development",
-                "Mobile Development",
-                "Cybersecurity",
-                "E-Commerce Solutions",
-                "Website Maintenance and Support",
-                "SEO and Digital Marketing",
-                "Content Management Systems (CMS)"
+                { label: "Website Design and Development", route: "/services/web-development" },
+                { label: "Mobile Development", route: "/services/mobile-development" },
+                { label: "Cybersecurity", route: "/services/cybersecurity" },
+                { label: "E-Commerce Solutions", route: "/services/ecommerce" },
+                { label: "Website Maintenance and Support", route: "/services/maintenance" },
+                { label: "SEO and Digital Marketing", route: "/services/seo-marketing" },
+                { label: "Content Management Systems (CMS)", route: "/services/cms" }
               ].map((service) => (
-                <li key={service} className="group">
-                  <span className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-300 cursor-default flex items-center">
+                <li key={service.label} className="group">
+                  <Link 
+                    to={service.route}
+                    className="text-muted-foreground text-sm hover:text-primary transition-all duration-300 cursor-pointer flex items-center hover:translate-x-1"
+                  >
                     <div className="w-1.5 h-1.5 bg-primary/60 rounded-full mr-3 group-hover:bg-primary group-hover:shadow-glow transition-all duration-300"></div>
-                    {service}
-                  </span>
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>
