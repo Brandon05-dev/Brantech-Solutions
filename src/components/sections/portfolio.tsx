@@ -13,6 +13,16 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
 
   const projects = [
     {
+      title: "Glamongo Spa",
+      status: "Live",
+      category: "Beauty & Wellness",
+      description: "Sophisticated spa and beauty booking platform featuring elegant design and seamless appointment scheduling. Professional services with effortless appointment management, showcasing modern beauty industry standards and user-friendly interface for enhanced customer experience.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+      image: "/glamongo-spa.png",
+      liveUrl: "https://glamongospa.netlify.app/",
+      githubUrl: "https://github.com/brandon05-dev"
+    },
+    {
       title: "BMI Leather Shop",
       status: "Live",
       category: "E-Commerce",

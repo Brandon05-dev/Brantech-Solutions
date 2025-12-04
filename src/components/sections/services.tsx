@@ -8,12 +8,32 @@ import {
   Search,
   FileText
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ServicesProps {
   onContactClick?: () => void;
 }
 
 export function Services({ onContactClick }: ServicesProps) {
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   const services = [
     {
       icon: Globe,
@@ -91,7 +111,13 @@ export function Services({ onContactClick }: ServicesProps) {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.18 }}
+        >
           {services.map((service, index) => {
             const IconComponent = service.icon;
             const colorClasses = {
@@ -162,8 +188,9 @@ export function Services({ onContactClick }: ServicesProps) {
             const colors = colorClasses[service.hoverColor];
             
             return (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
                 className={`group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 ${colors.borderHover} hover:-translate-y-2`}
               >
                 {/* Background gradient overlay on hover */}
@@ -195,10 +222,10 @@ export function Services({ onContactClick }: ServicesProps) {
 
                 {/* Decorative elements */}
                 <div className={`absolute bottom-6 left-6 w-12 h-12 bg-gradient-to-br ${colors.decorative2} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500`}></div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
