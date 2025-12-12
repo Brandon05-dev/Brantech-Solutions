@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { Chatbot } from "@/components/ui/chatbot";
 import { FloatingButtons } from "@/components/ui/floating-buttons";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
@@ -55,6 +56,7 @@ const App = () => (
         </Routes>
         <FloatingButtons />
         <Chatbot />
+        <CookieConsent />
         <Analytics />
       </BrowserRouter>
     </ThemeProvider>
