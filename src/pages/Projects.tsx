@@ -12,6 +12,16 @@ export function Projects() {
   };
   const projects = [
     {
+      title: "Tattoo Nation Kenya",
+      status: "Live",
+      category: "Art & Design",
+      description: "Professional tattoo studio website showcasing artistic designs, portfolio, and booking services for tattoo enthusiasts in Kenya.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+      image: "/tattoonationkenya.png",
+      liveUrl: "https://www.tattoonationkenya.com",
+      githubUrl: null
+    },
+    {
       title: "Glamongo Spa",
       status: "Live",
       category: "Beauty & Wellness",
