@@ -34,7 +34,7 @@ export function Packages({ onContactClick }: PackagesProps) {
     {
       icon: Rocket,
       name: "Basic Plan",
-      price: "KSHS 20,000",
+      price: "KSHS 25,000",
       description: "Essential features for small businesses",
       iconColor: "green",
       features: [
@@ -55,7 +55,7 @@ export function Packages({ onContactClick }: PackagesProps) {
     {
       icon: TrendingUp,
       name: "Standard Plan",
-      price: "KSHS 25,000",
+      price: "KSHS 30,000",
       description: "Perfect for growing businesses",
       iconColor: "purple",
       features: [
@@ -76,7 +76,7 @@ export function Packages({ onContactClick }: PackagesProps) {
     {
       icon: Crown,
       name: "Premium Plan",
-      price: "KSHS 30,000",
+      price: "KSHS 40,000",
       description: "Complete solution for established businesses",
       iconColor: "orange",
       features: [
