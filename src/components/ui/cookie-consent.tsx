@@ -94,13 +94,7 @@ export function CookieConsent() {
       {/* Cookie Banner */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-500">
         <div className="w-full max-w-4xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-700">
-          <div className="relative bg-gradient-to-br from-background/98 via-card/98 to-background/95 backdrop-blur-2xl border border-primary/20 rounded-2xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden">
-            {/* Premium gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none"></div>
-            
-            {/* Animated decorative elements */}
-            <div className="absolute -top-24 -left-24 w-48 h-48 bg-gradient-to-br from-primary/10 to-primary/5 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute -bottom-16 -right-16 w-40 h-40 bg-gradient-to-tl from-accent/10 to-accent/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
+          <div className="relative bg-white backdrop-blur-2xl border border-primary/20 rounded-2xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden">
             
             {/* Subtle grid pattern */}
             <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style={{
@@ -113,8 +107,7 @@ export function CookieConsent() {
                 {/* Icon with gradient background */}
                 <div className="flex-shrink-0">
                   <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/60 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent backdrop-blur-sm border border-primary/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border border-primary/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Cookie className="w-8 h-8 sm:w-10 sm:h-10 text-primary drop-shadow-lg" />
                     </div>
                   </div>
@@ -124,7 +117,7 @@ export function CookieConsent() {
                 <div className="flex-1 space-y-4 md:space-y-5">
                   <div className="space-y-2 md:space-y-3">
                     <div className="flex items-start justify-between gap-4">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent leading-tight">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight">
                         Your Privacy Matters
                       </h3>
                       {/* Close button - mobile top right */}
