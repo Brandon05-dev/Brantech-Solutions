@@ -231,26 +231,26 @@ export function About({ onContactClick }: AboutProps) {
               </CardContent>
             </Card>
 
-            {/* Head of Product - Placeholder 2 */}
+            {/* AI Engineer - Daniel Okinda */}
             <Card className="bg-card border-border hover:shadow-elegant transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img src="/BS Icon.png" alt="Head of Product" className="w-full h-full object-cover" />
+                    <img src="/BS Icon.png" alt="AI Engineer" className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-foreground">John Kamau</h4>
-                    <p className="text-primary font-medium text-sm">Head of Product</p>
+                    <h4 className="text-xl font-bold text-foreground">Daniel Okinda</h4>
+                    <p className="text-primary font-medium text-sm">AI Engineer</p>
                   </div>
 
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    John leads product strategy and delivery, ensuring our solutions solve real customer problems and deliver measurable value.
+                    Daniel specializes in developing cutting-edge AI solutions and machine learning models that power our intelligent systems and drive innovation.
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-3 justify-center">
-                    <Badge variant="secondary">PM</Badge>
-                    <Badge variant="secondary">Design</Badge>
-                    <Badge variant="secondary">Strategy</Badge>
+                    <Badge variant="secondary">AI</Badge>
+                    <Badge variant="secondary">Machine Learning</Badge>
+                    <Badge variant="secondary">Engineering</Badge>
                   </div>
 
                   <Button
