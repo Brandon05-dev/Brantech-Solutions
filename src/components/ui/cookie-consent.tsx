@@ -212,8 +212,8 @@ export function CookieConsent() {
       {/* Settings Dialog */}
       <Dialog open={showSettings} onOpenChange={setShowSettings}>
         <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-background via-card to-background border-primary/20">
-          <DialogHeader className="space-y-3 pb-2">
-            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <DialogHeader className="space-y-3 pb-2">
+            <DialogTitle className="text-2xl sm:text-3xl font-bold text-foreground">
               Cookie Preferences Center
             </DialogTitle>
             <DialogDescription className="text-base text-muted-foreground leading-relaxed">

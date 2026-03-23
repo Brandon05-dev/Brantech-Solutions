@@ -97,17 +97,24 @@ export function Services({ onContactClick }: ServicesProps) {
     <section id="services" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-            Our Services
+        <div className="max-w-3xl mx-auto mb-16 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-16">
+          <div className="text-left w-full sm:max-w-[55%]">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+              What We Build
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Seven services.
+              <br />
+              One partner.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            What We Offer
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Empowering businesses with reliable, innovative tech solutions 
-            that drive growth and digital transformation.
-          </p>
+
+          <div className="text-right w-full sm:max-w-[45%]">
+            <p className="text-lg text-muted-foreground">
+              From your first website to enterprise-grade cloud infrastructure — we cover the
+              full technology stack so you never need to manage multiple agencies.
+            </p>
+          </div>
         </div>
 
         {/* Services Grid */}

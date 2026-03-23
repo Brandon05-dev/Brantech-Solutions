@@ -123,7 +123,7 @@ export function CustomerSupport() {
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
                   </div>
                   <div>
-                    <span className="text-base font-semibold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                    <span className="text-base font-semibold text-primary">
                       Temi - Customer Support
                     </span>
                     <div className="text-xs text-muted-foreground font-normal flex items-center gap-1">
