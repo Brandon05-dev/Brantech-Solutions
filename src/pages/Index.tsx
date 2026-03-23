@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Hero } from "@/components/sections/hero";
+import { HeroStats } from "@/components/sections/hero-stats";
+import { HeroSlideshow } from "@/components/sections/hero-slideshow";
 import { Services } from "@/components/sections/services";
 import { Packages } from "@/components/sections/packages";
 import { Stats } from "@/components/sections/stats";
@@ -19,6 +21,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation onContactClick={handleContactClick} />
       <Hero onContactClick={handleContactClick} />
+      <HeroSlideshow onContactClick={handleContactClick} />
+      <HeroStats onContactClick={handleContactClick} />
       <Services onContactClick={handleContactClick} />
       <Portfolio onContactClick={handleContactClick} />
       <Packages onContactClick={handleContactClick} />

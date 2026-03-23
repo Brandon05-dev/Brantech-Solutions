@@ -1,6 +1,8 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
+import { HeroStats } from "@/components/sections/hero-stats";
+import { HeroSlideshow } from "@/components/sections/hero-slideshow";
 
 const SimpleIndex = () => {
   const handleContactClick = () => {
@@ -14,6 +16,12 @@ const SimpleIndex = () => {
       
       {/* Test Hero Component */}
       <Hero onContactClick={handleContactClick} />
+
+      {/* Test HeroSlideshow Component */}
+      <HeroSlideshow onContactClick={handleContactClick} />
+
+      {/* Test HeroStats Component */}
+      <HeroStats onContactClick={handleContactClick} />
       
       {/* Test Services Component */}
       <Services onContactClick={handleContactClick} />

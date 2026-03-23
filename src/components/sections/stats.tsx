@@ -167,6 +167,41 @@ export function Stats({ onContactClick }: StatsProps) {
                     />
                   </div>
                   <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%207.png"
+                      alt="Company 7"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%208.png"
+                      alt="Company 8"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%209.png"
+                      alt="Company 9"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%2010.png"
+                      alt="Company 10"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%2011.png"
+                      alt="Company 11"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                     <img 
                       src="/company1.png"
                       alt="Company 1"
@@ -198,6 +233,41 @@ export function Stats({ onContactClick }: StatsProps) {
                     <img 
                       src="/company5.png"
                       alt="Company 5"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%207.png"
+                      alt="Company 7"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%208.png"
+                      alt="Company 8"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%209.png"
+                      alt="Company 9"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%2010.png"
+                      alt="Company 10"
+                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <img
+                      src="/company%2011.png"
+                      alt="Company 11"
                       className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
                     />
                   </div>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Users, Briefcase, Globe, Server, Shield, Brain, Cloud, Code2, Database, Cpu, Monitor, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Briefcase, Globe, Server, Shield, Brain, Cloud, Code2, Database, Cpu, Monitor, MessageCircle, User } from "lucide-react";
 
 interface HeroProps {
   onContactClick?: () => void;
@@ -30,9 +30,6 @@ export function Hero({ onContactClick }: HeroProps) {
           ))}
         </div>
 
-        {/* Subtle geometric shapes */}
-        <div className="absolute top-20 right-20 w-32 h-32 border border-blue-200/30 dark:border-blue-700/30 rounded-full animate-spin" style={{ animationDuration: "30s" }} />
-        <div className="absolute bottom-20 left-20 w-24 h-24 border border-purple-200/30 dark:border-purple-700/30 rounded-lg rotate-45 animate-spin" style={{ animationDuration: "25s", animationDirection: "reverse" }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -75,7 +72,7 @@ export function Hero({ onContactClick }: HeroProps) {
             {/* Main headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               Transform Your Business with{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-blue-600 dark:text-blue-400">
                 Smart Digital Solutions
               </span>
             </h1>
@@ -87,15 +84,24 @@ export function Hero({ onContactClick }: HeroProps) {
 
             {/* Contact CTA */}
             <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
-              <button
-                onClick={() => {
-                  const contactSection = document.querySelector('#contact');
-                  contactSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-200 dark:border-blue-800 rounded-full px-6 py-3 hover:from-blue-600/20 hover:to-purple-600/20 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 cursor-pointer group"
-              >
-                <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Speak with Our Experts</span>
-              </button>
+              <div className="inline-flex items-center gap-2 rounded-full px-6 py-3 transition-all duration-300">
+                <span className="text-gray-700 dark:text-gray-300 font-bold text-sm sm:text-base md:text-lg">
+                  Trusted by <span className="font-bold text-blue-600 dark:text-blue-400">50+</span> Clients
+                </span>
+                {/* Profile avatars (icons) */}
+                <div className="flex items-center -space-x-2 pl-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <div
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={i}
+                      className="w-7 h-7 rounded-full border border-white dark:border-gray-800 bg-gradient-to-br from-blue-500/15 to-purple-500/15 flex items-center justify-center transition-transform duration-300"
+                      aria-hidden="true"
+                    >
+                      <User className="w-4 h-4 text-blue-700/80 dark:text-blue-300/80" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
