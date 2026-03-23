@@ -304,3 +304,17 @@ All colors MUST be HSL.
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+/* Responsive shift utility: apply only on large screens (>=1024px) */
+@media (min-width: 1024px) {
+  .shift-left-lg {
+    transform: translateX(-5cm);
+  }
+}
+
+/* Responsive shift-right utility: apply only on large screens (>=1024px) */
+@media (min-width: 1024px) {
+  .shift-right-lg {
+    transform: translateX(5cm);
+  }
+}
