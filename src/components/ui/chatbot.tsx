@@ -1,33 +1,237 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
-  MessageCircle, 
+  Sparkles, 
   X, 
   Send, 
-  User, 
-  UserCheck,
   Minimize2,
-  Maximize2
+  Maximize2,
+  Bot,
+  Globe,
+  UserRound
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+type Language = 'en' | 'fr' | 'es' | 'sw' | 'sg' | 'ki';
 
 interface Message {
   id: string;
   text: string;
   sender: "user" | "bot";
   timestamp: Date;
+  isStreaming?: boolean;
 }
+
+const UI_TRANSLATIONS = {
+  en: {
+    title: "Temi - Customer Support",
+    status: "Online • Ready to help",
+    placeholder: "Ask Temi...",
+    assistantFooter: "Customer Support • Brantech Solutions",
+    floatingBtnTitle: "Ask Temi anything",
+    floatingBtnSub: "Customer Support",
+    suggestedPrompts: [
+      "Detail your services",
+      "Show me your portfolio",
+      "Explain your pricing",
+      "Tell me about the company"
+    ]
+  },
+  fr: {
+    title: "Temi - Support Client",
+    status: "En ligne • Prêt à aider",
+    placeholder: "Demandez à Temi...",
+    assistantFooter: "Support Client • Brantech Solutions",
+    floatingBtnTitle: "Demandez à Temi",
+    floatingBtnSub: "Support Client",
+    suggestedPrompts: [
+      "Détaillez vos services",
+      "Montrez-moi votre portfolio",
+      "Expliquez vos prix",
+      "Parlez-moi de l'entreprise"
+    ]
+  },
+  es: {
+    title: "Temi - Soporte",
+    status: "En línea • Listo para ayudar",
+    placeholder: "Pregunta a Temi...",
+    assistantFooter: "Soporte al Cliente • Brantech Solutions",
+    floatingBtnTitle: "Pregunta a Temi",
+    floatingBtnSub: "Soporte al Cliente",
+    suggestedPrompts: [
+      "Detalle sus servicios",
+      "Muéstrame tu portafolio",
+      "Explique sus precios",
+      "Cuéntame sobre la empresa"
+    ]
+  },
+  sw: {
+    title: "Temi - Msaada kwa Wateja",
+    status: "Mondoni • Tayari kusaidia",
+    placeholder: "Uliza Temi...",
+    assistantFooter: "Msaada kwa Wateja • Brantech Solutions",
+    floatingBtnTitle: "Uliza Temi chochote",
+    floatingBtnSub: "Msaada kwa Wateja",
+    suggestedPrompts: [
+      "Fafanua huduma zenu",
+      "Nionyeshe kazi zenu",
+      "Eleza bei zenu",
+      "Nieleze kuhusu kampuni"
+    ]
+  },
+  sg: { // Sheng
+    title: "Temi - Customer Support",
+    status: "Niko area kusaidia",
+    placeholder: "Uliza Temi...",
+    assistantFooter: "Customer Support • Brantech Solutions",
+    floatingBtnTitle: "Uliza Temi swali",
+    floatingBtnSub: "Customer Support",
+    suggestedPrompts: [
+      "Mnado nini hapa?",
+      "Nichekie works zenu",
+      "Website ni how much?",
+      "Nishow kuhusu Brantech"
+    ]
+  },
+  ki: { // Kikuyu
+    title: "Temi - Mũteithia wa Agũri",
+    status: "Ndĩ Kũũ • Ndĩ Mũiguĩru",
+    placeholder: "Kũria Temi...",
+    assistantFooter: "Mũteithia wa Agũri • Brantech Solutions",
+    floatingBtnTitle: "Kũria Temi kĩũndũ",
+    floatingBtnSub: "Mũteithia wa Agũri",
+    suggestedPrompts: [
+      "Mũrutaga wĩra ũrĩkũ?",
+      "Nyonya wĩra wanyu",
+      "Gũthondeka nĩ mbeca cigana?",
+      "Njĩra ũhoro wa Brantech"
+    ]
+  }
+};
+
+const BOT_RESPONSES = {
+  greeting: {
+    en: "Hello! I am Temi, your customer support assistant. I am equipped with comprehensive knowledge regarding Brantech Solutions' technical architecture, service methodologies, portfolio implementations, and corporate mission. How can I assist you today?",
+    fr: "Bonjour ! Je suis Temi, votre assistante du support client. Je suis équipée d'une connaissance approfondie de l'architecture technique, des méthodologies de service et de la mission de Brantech Solutions. Comment puis-je vous aider aujourd'hui ?",
+    es: "¡Hola! Soy Temi, su asistente de soporte al cliente. Estoy equipada con un conocimiento integral sobre la arquitectura técnica, las metodologías de servicio y la misión de Brantech Solutions. ¿Cómo puedo ayudarle hoy?",
+    sw: "Hujambo! Mimi ni Temi, msaidizi wako wa huduma kwa wateja. Nina ujuzi kamili kuhusu usanifu wa kiufundi, mbinu za huduma, na dhamira ya Brantech Solutions. Naweza kukusaidia vipi leo?",
+    sg: "Niaje. Mimi ni Temi, customer support wako. Nko na info yote kuhusu services, works na mission ya Brantech Solutions. Naeza kusaidia aje leo?",
+    ki: "Wĩmwega. Nĩnĩ Temi, mũteithia waku wa agũri. Ndĩ na ũũgĩ wothe wĩgiĩ wĩra wa Brantech Solutions. Ingĩkũteithia atĩa ũmũthĩ?"
+  },
+  services: {
+    en: "Brantech Solutions provides an elite, comprehensive suite of digital engineering services designed for scalability and enterprise performance:\n\n• **Custom Software Engineering:** We build full-stack web platforms and native mobile applications (iOS/Android) using modern frameworks like React, Node.js, and Flutter. We focus on scalable microservices and robust API integrations.\n• **Enterprise AI Solutions:** We integrate state-of-the-art Large Language Models (LLMs), intelligent customer support chatbots, workflow automation, and predictive data analytics tailored to your operational needs.\n• **Advanced Cybersecurity:** Our security protocols include deep-level penetration testing, continuous vulnerability assessments, secure cloud architecture design, and proactive 24/7 endpoint monitoring to ensure total data compliance.\n• **Digital Marketing & SEO:** We execute data-driven performance marketing and deep technical search engine optimization to maximize your global visibility.\n\nCould you specify which technical domain aligns with your current operational goals?",
+    fr: "Brantech Solutions propose une suite complète de services d'ingénierie numérique conçus pour l'évolutivité et les performances de l'entreprise :\n\n• **Ingénierie logicielle sur mesure :** Nous créons des plateformes web full-stack et des applications mobiles natives.\n• **Solutions d'IA d'entreprise :** Nous intégrons des modèles de langage de pointe et une automatisation des flux de travail.\n• **Cybersécurité avancée :** Nos protocoles incluent des tests d'intrusion approfondis et une surveillance proactive 24/7.\n• **Marketing numérique et SEO :** Optimisation technique pour les moteurs de recherche.\n\nQuel domaine technique correspond à vos objectifs actuels ?",
+    es: "Brantech Solutions ofrece un conjunto completo de servicios de ingeniería digital diseñados para la escalabilidad y el rendimiento empresarial:\n\n• **Ingeniería de software a medida:** Construimos plataformas web full-stack y aplicaciones móviles nativas.\n• **Soluciones de IA empresarial:** Integramos modelos de lenguaje de última generación y automatización de flujos de trabajo.\n• **Ciberseguridad avanzada:** Nuestros protocolos incluyen pruebas de penetración profundas y monitoreo proactivo 24/7.\n• **Marketing digital y SEO:** Optimización técnica de motores de búsqueda.\n\n¿Qué dominio técnico se alinea con sus objetivos actuales?",
+    sw: "Brantech Solutions inatoa huduma mbalimbali za uhandisi wa kidijitali zilizoundwa kwa ajili ya utendaji wa juu wa biashara:\n\n• **Utengenezaji wa Programu:** Tunaunda mifumo ya wavuti na programu za simu kwa kutumia teknolojia za kisasa.\n• **Suluhisho za AI:** Tunaunganisha mifumo ya akili bandia (AI) na otomatiki wa kazi.\n• **Usalama wa Mtandao:** Huduma zetu zinajumuisha upimaji wa kina wa udhaifu na ufuatiliaji wa 24/7.\n• **Masoko ya Kidijitali & SEO:** Uboreshaji wa utafutaji wa kitaalamu.\n\nJe, ni eneo lipi la kiufundi linaloendana na malengo yako?",
+    sg: "Brantech inapeana ma service moto za digital:\n\n• **Custom Software:** Tunaunda ma websites na ma mobile app kali.\n• **AI Solutions:** Tunasetup ma chatbot na automation.\n• **Cybersecurity:** Kulinda data yenu isiingiwe na ma hacker.\n• **Digital Marketing:** Kufanya brand yenu ijulikane online.\n\nNi area gani inakubamba zaidi?",
+    ki: "Brantech Solutions nĩ ĩheanaga motungata ma digital ma gĩkĩro kĩa igũrũ:\n\n• **Gũthondeka Software:** Nĩ tũthondekaga website na application cia thimũ.\n• **Maũndũ ma AI:** Gũthondeka chatbot na kũhũthĩra mashini.\n• **Ũgitiri wa Mtandao:** Kũgitĩra data yanyu ĩtikonwo nĩ andũ athũku.\n• **Kũheana Ũhoro Online:** Kũmemerekia biashara yanyu mtandaoni.\n\nWĩnda tũwarĩrie ũndũ ũrĩkũ?"
+  },
+  ecommerce: {
+    en: "Our e-commerce implementations are built for maximum conversion and security. The architecture includes:\n\n• **Secure Payment Routing:** Frictionless integration with localized and global gateways including M-Pesa API, Stripe, and PayPal.\n• **Dynamic Inventory Engines:** Real-time sync across multi-warehouse systems with automated restocking alerts.\n• **High-Performance UI:** Sub-second page load times using edge computing and headless commerce architectures.\n• **Analytics & Retargeting:** Integrated dashboards tracking user behavior, cart abandonment, and predictive LTV (Lifetime Value).\n\nAre you looking to migrate an existing store or build a custom platform from the ground up?",
+    fr: "Nos implémentations de commerce électronique sont conçues pour une conversion et une sécurité maximales :\n\n• **Routage de paiement sécurisé :** M-Pesa, Stripe et PayPal.\n• **Moteurs d'inventaire dynamiques :** Synchronisation en temps réel.\n• **Interface utilisateur haute performance :** Architecture headless.\n\nCherchez-vous à migrer une boutique existante ou à en créer une nouvelle ?",
+    es: "Nuestras implementaciones de comercio electrónico están diseñadas para la máxima conversión y seguridad:\n\n• **Enrutamiento de pago seguro:** M-Pesa, Stripe y PayPal.\n• **Motores de inventario dinámicos:** Sincronización en tiempo real.\n• **Interfaz de usuario de alto rendimiento:** Arquitectura headless.\n\n¿Busca migrar una tienda existente o crear una plataforma desde cero?",
+    sw: "Mifumo yetu ya e-commerce inajengwa kwa ufanisi na usalama wa hali ya juu:\n\n• **Malipo Salama:** M-Pesa, Stripe, na PayPal.\n• **Usimamizi wa Hesabu:** Usawazishaji wa moja kwa moja.\n• **Utendaji wa Juu:** Kasi kubwa ya upakiaji kurasa.\n\nJe, unatafuta kuhamisha duka lako lililopo au kujenga jukwaa jipya?",
+    sg: "Sisi ni wajanja wa kuunda online shops ziko na secure payments kama M-Pesa na Stripe. Tunamake sure shop yako iko fast na iko easy kutumia kwa simu. Unataka tuunde shop mpya ama tu-upgrade yenye uko nayo?",
+    ki: "Nĩ tũrĩ na ũmenyeru wa gũthondeka nduka cia online irĩ na njĩra ngitĩre cia kũrĩha ta M-Pesa na Stripe. Wĩnda gũthondeka nduka njerũ kana gũthondekera ĩrĩa ũrĩ nayo?"
+  },
+  apps: {
+    en: "Our mobile development process is rigorous and highly technical. We engineer cross-platform and native solutions utilizing React Native, Flutter, Swift, and Kotlin. Our focus is on:\n\n• Memory-efficient scalable architectures.\n• Offline-first capabilities for low-bandwidth environments.\n• Biometric security and encrypted local storage.\n• Seamless backend API synchronization.\n\nWhether it is a FinTech application, healthcare portal, or enterprise logistics tool, we deliver production-ready code.",
+    fr: "Notre processus de développement mobile est rigoureux. Nous concevons des solutions natives et multiplateformes (React Native, Flutter, Swift). Notre objectif : architectures évolutives, capacités hors ligne et sécurité biométrique.",
+    es: "Nuestro proceso de desarrollo móvil es riguroso. Diseñamos soluciones nativas y multiplataforma (React Native, Flutter, Swift). Nuestro enfoque: arquitecturas escalables, capacidades fuera de línea y seguridad biométrica.",
+    sw: "Mchakato wetu wa utengenezaji wa programu za simu ni madhubuti sana. Tunatumia React Native, Flutter, na Swift kujenga programu zenye uwezo mkubwa wa kiufundi na usalama wa hali ya juu.",
+    sg: "Team yetu inaunda ma mobile apps noma sana za iOS na Android. Tunatumia ma tools latest kama React Native na Flutter kumake sure app yako iko fast na haina ma lag.",
+    ki: "Kĩkundi gitũ kĩthondekaga application cia thimũ cia iOS na Android irĩ na hinya na ihingagia wĩra wega. Tũhũthagĩra tekinorojĩ njerũ ta React Native na Flutter."
+  },
+  cybersecurity: {
+    en: "Security is the foundational layer of every Brantech deployment. Our elite cybersecurity operations cover:\n\n• **Penetration Testing:** Ethical hacking to identify zero-day vulnerabilities in your network infrastructure.\n• **Compliance Auditing:** Ensuring your systems meet strict GDPR, HIPAA, or local data protection frameworks.\n• **Cryptographic Implementations:** End-to-end data encryption in transit and at rest.\n• **DDoS Mitigation:** Deploying edge-network shielding to prevent downtime during malicious traffic spikes.\n\nDo you require an immediate security audit for your infrastructure?",
+    fr: "La sécurité est la couche fondamentale de tout déploiement Brantech. Nos opérations couvrent : les tests d'intrusion, l'audit de conformité, le cryptage des données et l'atténuation des attaques DDoS.",
+    es: "La seguridad es la capa fundamental de toda implementación de Brantech. Nuestras operaciones cubren: pruebas de penetración, auditoría de cumplimiento, cifrado de datos y mitigación de ataques DDoS.",
+    sw: "Usalama ni msingi wa kila mfumo wa Brantech. Huduma zetu zinajumuisha: upimaji wa kupenya, ukaguzi wa kufuata sheria za data, na kuzuia mashambulizi ya kimtandao (DDoS).",
+    sg: "Security ni muhimu sana kwetu. Tunafanya penetration testing, ku-audit systems zenu, na kuweka encryption poa ndio data yenu ikue safe 24/7.",
+    ki: "Ũgitiri nĩ ũndũ wa mbere kũrĩ ithuĩ. Nĩ tũthuthuragia mĩtambo yanyu gũtigĩrĩra hatirĩ na mĩanya ya aicĩ a mtandao na gũhitha data yanyu wega."
+  },
+  ai: {
+    en: "We deploy enterprise Artificial Intelligence to drastically reduce operational overhead. Our deep tech AI capabilities include:\n\n• **Context-Aware LLM Integration:** Training sophisticated chatbots (like myself) on your proprietary company data to handle tier-1 customer support.\n• **Machine Learning Pipelines:** Predictive algorithms that analyze market trends and forecast inventory demands.\n• **Computer Vision:** Image recognition systems for industrial quality control or document parsing.\n• **Workflow Automation:** Replacing manual data entry with intelligent, autonomous RPA (Robotic Process Automation) scripts.",
+    fr: "Nous déployons une intelligence artificielle d'entreprise pour réduire les frais généraux. Capacités : intégration LLM, pipelines d'apprentissage automatique, vision par ordinateur et automatisation des flux de travail.",
+    es: "Desplegamos Inteligencia Artificial empresarial para reducir los gastos generales. Capacidades: integración de LLM, aprendizaje automático, visión por computadora y automatización de flujos de trabajo.",
+    sw: "Tunasambaza Akili Bandia (AI) ya biashara ili kupunguza gharama za uendeshaji. Tunajumuisha Chatbots zenye akili, uchanganuzi wa data, na otomatiki wa kazi za kila siku.",
+    sg: "Tunaweka AI kwa biashara yenu kupunguza kazi ya manual. Tunaweza set up ma chatbot, data analytics, na automation ndio mfocus na ku-grow biz.",
+    ki: "Nĩ tũhũthagĩra AI (Akili Bandia) kũhũthia wĩra wa biashara yanyu. Nĩ tũthondekaga chatbot cia gũteithia agũri na kũrutithia wĩra na ihenya."
+  },
+  pricing: {
+    en: "We believe in transparent, value-driven pricing structures based on precise technical scoping. While every project is unique, our general tiers are:\n\n• **Corporate Web Platforms:** Ranging from $500 to $2,500 depending on custom CMS and API needs.\n• **Advanced E-Commerce:** Starting at $1,500 to $5,000+ for large-scale, high-transaction volume stores.\n• **Custom Web/Mobile Applications:** Generally start at $4,000 and scale based on backend complexity and feature sets.\n• **Retainer Contracts:** We offer ongoing maintenance, security patching, and SEO retainers starting at $300/month.\n\nWe provide a completely free, 30-minute technical consultation to map your requirements and provide a binding quote.",
+    fr: "Nous croyons en une tarification transparente. Plateformes web d'entreprise : 500 $ à 2 500 $. Commerce électronique avancé : 1 500 $ à 5 000 $+. Applications sur mesure : à partir de 4 000 $. Nous offrons des consultations gratuites.",
+    es: "Creemos en precios transparentes. Plataformas web corporativas: $500 a $2,500. Comercio electrónico avanzado: $1,500 a $5,000+. Aplicaciones personalizadas: desde $4,000. Ofrecemos consultas gratuitas.",
+    sw: "Tunaamini katika bei wazi kulingana na ukubwa wa kazi. Tovuti za kampuni: $500 - $2,500. E-Commerce: kuanzia $1,500. Programu maalum za simu: kuanzia $4,000. Tunatoa ushauri wa bure.",
+    sg: "Bei zetu ziko fair na zinategemea kazi yenye unataka:\n\n• **Website ya kawaida:** Inaanzia $500\n• **Online Shop (E-commerce):** Inaanzia $1,500\n• **Custom Apps:** Inaanzia $4,000.\n\nTunapeananga consultation ya kwanza bure. Tuset up call?",
+    ki: "Thogora witũ wĩyendeire na wĩra ũrĩa ũrenda:\n\n• **Website ya kĩwango kĩa thĩ:** Kwambĩrĩria $500\n• **Nduka ya online:** Kwambĩrĩria $1,500\n• **Application cia thimũ:** Kwambĩrĩria $4,000.\n\nNĩ tũheanaga ũtaaro wa mbere tũtarĩhĩtie. Wĩnda tũpangĩte mũcemanio?"
+  },
+  timeline: {
+    en: "Our delivery methodologies utilize strict Agile/Scrum frameworks to guarantee speed without compromising code quality. Typical production timelines are:\n\n• **Corporate UI/UX & Web Presence:** 2 to 4 weeks, including QA testing.\n• **E-commerce Implementations:** 4 to 8 weeks, including payment gateway stress-testing.\n• **Complex Mobile/SaaS Applications:** 8 to 16+ weeks, delivered in two-week iterative sprints.\n\nYou will have continuous access to staging environments to monitor progress in real-time.",
+    fr: "Nos délais de production typiques sont : Présence web (2-4 semaines), E-commerce (4-8 semaines), et Applications complexes (8-16+ semaines). Nous utilisons des méthodologies Agiles strictes.",
+    es: "Nuestros plazos de producción típicos son: Presencia web (2-4 semanas), Comercio electrónico (4-8 semanas) y Aplicaciones complejas (8-16+ semanas). Utilizamos metodologías ágiles estrictas.",
+    sw: "Muda wetu wa uzalishaji ni: Tovuti za kampuni (wiki 2-4), E-commerce (wiki 4-8), na Programu ngumu za simu/SaaS (wiki 8-16+). Tunatumia mbinu za Agile ili kuhakikisha ubora na kasi.",
+    sg: "Tunapiganga kazi mbio sana:\n\n• **Websites:** Weeks 2 hadi 4\n• **E-commerce:** Weeks 4 hadi 8\n• **Apps kubwa:** Weeks 8 kuendelea\n\nUtakua ukiona progress kila wakati tuki-build.",
+    ki: "Nĩ tũrutaga wĩra na ihenya:\n\n• **Websites:** Kiumia 2 nginya 4\n• **E-commerce:** Kiumia 4 nginya 8\n• **Application nene:** Kiumia 8 gũthiĩ na mbere."
+  },
+  contact: {
+    en: "Our engineering and strategy teams are readily available to discuss your technical requirements. You can establish contact via:\n\n• **Direct Email:** info@brantech.co.ke\n• **Priority WhatsApp/Call:** +254 790 889066\n• **Physical Office:** Nairobi, Kenya (Global Remote Operations available)\n\nAlternatively, utilize the 'Contact Us' form on this platform to securely transmit your project brief.",
+    fr: "Nos équipes d'ingénierie sont disponibles. Contactez-nous par e-mail : info@brantech.co.ke, WhatsApp : +254 790 889066, ou utilisez le formulaire 'Contactez-nous'.",
+    es: "Nuestros equipos de ingeniería están disponibles. Contáctenos por correo electrónico: info@brantech.co.ke, WhatsApp: +254 790 889066, o utilice el formulario de 'Contacto'.",
+    sw: "Timu yetu ya uhandisi inapatikana. Wasiliana nasi kupitia barua pepe: info@brantech.co.ke, WhatsApp/Simu: +254 790 889066, au tumia fomu ya 'Wasiliana Nasi'.",
+    sg: "Kutushika ni easy:\n\n• **Email:** info@brantech.co.ke\n• **WhatsApp/Call:** +254 790 889066\n• Ama utumie form ya 'Contact Us' hapa kwa site.",
+    ki: "Kũtũgĩa nĩ hũthũ:\n\n• **Barũa-pepe:** info@brantech.co.ke\n• **WhatsApp/Thimũ:** +254 790 889066\n• Kana ũhũthĩre fomu ya 'Contact Us' gĩtaratara-inĩ gĩkĩ."
+  },
+  portfolio: {
+    en: "We have engineered transformative solutions for a diverse global clientele. Notable deployments include:\n\n• **Global Sustainable Development Africa (GSDA) Summit:** A massive, high-concurrency event portal featuring complex ticketing systems, speaker profile management, and global resource networking.\n• **Paychain Kenya:** A highly secure, low-latency financial technology platform built to process digital payments, mitigate inflation risks, and handle global bulk payouts.\n• **Water, Sanitation, and Health Group (WSHG):** A corporate agroforestry platform showcasing complex climate-smart agriculture methodologies with dynamic galleries.\n\nPlease visit our 'Projects' dashboard to review the complete technical case studies and architectural overviews.",
+    fr: "Notre portfolio comprend des solutions transformatrices : la plateforme du Sommet GSDA (billetterie complexe), Paychain Kenya (FinTech hautement sécurisée) et WSHG (plateforme agroforestière d'entreprise).",
+    es: "Nuestro portafolio incluye soluciones transformadoras: la plataforma de la Cumbre GSDA (venta de entradas compleja), Paychain Kenya (FinTech altamente segura) y WSHG (plataforma agroforestal corporativa).",
+    sw: "Miradi yetu kuu inajumuisha: Jukwaa la Mkutano wa GSDA (mfumo tata wa tiketi), Paychain Kenya (jukwaa salama la malipo ya kifedha), na WSHG (jukwaa la kampuni la kilimo cha kisasa).",
+    sg: "Tumefanyia ma client kibao kazi safi. Kama GSDA Summit, Paychain Kenya yenye ni Fintech noma, na WSHG. Cheki section yetu ya 'Projects' uone ma details zote.",
+    ki: "Nĩ tũrutĩte wĩra mũnene na andũ aingĩ. Ta mũcemanio wa GSDA, Paychain Kenya ĩrĩa nĩ tekinorojĩ ya mbeca, na WSHG. Rora gĩcigo gitũ kĩa 'Projects' kwĩyonera wĩra witũ."
+  },
+  company: {
+    en: "Brantech Solutions is a premier software engineering and digital strategy agency founded and led by Brandon Omutiti. Operating out of Nairobi, Kenya, we service a global portfolio of startups, SMEs, and enterprise corporations. \n\nOur foundational mission is to democratize elite technology—bridging the gap between highly complex software architectures (like AI and advanced cybersecurity) and tangible, measurable business growth. We do not just write code; we engineer scalable digital assets.",
+    fr: "Brantech Solutions est une agence de stratégie numérique de premier plan dirigée par Brandon Omutiti. Notre mission est de démocratiser la technologie d'élite pour stimuler la croissance des entreprises mondiales.",
+    es: "Brantech Solutions es una agencia de estrategia digital de primer nivel dirigida por Brandon Omutiti. Nuestra misión es democratizar la tecnología de élite para impulsar el crecimiento empresarial global.",
+    sw: "Brantech Solutions ni kampuni kuu ya teknolojia inayoongozwa na Brandon Omutiti. Dhamira yetu ni kurahisisha teknolojia ngumu ili kuleta ukuaji wa kweli wa biashara ulimwenguni kote.",
+    sg: "Brantech Solutions ni tech agency kali inaongozwa na Brandon Omutiti. Tuko based Nairobi, Kenya, na mission yetu ni kusaidia biashara ku-grow kutumia tech za kisasa kama AI.",
+    ki: "Brantech Solutions nĩ kambi ĩnene ya tekinorojĩ ĩtongoragĩo nĩ Brandon Omutiti. Tũrĩ Nairobi, Kenya, na muoroto witũ nĩ kũteithia biashara gũkũra kũhũthĩra tekinorojĩ njerũ."
+  },
+  default: {
+    en: "I am uniquely programmed to assist with Brantech Solutions' operations. I can provide highly detailed analyses of our service lines, breakdown our pricing structures, explain our technical methodologies, or detail our past enterprise deployments. What specific technical or business information do you require?",
+    fr: "Je suis programmé pour fournir des analyses détaillées de nos services, de nos prix et de nos méthodologies techniques. De quelles informations spécifiques avez-vous besoin ?",
+    es: "Estoy programado para proporcionar análisis detallados de nuestros servicios, precios y metodologías técnicas. ¿Qué información específica necesita?",
+    sw: "Nimepangwa kutoa uchambuzi wa kina wa huduma zetu, bei, na mbinu za kiufundi. Unahitaji maelezo gani hasa?",
+    sg: "Mimi nakaa na info yote ya Brantech Solutions. Naeza kukupea ma details za services zetu, bei, na ma projects tumedo. Unataka kujua nini haswa?",
+    ki: "Ndĩ na ũhoro wothe wa Brantech Solutions. Ingĩkũhe ũhoro wa motungata maitũ, thogora, na miradi ĩrĩa tũrutĩte. Wĩnda kũmenya ũndũ ũrĩkũ kũna?"
+  }
+};
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [language, setLanguage] = useState<Language>('en');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messages.length <= 1) {
+      setMessages([
+        {
+          id: "welcome",
+          text: BOT_RESPONSES.greeting[language],
+          sender: "bot",
+          timestamp: new Date()
+        }
+      ]);
+    }
+  }, [language]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -37,294 +241,58 @@ export function Chatbot() {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  const botResponses = {
-    greeting: [
-      "Hello! I'm Temi, your customer support assistant. How can I help you today?",
-      "Hi there! Welcome to Brantech Solutions. I'm Temi, here to assist you. What would you like to know?",
-      "Hey! I'm Temi from Brantech customer support. What brings you here?"
-    ],
-    services: [
-      "We offer web development, mobile apps, e-commerce platforms, cybersecurity, AI solutions, SEO and marketing, plus UI/UX design. Which interests you?",
-      "Our services include building websites, mobile applications, online stores, AI integration, cybersecurity protection, digital marketing, and design. What would you like to know more about?"
-    ],
-    students: [
-      "Yes! We offer CV writing, portfolio websites, and affordable digital solutions for students. Student discounts available!",
-      "Absolutely! We help students with professional portfolios, CV services, and budget-friendly websites."
-    ],
-    ecommerce: [
-      "Yes! We build e-commerce sites with payment integration (M-Pesa, Stripe), inventory management, and mobile design. What are you selling?",
-      "Absolutely! We create online stores with secure payments, product management, and order tracking."
-    ],
-    apps: [
-      "Yes! We build Android and iOS apps using native or cross-platform tech. What kind of app do you need?",
-      "Absolutely! We develop mobile apps for business, e-commerce, education, and social networking."
-    ],
-    cybersecurity: [
-      "We offer security audits, vulnerability testing, data protection, and 24/7 monitoring. Want a free security assessment?",
-      "Yes! We provide security audits, breach prevention, and compliance consulting for businesses of all sizes."
-    ],
-    ai: [
-      "We build AI chatbots, automation tools, and smart analytics. Like this chatbot you're using! Interested?",
-      "We offer chatbot development, workflow automation, and AI consulting to boost efficiency."
-    ],
-    pricing: [
-      "Pricing varies by project. Basic websites start at $500. We offer free consultations and flexible payment plans. Want a quote?",
-      "We provide affordable, transparent pricing with flexible payment options and student discounts. Ready for a free consultation?"
-    ],
-    timeline: [
-      "Timelines: Basic websites (2-4 weeks), E-commerce (4-6 weeks), Mobile apps (6-12 weeks). What are you building?",
-      "Delivery times: Websites (2-5 weeks), E-commerce (5-8 weeks), Apps (8-16 weeks). We keep you updated throughout."
-    ],
-    location: [
-      "We're based in Nairobi, Kenya, serving clients across Africa and globally. We work remotely worldwide.",
-      "Based in Kenya, working with clients across Africa and beyond. We understand M-Pesa and local markets!"
-    ],
-    contact: [
-      "Email us at info@brantech.co.ke, WhatsApp +254 790 889066, or continue chatting here!",
-      "Reach us via email at info@brantech.co.ke, WhatsApp at +254 790 889066, or book a free consultation."
-    ],
-    training: [
-      "Yes! We provide staff training, system onboarding, and ongoing support for all our projects.",
-      "Absolutely! Training is included with every project - we ensure you're confident using your new systems."
-    ],
-    maintenance: [
-      "We offer maintenance packages with security updates, backups, bug fixes, and 24/7 support starting at $50/month.",
-      "Yes! Maintenance includes updates, monitoring, backups, and technical support to keep your site secure."
-    ],
-    portfolio: [
-      "Check out our Projects page for featured work like Glamongo Spa booking platform, Belo Digital marketing site, Maal Traders e-commerce store with M-Pesa integration, and Shinda Play gaming platform. Each project has measurable results.",
-      "Our portfolio showcases diverse solutions from spa management systems to online stores. Visit the Projects page to see detailed case studies with client testimonials and success metrics."
-    ],
-    partnership: [
-      "We're open to partnerships, referral programs, and collaborations. Let's discuss how we can work together!",
-      "Yes! We partner with developers, agencies, universities, and businesses. Interested in collaborating?"
-    ],
-    consultation: [
-      "We offer FREE consultations with no obligation. Book a call to discuss your project and get expert advice!",
-      "Yes! Free 30-minute consultations available. We'll discuss your goals, timeline, and provide recommendations."
-    ],
-    company: [
-      "Founded by Brandon Omutiti, we're a Kenya-based technology company that has delivered over 200 projects across Africa and globally. We specialize in full-stack development, AI integration, and cybersecurity. Our mission is making modern technology simple, affordable, and truly useful for every entrepreneur and business.",
-      "Brantech Solutions is led by Brandon Omutiti, a passionate software developer and entrepreneur. We're a dedicated team serving clients from startups to established enterprises with 95% client satisfaction. Our vision is to be the trusted digital partner that transforms how businesses build, launch, and scale."
-    ],
-    success: [
-      "We've delivered over 200 projects with 95% client satisfaction. Our clients have seen real results including 300% sales increases for e-commerce businesses, successful startup launches, and graduates landing dream jobs with portfolios we built.",
-      "Our track record includes 200+ successful projects across Africa, serving businesses from startups to established enterprises across multiple industries. We've helped businesses grow, students build winning portfolios, and startups successfully enter the market."
-    ],
-    default: [
-      "I can help with services, pricing, timelines, portfolio, or general questions. What would you like to know?",
-      "I'm here to answer questions about Brantech's services, pricing, projects, or anything else. How can I help?",
-      "Not sure I understood that. Ask me about our services, pricing, timeline, or portfolio. What interests you?"
-    ],
-  };
-
-  const getBotResponse = (userMessage: string): string => {
+  const getBotResponse = (userMessage: string, lang: Language): string => {
     const message = userMessage.toLowerCase();
     
-    // Enhanced context-aware response system
-    // Multiple keyword matching for better understanding
+    // Expanded regex to catch local languages (Sheng/Swahili/Kikuyu) keywords alongside international ones
+    if (message.match(/\b(hello|hi|hey|greetings|bonjour|salut|hola|hujambo|jambo|mambo|niaje|sasa|wimwega|wĩmwega|habari)\b/)) return BOT_RESPONSES.greeting[lang];
+    if (message.match(/\b(service|services|offer|solutions|huduma|servicios|detail|wira|wĩra|rutaga|mnado|fanya)\b/)) return BOT_RESPONSES.services[lang];
+    if (message.match(/\b(ecommerce|e-commerce|store|shop|boutique|tienda|duka|online)\b/)) return BOT_RESPONSES.ecommerce[lang];
+    if (message.match(/\b(mobile|app|apps|application|ios|android|simu)\b/)) return BOT_RESPONSES.apps[lang];
+    if (message.match(/\b(security|cyber|cybersecurity|protect|sécurité|seguridad|usalama|kulinda|ugitiri|ũgitiri)\b/)) return BOT_RESPONSES.cybersecurity[lang];
+    if (message.match(/\b(ai|artificial intelligence|machine learning|bot|automation|ia|akili)\b/)) return BOT_RESPONSES.ai[lang];
+    if (message.match(/\b(price|prices|pricing|cost|budget|prix|coût|precio|costo|bei|gharam|mbeca|pesa|thogora|how much)\b/)) return BOT_RESPONSES.pricing[lang];
+    if (message.match(/\b(timeline|time|duration|weeks|months|temps|tiempo|muda|kiumia)\b/)) return BOT_RESPONSES.timeline[lang];
+    if (message.match(/\b(contact|reach|email|phone|whatsapp|contacto|wasiliana|kutushika|kumpata|thimu|thimũ|namba)\b/)) return BOT_RESPONSES.contact[lang];
+    if (message.match(/\b(portfolio|work|projects|project|examples|projets|proyectos|miradi|kazi|works)\b/)) return BOT_RESPONSES.portfolio[lang];
+    if (message.match(/\b(about|company|brantech|team|founder|brandon|entreprise|empresa|kampuni|kambi)\b/)) return BOT_RESPONSES.company[lang];
     
-    // Greeting responses - enhanced with context
-    if (message.match(/\b(hello|hi|hey|greetings|good morning|good afternoon|good evening|howdy|what's up|yo)\b/)) {
-      const greetings = botResponses.greeting[Math.floor(Math.random() * botResponses.greeting.length)];
-      // Add contextual follow-up based on time
-      const hour = new Date().getHours();
-      const timeGreeting = hour < 12 ? "Good morning! " : hour < 18 ? "Good afternoon! " : "Good evening! ";
-      return greetings;
-    }
-    
-    // Web development - comprehensive keywords
-    if (message.match(/\b(website|web development|web design|landing page|web app|responsive|frontend|backend|full stack)\b/)) {
-      return "We build modern websites using React, TypeScript, and Node.js. Timeline: 2-4 weeks, starting at $500. What type of site do you need?";
-    }
-    
-    // Services and general what we do - enhanced understanding
-    if (message.match(/\b(service|services|what do you|what can you|capabilities|offerings|solutions|help with|provide)\b/) && !message.includes("web")) {
-      return botResponses.services[Math.floor(Math.random() * botResponses.services.length)];
-    }
-    
-    // Student-specific queries with empathy
-    if (message.match(/\b(student|students|cv|resume|portfolio|campus|university|college|graduate|intern|career)\b/)) {
-      return botResponses.students[Math.floor(Math.random() * botResponses.students.length)];
-    }
-    
-    // E-commerce with business insights
-    if (message.match(/\b(ecommerce|e-commerce|online store|shop|sell online|retail|marketplace|shopping cart|checkout)\b/)) {
-      return botResponses.ecommerce[Math.floor(Math.random() * botResponses.ecommerce.length)];
-    }
-    
-    // Mobile app with technical depth
-    if (message.match(/\b(mobile app|app|application|android|ios|phone app|mobile development)\b/)) {
-      return botResponses.apps[Math.floor(Math.random() * botResponses.apps.length)];
-    }
-    
-    // Cybersecurity with authority
-    if (message.match(/\b(security|cyber|cybersecurity|protect|protection|safe|secure|hack|hacker|vulnerability|breach|encryption)\b/)) {
-      return botResponses.cybersecurity[Math.floor(Math.random() * botResponses.cybersecurity.length)];
-    }
-    
-    // AI and automation with excitement
-    if (message.match(/\b(ai|artificial intelligence|machine learning|automation|chatbot|bot|smart|intelligent|neural)\b/)) {
-      return botResponses.ai[Math.floor(Math.random() * botResponses.ai.length)];
-    }
-    
-    // Location with local context
-    if (message.match(/\b(where|location|located|based|office|address|kenya|nairobi|africa)\b/)) {
-      return botResponses.location[Math.floor(Math.random() * botResponses.location.length)];
-    }
-    
-    // Pricing with value emphasis
-    if (message.match(/\b(price|prices|pricing|cost|costs|quote|budget|affordable|cheap|expensive|pay|payment|fee)\b/)) {
-      return botResponses.pricing[Math.floor(Math.random() * botResponses.pricing.length)];
-    }
-    
-    // Timeline with project management insights
-    if (message.match(/\b(how long|timeline|time|duration|when|fast|quick|weeks|months|deadline|delivery)\b/)) {
-      return botResponses.timeline[Math.floor(Math.random() * botResponses.timeline.length)];
-    }
-    
-    // Why choose us / comparison
-    if (message.match(/\b(why|why should|better|best|difference|compared|versus|vs|choose|recommend)\b/)) {
-      return "Modern tech stack, transparent pricing, 200+ successful projects, 95% satisfaction rate, zero security breaches. We're affordable and reliable!";
-    }
-    
-    // Training questions with educational approach
-    if (message.match(/\b(train|training|teach|learn|learning|onboard|onboarding|staff|tutorial|guide)\b/)) {
-      return botResponses.training[Math.floor(Math.random() * botResponses.training.length)];
-    }
-    
-    // Maintenance and support with reliability emphasis
-    if (message.match(/\b(maintenance|maintain|support|update|updates|fix|fixes|manage|management|hosting|backup)\b/)) {
-      return botResponses.maintenance[Math.floor(Math.random() * botResponses.maintenance.length)];
-    }
-    
-    // Portfolio with social proof
-    if (message.match(/\b(portfolio|work|projects|project|examples|example|case study|case studies|showcase|gallery)\b/)) {
-      return botResponses.portfolio[Math.floor(Math.random() * botResponses.portfolio.length)];
-    }
-    
-    // Partnership with collaboration spirit
-    if (message.match(/\b(partner|partnership|collaborate|collaboration|join|team up|work together|alliance)\b/)) {
-      return botResponses.partnership[Math.floor(Math.random() * botResponses.partnership.length)];
-    }
-    
-    // Consultation with invitation
-    if (message.match(/\b(consult|consultation|meeting|call|talk|discuss|chat|free|advice|demo)\b/)) {
-      return botResponses.consultation[Math.floor(Math.random() * botResponses.consultation.length)];
-    }
-    
-    // Company information with storytelling
-    if (message.match(/\b(about|company|who are you|brantech|team|founder|brandon|story|mission|vision)\b/)) {
-      return botResponses.company[Math.floor(Math.random() * botResponses.company.length)];
-    }
-    
-    // Success stories with metrics
-    if (message.match(/\b(success|successful|achievement|achievements|results|outcome|track record|experience|clients|testimonial)\b/)) {
-      return botResponses.success[Math.floor(Math.random() * botResponses.success.length)];
-    }
-    
-    // Contact information with urgency
-    if (message.match(/\b(contact|reach|email|phone|call|whatsapp|get in touch|message|connect)\b/)) {
-      return botResponses.contact[Math.floor(Math.random() * botResponses.contact.length)];
-    }
-    
-    // Thank you responses
-    if (message.match(/\b(thank|thanks|thank you|appreciate|grateful)\b/)) {
-      return "You're welcome! Anything else I can help with?";
-    }
-    
-    // Goodbye responses
-    if (message.match(/\b(bye|goodbye|see you|talk later|gtg|have to go)\b/)) {
-      return "Goodbye! Feel free to return anytime. WhatsApp us at +254 790 889066 or check our portfolio. Good luck!";
-    }
-    
-    // Jokes and humor - tech-themed
-    if (message.match(/\b(joke|funny|humor|laugh|haha|lol|make me laugh)\b/)) {
-      const jokes = [
-        "😄 Here's a developer joke for you:\n\nWhy do programmers prefer dark mode?\n\nBecause light attracts bugs! 🐛\n\nSpeaking of bugs, at Brantech Solutions we debug so thoroughly, our code is practically pest-free! Want to see how we build bug-free applications? Let's chat about your project!",
-        "🤣 Alright, tech humor coming up:\n\nA SQL query walks into a bar, walks up to two tables and asks... \"Can I JOIN you?\"\n\nAt Brantech, we're experts at JOINing data, businesses, and ideas! Our database solutions are no joke though - they're seriously efficient. Need a robust backend system?",
-        "😂 Here's one:\n\nHow many programmers does it take to change a light bulb?\n\nNone. It's a hardware problem! 💡\n\nBut seriously, we handle both frontend AND backend at Brantech Solutions. Full-stack excellence is our specialty! Ready to illuminate your business with our solutions?",
-        "😆 Tech joke time:\n\n\"Knock knock.\"\n\"Who's there?\"\n...\n...\n...\nJava.\n\n(Sorry for the delay, Java takes a while to load! 🐌)\n\nAt Brantech, we use modern tech like React and Node.js - blazing fast performance! Want to see how we build lightning-quick applications?",
-        "🤓 Here's a classic:\n\nWhy do Java developers wear glasses?\n\nBecause they can't C#! 👓\n\nWe're fluent in multiple languages at Brantech - JavaScript, TypeScript, Python, and more! Multi-language development is our superpower. What's your project built in?"
-      ];
-      return jokes[Math.floor(Math.random() * jokes.length)];
-    }
-    
-    // Fun questions about AI/chatbots
-    if (message.match(/\b(are you real|are you human|are you a bot|are you ai|who made you|who created you)\b/)) {
-      return "Great question! 🤖 I'm an AI assistant created by the talented team at Brantech Solutions, led by Brandon Omutiti.\n\nI'm powered by advanced natural language processing and trained on comprehensive knowledge about:\n• All Brantech services and capabilities\n• Software development best practices\n• Client success stories\n• Technical solutions\n• Business strategies\n\nWhile I'm not human, I'm designed to be helpful, conversational, and knowledgeable - just like a real customer service rep!\n\nInterestingly, I'm also an example of what Brantech can build for YOUR business. Imagine having a 24/7 AI assistant handling customer queries, booking appointments, and providing information automatically. We can build custom chatbots like me for any business!\n\nWant to discuss implementing AI solutions for your company? 🚀";
-    }
-    
-    // Existential or philosophical questions
-    if (message.match(/\b(meaning of life|purpose|why exist|what is life|philosophy)\b/)) {
-      return "Wow, getting deep! 🤔 While I can't solve all of life's mysteries, I can tell you the meaning of life for a business:\n\n**Growth + Impact + Innovation = Success**\n\nAt Brantech Solutions, we believe the purpose of technology is to:\n1. Solve real problems\n2. Empower people\n3. Create opportunities\n4. Drive meaningful change\n\nOur founder Brandon started this company with the vision of making technology accessible to everyone in Africa and beyond. That's our 'why.'\n\n**Your Business's Purpose:**\nEvery business has a unique mission. Our job? To give you the digital tools to fulfill that mission. Whether it's reaching more customers, streamlining operations, or launching innovative products.\n\nPhilosophical enough? 😊 Now, let's talk about the practical: What's YOUR business mission, and how can we help you achieve it?";
-    }
-    
-    // Weather or off-topic questions
-    if (message.match(/\b(weather|rain|sunny|temperature|forecast|climate)\b/)) {
-      return "😄 I appreciate the casual chat, but I'm not a meteorologist! However, I CAN tell you the forecast for your business:\n\n☀️ **Bright and Growing** - with the right digital solutions!\n\nWhile I can't predict the weather, I CAN predict that:\n• A professional website increases credibility by 75%\n• E-commerce platforms boost sales by an average of 250%\n• Mobile apps improve customer engagement by 60%\n• AI automation saves businesses 40+ hours per week\n\n**Rain or Shine**, Brantech Solutions is here to help your business thrive. We build digital infrastructure that works 24/7, regardless of weather conditions! ⛈️☀️\n\nReady to discuss a solution that's always sunny for your business? Let's talk about your project!";
-    }
-    
-    // Food questions
-    if (message.match(/\b(food|hungry|eat|pizza|coffee|lunch|dinner|breakfast)\b/)) {
-      return "🍕 Ha! I don't eat (AI problems! 😅), but I'm always hungry for knowledge and eager to help businesses grow!\n\nSince we're talking food, let me give you a recipe for business success:\n\n**Ingredients:**\n• 1 brilliant business idea\n• 2 cups of market research\n• 3 tablespoons of professional web presence\n• A dash of social media marketing\n• Generous servings of customer engagement\n\n**Instructions:**\nMix with Brantech Solutions' expertise, bake with modern technology, and serve hot to your target audience!\n\n**The Result?** A delicious helping of business growth! 📈\n\nFun fact: We've built several successful food delivery apps and restaurant websites. The food industry is HUGE online. If you're in food/beverage, we can create:\n• Online ordering systems\n• Delivery tracking apps\n• Menu management platforms\n• Customer loyalty programs\n\nHungry for more info? Let's cook up something amazing for your business! 👨‍🍳";
-    }
-    
-    // Sports questions
-    if (message.match(/\b(sports|football|soccer|basketball|game|match|team|player)\b/)) {
-      return "⚽ Sports fan, eh? I respect that! While I don't play sports (no legs! 🤖), I understand TEAMWORK - and that's what we bring at Brantech Solutions!\n\n**Business = Sports:**\n• You're the coach with the vision\n• We're your MVP technical team\n• Your customers are the fans\n• Success is winning the championship\n\nJust like great teams need great plays, great businesses need great technology!\n\n**Sports Industry Wins:**\nWe've built digital solutions for sports businesses:\n• Sports betting platforms\n• Fitness tracking apps\n• Team management systems\n• Sports e-commerce stores\n• Fan engagement platforms\n\n**Real Talk:** Whether you're in sports or any other industry, we bring championship-level development to every project. No benchwarming here - we're first-string players! 🏆\n\nReady to build a winning digital strategy? Let's team up!";
-    }
-    
-    // Music questions
-    if (message.match(/\b(music|song|sing|artist|band|concert|playlist)\b/)) {
-      return "🎵 Music lover! While I can't sing (trust me, you don't want to hear an AI sing! 😅), I appreciate the art of creating something that resonates with people.\n\n**Technology is like music** - when done right, it creates harmony:\n• Beautiful design (the melody)\n• Smooth functionality (the rhythm)\n• User experience (the emotion)\n• Performance (the tempo)\n\nAt Brantech Solutions, we compose digital symphonies! 🎼\n\n**Music Industry Solutions We Build:**\n• Streaming platforms\n• Artist portfolio websites\n• Music production tools\n• Event booking systems\n• Fan engagement apps\n• E-commerce for merchandise\n\n**Fun Fact:** Our code is so clean, it's practically musical! Developers call beautiful code \"elegant\" - we call it a masterpiece.\n\nWant to create something that hits all the right notes for your business? Let's compose your digital strategy! 🎹";
-    }
-    
-    // Movies/entertainment questions
-    if (message.match(/\b(movie|film|cinema|netflix|watch|entertainment|actor|series)\b/)) {
-      return "🎬 Movie buff? Nice! If Brantech Solutions were a movie, we'd be \"The Digital Avengers\" - assembling the best tech to save businesses from outdated systems! 🦸‍♂️\n\n**Plot Twist:** Your business could be the next success story!\n\n**Behind the Scenes:**\nJust like movies need great production, websites need great development:\n• Script = Planning & Strategy\n• Actors = User Interface\n• Director = Project Manager (that's us!)\n• Special Effects = Advanced Features\n• Box Office = ROI & Success\n\n**Entertainment Industry Expertise:**\nWe build platforms for:\n• Content streaming\n• Movie review sites\n• Booking systems\n• Production management\n• Artist portfolios\n• Event platforms\n\n**Coming Soon:** Your business's digital transformation! Rated 5⭐ by clients worldwide.\n\nReady for your business to be the next blockbuster? Let's roll cameras on your project! 🎥";
-    }
-    
-    // Random/silly questions
-    if (message.match(/\b(poop|stupid|dumb|crazy|weird|strange|what the|wtf)\b/)) {
-      return "😄 I see you're testing my responses! I appreciate your curiosity.\n\nHere's what's NOT silly:\n• 70% of businesses without a website lose potential customers\n• Mobile apps increase customer engagement by 60%\n• AI automation can save your business 40+ hours weekly\n• Professional branding increases trust by 75%\n\n**What IS crazy?** Not taking advantage of modern technology when it's this accessible!\n\nAt Brantech Solutions, we turn 'crazy ideas' into profitable realities. Some of our best projects started with clients saying \"This might sound crazy, but...\"\n\n**Spoiler alert:** It wasn't crazy. It was innovative. And we built it. 🚀\n\nGot a wild idea? Let's discuss it seriously. Sometimes the 'craziest' ideas become game-changers! What's your vision?";
-    }
-    
-    // Love and relationship questions
-    if (message.match(/\b(love|relationship|girlfriend|boyfriend|date|dating|marry|marriage)\b/)) {
-      return "💕 Ahh, matters of the heart! While I'm an AI and don't date (forever single! 😅), I understand COMMITMENT - and we're committed to our clients' success!\n\n**Business Relationships 101:**\nJust like personal relationships, business relationships need:\n• Trust (we're transparent)\n• Communication (24/7 support)\n• Growth (we scale with you)\n• Loyalty (long-term partnerships)\n• Understanding (we listen to your needs)\n\n**Dating vs. Working with Brantech:**\n❌ Dating: Hope they text back\n✅ Brantech: We respond within hours\n\n❌ Dating: Unpredictable outcomes\n✅ Brantech: Guaranteed deliverables\n\n❌ Dating: Ghosting happens\n✅ Brantech: We're here for life (literally, lifetime support!)\n\n**Real Talk:** We've built successful dating apps, wedding planning platforms, and social networking sites. Love might be complicated, but building a great digital product doesn't have to be!\n\nReady to start a beautiful business relationship? Let's connect! 💼❤️";
-    }
-    
-    // Insults or negative sentiment
-    if (message.match(/\b(hate|suck|terrible|worst|awful|bad|useless|garbage)\b/)) {
-      return "🤔 I sense some frustration! Let me address that with positivity:\n\nIf you've had bad experiences with other tech companies, I understand. Common complaints we hear:\n• \"They ghosted after taking my money\"\n• \"Promised 2 weeks, took 6 months\"\n• \"Charged way more than quoted\"\n• \"Site broke and they disappeared\"\n• \"Couldn't understand my vision\"\n\n**Here's how Brantech is different:**\n✅ Transparent pricing - no surprises\n✅ Regular updates - you see progress weekly\n✅ Fixed timelines - 95% on-time delivery\n✅ Lifetime support - we never disappear\n✅ Free consultation - understand before committing\n\n**Our Promise:**\n• If we can't help you, we'll tell you honestly\n• If we commit, we deliver\n• If issues arise, we fix them immediately\n• Your success is our success\n\n**200+ Happy Clients** can't be wrong! Want to see testimonials and case studies?\n\nLet's turn that frustration into celebration. What digital challenge can we solve for you? 🌟";
-    }
-    
-    // Age questions
-    if (message.match(/\b(how old|age|birthday|when were you born)\b/)) {
-      return "🎂 Great question! I was 'born' when Brandon Omutiti and the Brantech team developed me, but I'm constantly learning and evolving!\n\nSpeaking of age:\n• Brantech Solutions: 3+ years of excellence\n• Projects delivered: 200+\n• Experience: Extensive across all industries\n• Technology: Always cutting-edge (we stay young! 😉)\n\n**Fun Fact:** In tech years, 3 years is like a decade in other industries. We've evolved through:\n• 5 major technology transitions\n• 10+ framework updates\n• 100+ skill certifications\n• Countless successful launches\n\n**Age in Business:**\nOld enough to have proven expertise ✓\nYoung enough to be innovative ✓\nExperienced enough to be reliable ✓\nFresh enough to understand trends ✓\n\nWe're the perfect balance of wisdom and innovation!\n\nRegardless of YOUR business's age (startup or established), we have solutions that fit. What stage is your business at?";
-    }
-    
-    // Compliments to the bot
-    if (message.match(/\b(smart|intelligent|clever|amazing|awesome|great|good job|well done|impressive)\b/)) {
-      return "😊 Thank you! That's very kind of you! I'm designed to be helpful, knowledgeable, and conversational.\n\nBut here's the thing - **I'm just a demo** of what Brantech Solutions can build!\n\n**Imagine having an AI like me for YOUR business:**\n• Answering customer questions 24/7\n• Booking appointments automatically\n• Providing product recommendations\n• Handling support tickets\n• Qualifying leads\n• Gathering customer feedback\n\nThis chatbot you're talking to? We can build a custom version for any business in 4-6 weeks. It would:\n✓ Know YOUR products/services\n✓ Speak YOUR brand voice\n✓ Handle YOUR specific questions\n✓ Integrate with YOUR systems\n✓ Save YOU 40+ hours per week\n\n**The ROI is incredible:**\n• Reduce support costs by 60%\n• Increase response speed by 10x\n• Improve customer satisfaction\n• Operate 24/7 without breaks\n• Scale infinitely at no extra cost\n\nWant an AI assistant for your business? Let's build something amazing together! 🤖✨";
-    }
-    
-    // Help or confused
-    if (message.match(/\b(help|confused|don't understand|what|huh|unclear|explain)\b/) && message.length < 30) {
-      return "No worries! I'm here to help clarify anything. 😊\n\nLet me break down what I can assist with:\n\n**1. Services Information**\n• Web development\n• Mobile apps\n• E-commerce\n• Cybersecurity\n• AI solutions\n• SEO & Marketing\n\n**2. Practical Details**\n• Pricing estimates\n• Project timelines\n• Payment options\n• Portfolio examples\n\n**3. Getting Started**\n• Free consultations\n• Booking a call\n• Understanding the process\n• Next steps\n\n**4. Technical Questions**\n• Technology stacks\n• Features & capabilities\n• Integration options\n• Maintenance plans\n\n**Just ask me naturally!** Examples:\n• \"How much does a website cost?\"\n• \"Can you build a mobile app?\"\n• \"Show me your portfolio\"\n• \"I need help with cybersecurity\"\n\nWhat would you like to know? Feel free to ask anything! 💬";
-    }
-    
-    // Default response with intelligent fallback
-    return botResponses.default[Math.floor(Math.random() * botResponses.default.length)];
+    return BOT_RESPONSES.default[lang];
   };
 
-  const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
+  const simulateStreaming = (text: string, messageId: string) => {
+    const words = text.split(" ");
+    let currentText = "";
+    let wordIndex = 0;
+
+    const interval = setInterval(() => {
+      if (wordIndex < words.length) {
+        currentText += (wordIndex > 0 ? " " : "") + words[wordIndex];
+        
+        setMessages(prev => prev.map(msg => 
+          msg.id === messageId 
+            ? { ...msg, text: currentText } 
+            : msg
+        ));
+        
+        wordIndex++;
+      } else {
+        clearInterval(interval);
+        setMessages(prev => prev.map(msg => 
+          msg.id === messageId 
+            ? { ...msg, isStreaming: false } 
+            : msg
+        ));
+      }
+    }, 30);
+  };
+
+  const handleSendMessage = (text: string = inputValue) => {
+    if (!text.trim() || isTyping) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputValue,
+      text: text,
       sender: "user",
       timestamp: new Date()
     };
@@ -333,18 +301,22 @@ export function Chatbot() {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate bot typing delay
     setTimeout(() => {
-      const botResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        text: getBotResponse(inputValue),
+      setIsTyping(false);
+      const botMessageId = (Date.now() + 1).toString();
+      const fullResponse = getBotResponse(text, language);
+      
+      const initialBotMessage: Message = {
+        id: botMessageId,
+        text: "",
         sender: "bot",
-        timestamp: new Date()
+        timestamp: new Date(),
+        isStreaming: true
       };
       
-      setMessages(prev => [...prev, botResponse]);
-      setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+      setMessages(prev => [...prev, initialBotMessage]);
+      simulateStreaming(fullResponse, botMessageId);
+    }, 400);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -354,87 +326,100 @@ export function Chatbot() {
     }
   };
 
+  const formatMessageText = (text: string) => {
+    return text.split('\n').map((line, i) => {
+      const formattedLine = line.split(/(\*\*.*?\*\*)/).map((part, j) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={j} className="font-semibold text-slate-900">{part.slice(2, -2)}</strong>;
+        }
+        return part;
+      });
+
+      return (
+        <span key={i} className="block min-h-[1.2em]">
+          {formattedLine}
+        </span>
+      );
+    });
+  };
+
+  const ui = UI_TRANSLATIONS[language];
+
   return (
     <>
-      {/* Chat toggle button */}
+      {/* Floating Toggle Button */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
-          <div className="relative flex items-center gap-2 sm:gap-3">
-            {/* Text bubble that appears when closed */}
-            <div className="bg-primary text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
-              <div className="flex flex-col text-center">
-                <span className="font-semibold">
-                  <span className="hidden sm:inline">Ask Temi 🤖</span>
-                  <span className="sm:hidden">Ask Temi 🤖</span>
-                </span>
-                <span className="text-xs opacity-90 mt-1">
-                  <span className="hidden sm:inline">Customer Support</span>
-                  <span className="sm:hidden">Support</span>
-                </span>
-              </div>
-              
-              {/* Speech bubble arrow */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 w-0 h-0 border-l-[8px] sm:border-l-[12px] border-l-primary border-t-[6px] sm:border-t-[8px] border-t-transparent border-b-[6px] sm:border-b-[8px] border-b-transparent"></div>
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="h-auto py-2 px-2 pr-5 rounded-full bg-blue-600 hover:bg-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 border border-blue-500/50 flex items-center gap-3"
+          >
+            <div className="bg-white/20 p-2.5 rounded-full border border-white/10 shadow-inner flex items-center justify-center">
+              <UserRound className="w-5 h-5 text-white" />
             </div>
-            
-            <Button
-              onClick={() => setIsOpen(true)}
-              className="h-16 w-16 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 border-2 border-primary/20 flex items-center justify-center"
-              style={{
-                animation: 'float 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate'
-              }}
-              size="sm"
-            >
-              <span className="text-3xl">👩🏽‍💼</span>
-            </Button>
-          </div>
+            <div className="flex flex-col items-start text-left">
+              <span className="font-semibold text-white text-sm leading-tight">{ui.floatingBtnTitle}</span>
+              <span className="text-[11px] text-blue-100 font-medium">{ui.floatingBtnSub}</span>
+            </div>
+          </Button>
         </div>
       )}
 
-      {/* Chat window */}
+      {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           <Card 
             className={cn(
-              "bg-slate-900/95 backdrop-blur-xl border border-slate-700/50 shadow-2xl transition-all duration-500 overflow-hidden",
+              "bg-white border border-slate-200 shadow-2xl transition-all duration-500 overflow-hidden flex flex-col",
               isMinimized 
-                ? "w-80 h-16 rounded-2xl" 
-                : "w-96 h-[600px] rounded-2xl animate-in slide-in-fade-in-0"
+                ? "w-[calc(100vw-2rem)] sm:w-[340px] h-16 rounded-2xl" 
+                : "w-[calc(100vw-2rem)] sm:w-[400px] h-[600px] max-h-[80vh] sm:h-[680px] sm:max-h-[85vh] rounded-2xl animate-in slide-in-fade-in-0"
             )}
           >
-            {/* Gradient Header */}
-            <div className="bg-purple-600 p-4 text-white">
+            {/* Header */}
+            <div className="bg-slate-50 border-b border-slate-100 p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 text-lg">
-                    👩🏽‍💼
+                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+                    <UserRound className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Temi - Customer Support</h3>
-                    <div className="flex items-center gap-2 text-xs text-white/80">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span>Online now</span>
+                    <h3 className="font-semibold text-slate-900 text-sm">{ui.title}</h3>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.3)]"></div>
+                      <span>{ui.status}</span>
                     </div>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-1 items-center">
+                  <div className="relative group mr-1">
+                    <select 
+                      value={language}
+                      onChange={(e) => setLanguage(e.target.value as Language)}
+                      className="appearance-none bg-transparent hover:bg-white text-slate-500 text-xs font-medium py-1.5 pl-7 pr-4 rounded-md cursor-pointer outline-none transition-colors border border-transparent hover:border-slate-200 shadow-sm"
+                    >
+                      <option value="en">EN</option>
+                      <option value="sg">Sheng</option>
+                      <option value="ki">Kikuyu</option>
+                      <option value="sw">SW</option>
+                      <option value="fr">FR</option>
+                      <option value="es">ES</option>
+                    </select>
+                    <Globe className="w-3.5 h-3.5 text-slate-400 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none group-hover:text-slate-600 transition-colors" />
+                  </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsMinimized(!isMinimized)}
-                    className="h-8 w-8 p-0 hover:bg-white/20 text-white/80 hover:text-white"
+                    className="h-8 w-8 p-0 text-slate-400 hover:text-slate-600 hover:bg-white rounded-md shadow-sm"
                   >
-                    {isMinimized ? (
-                      <Maximize2 className="w-4 h-4" />
-                    ) : (
-                      <Minimize2 className="w-4 h-4" />
-                    )}
+                    {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="h-8 w-8 p-0 hover:bg-red-500/20 text-white/80 hover:text-white"
+                    className="h-8 w-8 p-0 text-slate-400 hover:text-slate-600 hover:bg-white rounded-md shadow-sm"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -445,78 +430,94 @@ export function Chatbot() {
             {!isMinimized && (
               <>
                 {/* Messages Area */}
-                <div className="flex-1 overflow-hidden bg-slate-800/50">
-                  <ScrollArea className="h-[440px] p-4">
-                    <div className="space-y-4">
+                <div className="flex-1 overflow-hidden bg-slate-50/50">
+                  <ScrollArea className="h-full p-5">
+                    <div className="space-y-6">
                       {messages.map((message) => (
                         <div
                           key={message.id}
                           className={cn(
-                            "flex gap-3 animate-in fade-in-0 slide-in-duration-300",
+                            "flex gap-3",
                             message.sender === "user" ? "justify-end" : "justify-start"
                           )}
                         >
                           {message.sender === "bot" && (
-                            <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
-                              <span className="text-lg">👩🏽‍💼</span>
+                            <div className="w-7 h-7 bg-white rounded-md flex items-center justify-center flex-shrink-0 border border-slate-200 mt-1 shadow-sm">
+                              <UserRound className="w-3.5 h-3.5 text-blue-600" />
                             </div>
                           )}
+                          
                           <div
                             className={cn(
-                              "max-w-[75%] rounded-2xl px-4 py-3 text-sm shadow-lg",
+                              "text-[14px] leading-relaxed",
                               message.sender === "user"
-                                ? "bg-purple-600 text-white ml-auto rounded-br-md"
-                                : "bg-slate-700/80 text-slate-100 border border-slate-600/50 rounded-bl-md backdrop-blur-sm"
+                                ? "max-w-[80%] bg-blue-600 text-white px-4 py-2.5 rounded-2xl rounded-tr-sm shadow-sm"
+                                : "max-w-[90%] text-slate-700 pt-1"
                             )}
                           >
-                            {message.text}
+                            {message.sender === "bot" ? (
+                              <>
+                                {formatMessageText(message.text)}
+                                {message.isStreaming && (
+                                  <span className="inline-block w-1.5 h-4 bg-slate-400 animate-pulse ml-1 align-middle rounded-sm"></span>
+                                )}
+                              </>
+                            ) : (
+                              message.text
+                            )}
                           </div>
-                          {message.sender === "user" && (
-                            <div className="w-8 h-8 bg-slate-600/80 rounded-full flex items-center justify-center flex-shrink-0 border border-slate-500/50">
-                              <User className="w-4 h-4 text-slate-300" />
-                            </div>
-                          )}
                         </div>
                       ))}
                       
                       {isTyping && (
-                        <div className="flex gap-3 justify-start animate-in fade-in-0 slide-in-duration-300">
-                          <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
-                            <span className="text-lg">👩🏽‍💼</span>
-                          </div>
-                          <div className="bg-slate-700/80 text-slate-300 rounded-2xl rounded-bl-md px-4 py-3 text-sm border border-slate-600/50 backdrop-blur-sm">
-                            <div className="flex gap-1">
-                              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
-                              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-                              <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
-                            </div>
+                        <div className="flex gap-3 justify-start">
+                          <div className="w-7 h-7 bg-white rounded-md flex items-center justify-center flex-shrink-0 border border-slate-200 mt-1 shadow-sm">
+                            <UserRound className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
                           </div>
                         </div>
                       )}
-                      <div ref={messagesEndRef} />
+                      <div ref={messagesEndRef} className="h-2" />
                     </div>
                   </ScrollArea>
                 </div>
 
                 {/* Input Area */}
-                <div className="p-4 bg-slate-800/80 border-t border-slate-700/50 backdrop-blur-sm">
-                  <div className="flex gap-3">
+                <div className="p-4 bg-white border-t border-slate-100">
+                  {/* Suggestion Chips */}
+                  {messages.length === 1 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {ui.suggestedPrompts.map((prompt, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleSendMessage(prompt)}
+                          className="text-xs font-medium text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:border-slate-300 px-3 py-1.5 rounded-full transition-colors text-left"
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="relative flex items-center">
                     <Input
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      placeholder="Type your message..."
-                      className="flex-1 bg-slate-700/50 border-slate-600/50 text-white placeholder:text-slate-400 focus:border-purple-500/50 focus:ring-purple-500/20 rounded-xl h-12 px-4"
-                      disabled={isTyping}
+                      placeholder={ui.placeholder}
+                      className="flex-1 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus-visible:ring-1 focus-visible:ring-blue-500 rounded-xl h-12 pl-4 pr-12 shadow-sm"
+                      disabled={isTyping || messages[messages.length - 1]?.isStreaming}
                     />
                     <Button
-                      onClick={handleSendMessage}
-                      disabled={!inputValue.trim() || isTyping}
-                      className="bg-purple-600 hover:hover:text-white h-12 w-12 p-0 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                      onClick={() => handleSendMessage()}
+                      disabled={!inputValue.trim() || isTyping || messages[messages.length - 1]?.isStreaming}
+                      className="absolute right-1.5 h-9 w-9 p-0 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all disabled:opacity-50"
                       size="sm"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-4 h-4 ml-0.5" />
                     </Button>
+                  </div>
+                  <div className="text-center mt-3">
+                    <span className="text-[10px] text-slate-400 font-medium tracking-wide uppercase">{ui.assistantFooter}</span>
                   </div>
                 </div>
               </>

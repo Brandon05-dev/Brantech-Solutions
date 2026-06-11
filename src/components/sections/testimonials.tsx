@@ -65,18 +65,18 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-slate-950 overflow-hidden relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-slate-950 to-slate-950 pointer-events-none" />
+    <section id="testimonials" className="py-12 bg-slate-50 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/50 via-slate-50 to-slate-50 pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 bg-blue-100/50 border border-blue-200 text-blue-800 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 backdrop-blur-sm shadow-sm">
             Testimonials
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-slate-300">
+          <p className="text-sm sm:text-base text-slate-600">
             Real feedback from businesses we've helped transform with innovative technology solutions.
           </p>
         </div>
@@ -92,7 +92,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
               return (
                 <div
                   key={`${testimonial.name}-${currentIndex}-${index}`}
-                  className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
+                  className={`transition-all duration-700 ease-in-out flex-shrink-0 flex flex-col ${
                     isCenter 
                       ? 'scale-105 opacity-100 z-10 w-full max-w-[280px] md:w-56 lg:w-64 xl:w-72' 
                       : 'scale-90 opacity-60 z-0 hidden md:block md:w-56 lg:w-64 xl:w-72'
@@ -101,35 +101,31 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                   }`}
                 >
                   <Card 
-                    className={`h-full bg-card border-border shadow-lg hover:shadow-xl transition-all duration-300 ${
-                      isCenter ? 'ring-2 ring-primary/20' : ''
+                    className={`h-full flex flex-col bg-white border-slate-200 shadow-md hover:shadow-lg transition-all duration-300 ${
+                      isCenter ? 'ring-2 ring-blue-500/20' : ''
                     }`} 
-                    style={{ 
-                      minHeight: '380px', 
-                      maxHeight: '380px'
-                    }}
                   >
-                    <CardContent className="p-5 md:p-6 h-full flex flex-col justify-between">
+                    <CardContent className="p-5 md:p-6 flex-1 flex flex-col justify-between">
                       {/* Star Rating */}
-                      <div className="flex items-center justify-center gap-1 mb-2 flex-shrink-0">
+                      <div className="flex items-center justify-center gap-1 mb-4 flex-shrink-0">
                         {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
                           <Star 
                             key={i} 
-                            className="w-5 h-5 fill-yellow-400 text-yellow-400" 
+                            className="w-4 h-4 fill-yellow-400 text-yellow-400" 
                           />
                         ))}
                         {testimonial.rating % 1 !== 0 && (
                           <div className="relative">
-                            <Star className="w-5 h-5 text-gray-300" />
+                            <Star className="w-4 h-4 text-slate-200" />
                             <div className="absolute inset-0 overflow-hidden w-1/2">
-                              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
                         )}
                         {[...Array(5 - Math.ceil(testimonial.rating))].map((_, i) => (
                           <Star 
                             key={i + Math.ceil(testimonial.rating)} 
-                            className="w-5 h-5 text-gray-300" 
+                            className="w-4 h-4 text-slate-200" 
                           />
                         ))}
                       </div>
@@ -137,27 +133,22 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                       {/* Testimonial Content */}
                       <div className="flex-1 flex items-center justify-center mb-6">
                         <blockquote 
-                          className="text-muted-foreground leading-6 italic text-center text-sm h-full max-h-[160px] overflow-hidden"
-                          style={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: 8,
-                            WebkitBoxOrient: 'vertical'
-                          }}
+                          className="text-slate-600 leading-relaxed italic text-center text-sm"
                         >
-                          <span>"{testimonial.content}"</span>
+                          "{testimonial.content}"
                         </blockquote>
                       </div>
 
                       {/* Author Info */}
-                      <div className="flex flex-col items-center gap-2 flex-shrink-0">
-                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md">
+                      <div className="flex flex-col items-center gap-3 flex-shrink-0 mt-auto">
+                        <div className="w-10 h-10 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm border border-blue-200">
                           {testimonial.initials}
                         </div>
                         <div className="text-center">
-                          <p className="font-semibold text-foreground text-base mb-0.5 leading-tight">
+                          <p className="font-semibold text-slate-900 text-sm leading-tight">
                             {testimonial.name}
                           </p>
-                          <p className="text-muted-foreground text-xs leading-tight">
+                          <p className="text-slate-500 text-xs mt-1 leading-tight">
                             {testimonial.role}
                           </p>
                         </div>

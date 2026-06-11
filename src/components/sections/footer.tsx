@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { 
   Code2, 
-  Github, 
   Linkedin, 
   Facebook, 
   Mail, 
@@ -60,16 +59,6 @@ export function Footer() {
               Transforming businesses across Africa and beyond with innovative technology solutions, AI systems, and digital products that scale.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-12 w-12 p-0 rounded-xl border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-glow hover:scale-110 transition-all duration-300 group"
-                asChild
-              >
-                <a href="https://github.com/brandon05-dev" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-5 h-5 group-hover:animate-pulse" />
-                </a>
-              </Button>
               <Button
                 variant="outline"
                 size="sm"

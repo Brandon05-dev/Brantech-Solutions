@@ -40,9 +40,9 @@ export function Hero({ onContactClick }: HeroProps) {
 
 
           {/* Content Section */}
-          <div className="w-full flex flex-col items-center justify-center text-center lg:items-start lg:text-left mx-auto">
+          <div className="text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0 lg:max-w-3xl">
             {/* Main headline */}
-            <h1 className="w-full text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 animate-fade-in text-balance" style={{ animationDelay: "0.2s" }}>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 animate-fade-in text-balance" style={{ animationDelay: "0.2s" }}>
               Transform Your Business with
               <span className="text-blue-400 block mt-2">
                 Smart Digital Solutions
@@ -50,31 +50,9 @@ export function Hero({ onContactClick }: HeroProps) {
             </h1>
 
             {/* Subtext */}
-            <p className="w-full text-lg sm:text-xl text-slate-200 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in text-balance" style={{ animationDelay: "0.4s" }}>
+            <p className="text-lg sm:text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed animate-fade-in text-balance" style={{ animationDelay: "0.4s" }}>
               Brantech Solutions empowers startups, SMEs, and enterprises to innovate and grow through custom software, AI, cybersecurity, and digital solutions tailored for Africa's dynamic market.
             </p>
-
-            {/* Contact CTA */}
-            <div className="animate-fade-in flex justify-center lg:justify-start w-full" style={{ animationDelay: "0.6s" }}>
-              <div className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 transition-all duration-300">
-                <span className="text-slate-200 font-bold text-sm sm:text-base md:text-lg">
-                  Trusted by <span className="font-bold text-blue-400">50+</span> Clients
-                </span>
-                {/* Profile avatars (icons) */}
-                <div className="flex items-center -space-x-2 pl-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <div
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={i}
-                      className="w-7 h-7 rounded-full border border-white dark:border-gray-800 bg-blue-500/15 flex items-center justify-center transition-transform duration-300"
-                      aria-hidden="true"
-                    >
-                      <User className="w-4 h-4 text-blue-400" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
