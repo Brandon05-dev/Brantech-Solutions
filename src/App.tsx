@@ -19,6 +19,8 @@ import ECommerce from "./pages/services/ECommerce";
 import WebsiteMaintenance from "./pages/services/WebsiteMaintenance";
 import SEOMarketing from "./pages/services/SEOMarketing";
 import CMS from "./pages/services/CMS";
+import AIAutomations from "./pages/services/AIAutomations";
+import GraphicDesign from "./pages/services/GraphicDesign";
 import { Projects } from "./pages/Projects";
 
 const queryClient = new QueryClient();
@@ -51,6 +53,8 @@ const App = () => (
           <Route path="/services/maintenance" element={<WebsiteMaintenance />} />
           <Route path="/services/seo-marketing" element={<SEOMarketing />} />
           <Route path="/services/cms" element={<CMS />} />
+          <Route path="/services/ai-automations" element={<AIAutomations />} />
+          <Route path="/services/graphic-design" element={<GraphicDesign />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <FloatingButtons />

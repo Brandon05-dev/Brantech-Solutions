@@ -352,15 +352,12 @@ export function Chatbot() {
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           <Button
             onClick={() => setIsOpen(true)}
-            className="h-auto py-2 px-2 pr-5 rounded-full bg-blue-600 hover:bg-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 border border-blue-500/50 flex items-center gap-3"
+            className="h-10 sm:h-12 py-1 px-1 pr-3 sm:pr-4 rounded-full bg-blue-600 hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-blue-500/50 flex items-center gap-2"
           >
-            <div className="bg-white/20 p-2.5 rounded-full border border-white/10 shadow-inner flex items-center justify-center">
-              <UserRound className="w-5 h-5 text-white" />
+            <div className="bg-white/20 p-1.5 sm:p-2 rounded-full border border-white/10 shadow-inner flex items-center justify-center">
+              <UserRound className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <div className="flex flex-col items-start text-left">
-              <span className="font-semibold text-white text-sm leading-tight">{ui.floatingBtnTitle}</span>
-              <span className="text-[11px] text-blue-100 font-medium">{ui.floatingBtnSub}</span>
-            </div>
+            <span className="font-medium text-white text-xs sm:text-sm whitespace-nowrap">{ui.floatingBtnTitle}</span>
           </Button>
         </div>
       )}
