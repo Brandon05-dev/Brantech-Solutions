@@ -361,7 +361,7 @@ export function Chatbot() {
         <div className="fixed bottom-6 right-6 z-50">
           <div className="relative flex items-center gap-2 sm:gap-3">
             {/* Text bubble that appears when closed */}
-            <div className="bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
+            <div className="bg-primary text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
               <div className="flex flex-col text-center">
                 <span className="font-semibold">
                   <span className="hidden sm:inline">Ask Temi 🤖</span>
@@ -399,11 +399,11 @@ export function Chatbot() {
               "bg-slate-900/95 backdrop-blur-xl border border-slate-700/50 shadow-2xl transition-all duration-500 overflow-hidden",
               isMinimized 
                 ? "w-80 h-16 rounded-2xl" 
-                : "w-96 h-[600px] rounded-2xl animate-in slide-in-from-bottom-4 fade-in-0"
+                : "w-96 h-[600px] rounded-2xl animate-in slide-in-fade-in-0"
             )}
           >
             {/* Gradient Header */}
-            <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-4 text-white">
+            <div className="bg-purple-600 p-4 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 text-lg">
@@ -452,12 +452,12 @@ export function Chatbot() {
                         <div
                           key={message.id}
                           className={cn(
-                            "flex gap-3 animate-in fade-in-0 slide-in-from-bottom-2 duration-300",
+                            "flex gap-3 animate-in fade-in-0 slide-in-duration-300",
                             message.sender === "user" ? "justify-end" : "justify-start"
                           )}
                         >
                           {message.sender === "bot" && (
-                            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
+                            <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
                               <span className="text-lg">👩🏽‍💼</span>
                             </div>
                           )}
@@ -465,7 +465,7 @@ export function Chatbot() {
                             className={cn(
                               "max-w-[75%] rounded-2xl px-4 py-3 text-sm shadow-lg",
                               message.sender === "user"
-                                ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white ml-auto rounded-br-md"
+                                ? "bg-purple-600 text-white ml-auto rounded-br-md"
                                 : "bg-slate-700/80 text-slate-100 border border-slate-600/50 rounded-bl-md backdrop-blur-sm"
                             )}
                           >
@@ -480,8 +480,8 @@ export function Chatbot() {
                       ))}
                       
                       {isTyping && (
-                        <div className="flex gap-3 justify-start animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
-                          <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
+                        <div className="flex gap-3 justify-start animate-in fade-in-0 slide-in-duration-300">
+                          <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
                             <span className="text-lg">👩🏽‍💼</span>
                           </div>
                           <div className="bg-slate-700/80 text-slate-300 rounded-2xl rounded-bl-md px-4 py-3 text-sm border border-slate-600/50 backdrop-blur-sm">
@@ -512,7 +512,7 @@ export function Chatbot() {
                     <Button
                       onClick={handleSendMessage}
                       disabled={!inputValue.trim() || isTyping}
-                      className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white h-12 w-12 p-0 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                      className="bg-purple-600 hover:hover:text-white h-12 w-12 p-0 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
                       size="sm"
                     >
                       <Send className="w-4 h-4" />

@@ -30,7 +30,7 @@ export function HeroStats({ onContactClick }: HeroStatsProps) {
   return (
     <section className="py-16 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-left max-w-3xl mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
             Professional Delivery, Measurable Outcomes
           </h2>
@@ -39,7 +39,7 @@ export function HeroStats({ onContactClick }: HeroStatsProps) {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-start gap-x-10 gap-y-8">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
           {stats.map((stat) => (
             <div
               key={stat.label}

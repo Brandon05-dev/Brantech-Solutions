@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Code2, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ThemeToggle } from "./theme-toggle";
+import { TopBarTicker } from "./top-bar-ticker";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,13 +25,14 @@ export function Navigation({ onContactClick }: NavigationProps) {
   const location = useLocation();
 
   const services = [
-    { label: "Website Design & Development", id: "service-web", route: "/services/web-development" },
+    { label: "Website Design, Development & Maintainance", id: "service-web", route: "/services/web-development" },
     { label: "Mobile Development", id: "service-mobile", route: "/services/mobile-development" },
     { label: "Cybersecurity", id: "service-security", route: "/services/cybersecurity" },
     { label: "E-Commerce Solutions", id: "service-ecommerce", route: "/services/ecommerce" },
-    { label: "Website Maintenance & Support", id: "service-maintenance", route: "/services/maintenance" },
     { label: "SEO & Digital Marketing", id: "service-seo", route: "/services/seo-marketing" },
     { label: "Content Management Systems", id: "service-cms", route: "/services/cms" },
+    { label: "AI & Automations", id: "service-ai", route: "/services/ai-automations" },
+    { label: "Graphic Design Services", id: "service-graphic-design", route: "/services/graphic-design" },
   ];
 
   const projectCategories = [
@@ -61,7 +63,6 @@ export function Navigation({ onContactClick }: NavigationProps) {
     { label: "About Us", href: "/about-us", isRoute: true, section: "about-us" },
     { label: "Services", href: "#services", isRoute: false, section: "services", hasDropdown: true },
     { label: "Projects", href: "/projects", isRoute: true, section: "projects" },
-    { label: "Packages", href: "#packages", isRoute: false, section: "packages" },
     { label: "Testimonials", href: "#testimonials", isRoute: false, section: "testimonials" },
     { label: "FAQ", href: "/faq", isRoute: true, section: "faq" },
     { label: "Contact Us", href: "#contact", isRoute: false, section: "contact" },
@@ -85,7 +86,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
   useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === "/") {
-        const sections = ["home", "services", "portfolio", "packages", "testimonials", "contact"];
+        const sections = ["home", "services", "portfolio", "testimonials", "contact"];
         const currentSection = sections.find(section => {
           const element = document.getElementById(section);
           if (element) {
@@ -157,14 +158,11 @@ export function Navigation({ onContactClick }: NavigationProps) {
   };
 
   return (
-    <nav className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      isOpen 
-        ? "bg-background border-b border-border shadow-lg" 
-        : "bg-background/80 backdrop-blur-md border-b border-border"
-    )}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col w-full shadow-sm bg-white">
+      <TopBarTicker />
+      <nav className="w-full border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer group" 
@@ -173,18 +171,18 @@ export function Navigation({ onContactClick }: NavigationProps) {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <div className="w-28 h-28 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="w-24 h-24 flex items-center justify-center overflow-hidden">
               <img 
                 src="/BS Icon.png" 
                 alt="Brantech Solutions" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain scale-[1.3]"
                 loading="eager"
               />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 mr-24">
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
               
@@ -194,10 +192,9 @@ export function Navigation({ onContactClick }: NavigationProps) {
                     <DropdownMenuTrigger asChild>
                       <button
                         className={cn(
-                          "text-muted-foreground hover:text-primary transition-all duration-200 font-medium flex items-center gap-1",
-                          "hover:scale-105 active:scale-95",
+                          "text-slate-600 hover:text-primary transition-colors duration-200 font-semibold flex items-center gap-1",
                           "group",
-                          isActive && "text-primary font-semibold"
+                          isActive && "text-primary"
                         )}
                       >
                         {item.label}
@@ -207,7 +204,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                     <DropdownMenuContent align="start" className="w-72">
                       <DropdownMenuItem
                         onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
-                        className="cursor-pointer font-semibold text-primary hover:bg-primary/20 animate-in slide-in-from-top-4 fade-in-0"
+                        className="cursor-pointer font-semibold text-primary hover:bg-primary/20 animate-in slide-in-fade-in-0"
                         style={{ animationDelay: "0ms", animationDuration: "400ms" }}
                       >
                         View All Services
@@ -220,7 +217,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                             navigate(service.route);
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }}
-                          className="cursor-pointer animate-in slide-in-from-top-4 fade-in-0"
+                          className="cursor-pointer animate-in slide-in-fade-in-0"
                           style={{ 
                             animationDelay: `${150 + (index * 80)}ms`,
                             animationDuration: "500ms"
@@ -239,20 +236,17 @@ export function Navigation({ onContactClick }: NavigationProps) {
                   key={item.label}
                   onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
                   className={cn(
-                    "text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium",
-                    isActive && "text-primary font-semibold"
+                    "text-slate-600 hover:text-primary transition-colors duration-200 font-semibold",
+                    isActive && "text-primary"
                   )}
                 >
                   {item.label}
                 </button>
               );
             })}
-            <ThemeToggle />
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
@@ -276,22 +270,32 @@ export function Navigation({ onContactClick }: NavigationProps) {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <>
-            {/* Overlay/Shadow Background */}
-            <div
-              className="md:hidden fixed inset-0 top-16 bg-black/50 backdrop-blur-sm transition-all duration-300 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            
-            {/* Mobile Menu Content */}
-            <div
-              className={cn(
-                "md:hidden fixed inset-x-0 top-16 bg-background/95 backdrop-blur-md border-b border-border shadow-2xl transition-all duration-300 z-50",
-                isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"
-              )}
-            >
-              <div className="px-6 py-8 space-y-4 max-h-[70vh] overflow-y-auto">
+        <div
+          className={cn(
+            "md:hidden fixed inset-0 z-50 transition-all duration-300",
+            isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          )}
+        >
+          {/* Overlay/Shadow Background */}
+          <div
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Mobile Menu Content */}
+          <div
+            className={cn(
+              "absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
+              isOpen ? "translate-x-0" : "translate-x-full"
+            )}
+          >
+            <div className="flex justify-between items-center p-6 border-b border-gray-100">
+              <span className="font-bold text-xl text-slate-800 tracking-tight">Menu</span>
+              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="rounded-full w-10 h-10 p-0 text-slate-500 hover:text-slate-900 hover:bg-slate-100">
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="px-6 py-6 space-y-4 flex-1 overflow-y-auto">
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.section;
                   
@@ -303,7 +307,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                             setMobileServicesOpen(!mobileServicesOpen);
                           }}
                           className={cn(
-                            "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-from-top-4 fade-in-0",
+                            "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-fade-in-0",
                             "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
                             isActive 
                               ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
@@ -324,7 +328,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                         </button>
                         
                         {mobileServicesOpen && (
-                          <div className="ml-2 space-y-1 animate-in slide-in-from-top-2 fade-in-0">
+                          <div className="ml-2 space-y-1 animate-in slide-in-fade-in-0">
                             <button
                               onClick={() => {
                                 scrollToSection(item.href, item.isRoute, item.section);
@@ -360,7 +364,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                       key={item.label}
                       onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
                       className={cn(
-                        "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-from-top-4 fade-in-0",
+                        "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-fade-in-0",
                         "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
                         isActive 
                           ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
@@ -401,9 +405,9 @@ export function Navigation({ onContactClick }: NavigationProps) {
                 </div>
               </div>
             </div>
-          </>
-        )}
-      </div>
-    </nav>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }

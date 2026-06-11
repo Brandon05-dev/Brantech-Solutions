@@ -32,7 +32,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-secondary/30 via-background to-secondary/50 border-t border-border/50 backdrop-blur-sm">
+    <footer className="relative bg-secondary/30 border-t border-border/50 backdrop-blur-sm">
       {/* Animated background patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
@@ -119,7 +119,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-bold text-foreground text-lg relative">
               Quick Links
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-primary rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-primary rounded-full"></div>
             </h3>
             <ul className="space-y-4">
               {[
@@ -157,7 +157,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-bold text-foreground text-lg relative">
               Services
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-primary rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-primary rounded-full"></div>
             </h3>
             <ul className="space-y-4">
               {[
@@ -227,7 +227,7 @@ export function Footer() {
                 className="font-semibold text-primary hover:text-primary/80 transition-all duration-300 hover:scale-105 relative"
               >
                 Brandon Omutiti
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary rounded-full group-hover:w-full transition-all duration-300"></div>
+                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary rounded-full group-hover:w-full transition-all duration-300"></div>
               </a>
             </div>
           </div>

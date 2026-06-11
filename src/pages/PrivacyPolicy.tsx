@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
       
       <div className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-background via-secondary/30 to-background">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
               <Badge variant="secondary" className="mb-6">
@@ -128,7 +128,7 @@ const PrivacyPolicy = () => {
                 <Card key={section.title} className="bg-card border-border hover:shadow-elegant transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 text-xl text-foreground">
-                      <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                         <section.icon className="w-5 h-5 text-primary-foreground" />
                       </div>
                       {index + 1}. {section.title}

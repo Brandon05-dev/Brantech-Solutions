@@ -24,7 +24,7 @@ export function Newsletter() {
 
   if (isSubmitted) {
     return (
-      <section className="py-16 bg-gradient-primary">
+      <section className="py-16 bg-primary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
@@ -45,7 +45,7 @@ export function Newsletter() {
   }
 
   return (
-    <section className="py-16 bg-gradient-primary">
+    <section className="py-16 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">

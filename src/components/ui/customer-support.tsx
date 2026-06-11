@@ -111,9 +111,9 @@ export function CustomerSupport() {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       {/* Chat Widget */}
       {isOpen && (
-        <div className="mb-4 w-[90vw] max-w-sm sm:w-96 h-[70vh] sm:h-[500px] animate-in slide-in-from-bottom-5 fade-in duration-500">
-          <Card className="bg-gradient-to-br from-card/95 via-card/95 to-primary/5 backdrop-blur-xl border border-border/50 shadow-2xl hover:shadow-3xl transition-all duration-300 h-full flex flex-col rounded-2xl overflow-hidden">
-            <CardHeader className="pb-4 flex-shrink-0 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-b border-border/30">
+        <div className="mb-4 w-[90vw] max-w-sm sm:w-96 h-[70vh] sm:h-[500px] animate-in slide-in-fade-in duration-500">
+          <Card className="bg-card/95 backdrop-blur-xl border border-border/50 shadow-2xl hover:shadow-3xl transition-all duration-300 h-full flex flex-col rounded-2xl overflow-hidden">
+            <CardHeader className="pb-4 flex-shrink-0 bg-primary/10 border-b border-border/30">
               <CardTitle className="text-lg text-foreground flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative">
@@ -146,7 +146,7 @@ export function CustomerSupport() {
             <CardContent className="flex-1 flex flex-col p-0 relative">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"></div>
+                <div className="absolute inset-0 bg-primary/20"></div>
                 <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
               </div>
@@ -156,13 +156,13 @@ export function CustomerSupport() {
                 {messages.map((message, index) => (
                   <div
                     key={message.id}
-                    className={`flex gap-3 animate-in slide-in-from-bottom-2 duration-300 ${
+                    className={`flex gap-3 animate-in slide-in-duration-300 ${
                       message.isUser ? 'justify-end' : 'justify-start'
                     }`}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {!message.isUser && (
-                      <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
+                      <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
                         <span className="text-lg">👩</span>
                       </div>
                     )}
@@ -170,8 +170,8 @@ export function CustomerSupport() {
                       <div
                         className={`p-4 rounded-2xl text-sm whitespace-pre-line shadow-sm transition-all duration-200 hover:shadow-md ${
                           message.isUser
-                            ? 'bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-tr-md ml-4'
-                            : 'bg-gradient-to-r from-secondary/80 to-secondary/60 text-foreground rounded-tl-md backdrop-blur-sm border border-border/30'
+                            ? 'bg-primary text-primary-foreground rounded-tr-md ml-4'
+                            : 'bg-secondary/80 text-foreground rounded-tl-md backdrop-blur-sm border border-border/30'
                         }`}
                       >
                         {message.text}
@@ -183,7 +183,7 @@ export function CustomerSupport() {
                       </div>
                     </div>
                     {message.isUser && (
-                      <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
                         <User className="w-4 h-4 text-white" />
                       </div>
                     )}
@@ -191,11 +191,11 @@ export function CustomerSupport() {
                 ))}
                 
                 {isTyping && (
-                  <div className="flex gap-3 justify-start animate-in slide-in-from-bottom-2 duration-300">
-                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
+                  <div className="flex gap-3 justify-start animate-in slide-in-duration-300">
+                    <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-sm">
                       <span className="text-lg">👩</span>
                     </div>
-                    <div className="bg-gradient-to-r from-secondary/80 to-secondary/60 text-foreground p-4 rounded-2xl rounded-tl-md text-sm max-w-[80%] backdrop-blur-sm border border-border/30">
+                    <div className="bg-secondary/80 text-foreground p-4 rounded-2xl rounded-tl-md text-sm max-w-[80%] backdrop-blur-sm border border-border/30">
                       <div className="flex gap-1">
                         <div className="w-2 h-2 bg-primary/80 rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-primary/80 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
@@ -208,7 +208,7 @@ export function CustomerSupport() {
               </div>
               
               {/* Quick Actions */}
-              <div className="px-4 py-2 border-t border-border/30 bg-gradient-to-r from-secondary/20 to-transparent">
+              <div className="px-4 py-2 border-t border-border/30 bg-secondary/20">
                 <div className="flex gap-2 flex-wrap">
                   {!messages.some(m => m.text.includes('services')) && (
                     <Button
@@ -244,7 +244,7 @@ export function CustomerSupport() {
               </div>
               
               {/* Input Area */}
-              <div className="p-4 border-t border-border/30 bg-gradient-to-r from-card/50 to-transparent backdrop-blur-sm">
+              <div className="p-4 border-t border-border/30 bg-card/50 backdrop-blur-sm">
                 <div className="flex gap-3 items-end">
                   <div className="flex-1 relative">
                     <Input
@@ -263,7 +263,7 @@ export function CustomerSupport() {
                     onClick={handleSendMessage}
                     disabled={!inputMessage.trim() || isTyping}
                     size="sm"
-                    className="px-4 h-10 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 rounded-xl"
+                    className="px-4 h-10 bg-primary hover:hover:shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 rounded-xl"
                   >
                     <Send className="w-4 h-4" />
                   </Button>
@@ -278,7 +278,7 @@ export function CustomerSupport() {
       <div className="relative flex items-center gap-2 sm:gap-3">
         {/* Text bubble that appears when closed */}
         {!isOpen && (
-          <div className="bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
+          <div className="bg-primary text-white px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-xl whitespace-nowrap text-xs sm:text-sm font-medium border-2 border-white/30 backdrop-blur-lg relative max-w-[180px] sm:max-w-none">
             <div className="flex flex-col text-center">
               <span className="font-semibold">
                 <span className="hidden sm:inline">Ask Temi anything 💬</span>

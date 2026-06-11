@@ -43,7 +43,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
   // Duplicate testimonials for infinite loop effect
   const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
-  // Auto-rotate testimonials every 5.5 seconds
+  // Autestimonials every 5.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -65,17 +65,18 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-20 bg-slate-950 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-slate-950 to-slate-950 pointer-events-none" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
             Testimonials
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-slate-300">
             Real feedback from businesses we've helped transform with innovative technology solutions.
           </p>
         </div>
@@ -93,8 +94,8 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                   key={`${testimonial.name}-${currentIndex}-${index}`}
                   className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
                     isCenter 
-                      ? 'scale-105 opacity-100 z-10 w-full max-w-sm md:w-64 lg:w-72 xl:w-80' 
-                      : 'scale-90 opacity-60 z-0 hidden md:block md:w-64 lg:w-72 xl:w-80'
+                      ? 'scale-105 opacity-100 z-10 w-full max-w-[280px] md:w-56 lg:w-64 xl:w-72' 
+                      : 'scale-90 opacity-60 z-0 hidden md:block md:w-56 lg:w-64 xl:w-72'
                   } ${
                     isLeft ? 'lg:-translate-x-4 xl:-translate-x-6' : isRight ? 'lg:translate-x-4 xl:translate-x-6' : ''
                   }`}
@@ -104,11 +105,11 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                       isCenter ? 'ring-2 ring-primary/20' : ''
                     }`} 
                     style={{ 
-                      minHeight: '450px', 
-                      maxHeight: '450px'
+                      minHeight: '380px', 
+                      maxHeight: '380px'
                     }}
                   >
-                    <CardContent className="p-6 md:p-8 h-full flex flex-col justify-between">
+                    <CardContent className="p-5 md:p-6 h-full flex flex-col justify-between">
                       {/* Star Rating */}
                       <div className="flex items-center justify-center gap-1 mb-2 flex-shrink-0">
                         {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
@@ -136,7 +137,7 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
                       {/* Testimonial Content */}
                       <div className="flex-1 flex items-center justify-center mb-6">
                         <blockquote 
-                          className="text-muted-foreground leading-7 italic text-center text-base h-full max-h-[200px] overflow-hidden"
+                          className="text-muted-foreground leading-6 italic text-center text-sm h-full max-h-[160px] overflow-hidden"
                           style={{
                             display: '-webkit-box',
                             WebkitLineClamp: 8,
@@ -149,14 +150,14 @@ export function Testimonials({ onContactClick }: TestimonialsProps) {
 
                       {/* Author Info */}
                       <div className="flex flex-col items-center gap-2 flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg">
+                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md">
                           {testimonial.initials}
                         </div>
                         <div className="text-center">
-                          <p className="font-semibold text-foreground text-lg mb-1 leading-tight">
+                          <p className="font-semibold text-foreground text-base mb-0.5 leading-tight">
                             {testimonial.name}
                           </p>
-                          <p className="text-muted-foreground text-sm leading-tight">
+                          <p className="text-muted-foreground text-xs leading-tight">
                             {testimonial.role}
                           </p>
                         </div>

@@ -66,7 +66,7 @@ const TermsOfService = () => {
       
       <div className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-background via-secondary/30 to-background">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
               <Badge variant="secondary" className="mb-6">
@@ -107,7 +107,7 @@ const TermsOfService = () => {
                 <Card key={section.title} className="bg-card border-border hover:shadow-elegant transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 text-xl text-foreground">
-                      <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                         <section.icon className="w-5 h-5 text-primary-foreground" />
                       </div>
                       {index + 1}. {section.title}
@@ -134,7 +134,7 @@ const TermsOfService = () => {
               <Card className="bg-card border-border">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-xl text-foreground">
-                    <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                       <RefreshCw className="w-5 h-5 text-primary-foreground" />
                     </div>
                     7. Changes to These Terms
@@ -151,7 +151,7 @@ const TermsOfService = () => {
               <Card className="bg-card border-border">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-xl text-foreground">
-                    <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                       <Scale className="w-5 h-5 text-primary-foreground" />
                     </div>
                     8. Governing Law
@@ -189,7 +189,7 @@ const TermsOfService = () => {
                     <h3 className="font-semibold">3. User Responsibilities</h3>
                     <p className="text-muted-foreground">When using our services, you agree to:</p>
                     <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
-                      <li>Provide accurate and up-to-date information.</li>
+                      <li>Provide accurate and up-information.</li>
                       <li>Use our services only for lawful purposes.</li>
                       <li>Not engage in activities that could harm our systems, reputation, or other users.</li>
                     </ul>

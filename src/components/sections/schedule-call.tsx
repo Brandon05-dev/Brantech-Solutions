@@ -33,7 +33,7 @@ const ScheduleCall = () => {
   const calendlyUrl = "https://calendly.com/brandonomutiti05/30min";
 
   return (
-    <section className="py-20 bg-gradient-to-br from-secondary/20 to-background">
+    <section className="py-20 bg-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
@@ -64,7 +64,7 @@ const ScheduleCall = () => {
               >
                 <Button 
                   size="lg"
-                  className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
+                  className="bg-primary hover:hover:text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
                 >
                   <Clock className="mr-3 w-5 h-5" />
                   Schedule a Call
@@ -82,7 +82,7 @@ const ScheduleCall = () => {
                 <Button 
                   onClick={() => window.open(calendlyUrl, '_blank')}
                   size="lg"
-                  className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold mb-6"
+                  className="bg-primary hover:hover:text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold mb-6"
                 >
                   <Clock className="mr-3 w-5 h-5" />
                   Open Calendly

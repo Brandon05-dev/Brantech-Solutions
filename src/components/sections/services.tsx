@@ -3,18 +3,22 @@ import {
   Globe,
   Shield,
   ShoppingCart,
-  Wrench,
   Smartphone,
   Search,
   FileText,
+  Cpu,
+  Palette,
+  ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface ServicesProps {
   onContactClick?: () => void;
 }
 
 export function Services({ onContactClick }: ServicesProps) {
+  const navigate = useNavigate();
   const containerVariants = {
     hidden: {},
     show: {
@@ -37,12 +41,13 @@ export function Services({ onContactClick }: ServicesProps) {
   const services = [
     {
       icon: Globe,
-      title: "Website Design and Development",
+      title: "Website Design, Development & Maintainance",
       description:
         "Custom websites and web applications built with modern technologies. From simple business sites to complex enterprise solutions.",
       hoverColor: "blue",
       useImage: true,
       imageSrc: "/Web1.png",
+      route: "/services/web-development"
     },
     {
       icon: Smartphone,
@@ -52,6 +57,7 @@ export function Services({ onContactClick }: ServicesProps) {
       hoverColor: "purple",
       useImage: true,
       imageSrc: "/mobile dev.png",
+      route: "/services/mobile-development"
     },
     {
       icon: Shield,
@@ -61,6 +67,7 @@ export function Services({ onContactClick }: ServicesProps) {
       hoverColor: "red",
       useImage: true,
       imageSrc: "/cybersec .png",
+      route: "/services/cybersecurity"
     },
     {
       icon: ShoppingCart,
@@ -70,16 +77,9 @@ export function Services({ onContactClick }: ServicesProps) {
       hoverColor: "green",
       useImage: true,
       imageSrc: "/eccomerce.png",
+      route: "/services/ecommerce"
     },
-    {
-      icon: Wrench,
-      title: "Website Maintenance and Support",
-      description:
-        "Ongoing website maintenance, updates, and technical support. Keep your website secure, fast, and up-to-date.",
-      hoverColor: "orange",
-      useImage: true,
-      imageSrc: "/web 2.png",
-    },
+
     {
       icon: Search,
       title: "SEO and Digital Marketing",
@@ -88,6 +88,7 @@ export function Services({ onContactClick }: ServicesProps) {
       hoverColor: "pink",
       useImage: true,
       imageSrc: "/seo.png",
+      route: "/services/seo-marketing"
     },
     {
       icon: FileText,
@@ -97,171 +98,184 @@ export function Services({ onContactClick }: ServicesProps) {
       hoverColor: "indigo",
       useImage: true,
       imageSrc: "/cms.png",
+      route: "/services/cms"
+    },
+    {
+      icon: Cpu,
+      title: "AI & Automations",
+      description:
+        "Integrate intelligent AI models and automated workflows to streamline operations, reduce manual tasks, and boost business efficiency.",
+      hoverColor: "teal",
+      useImage: true,
+      imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000",
+      route: "/services/ai-automations"
+    },
+    {
+      icon: Palette,
+      title: "Graphic Design Services",
+      description:
+        "Professional branding, logo design, and marketing materials that capture your unique identity and communicate your message clearly.",
+      hoverColor: "cyan",
+      useImage: true,
+      imageSrc: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1000",
+      route: "/services/graphic-design"
     },
   ];
 
   const colorClasses: Record<string, any> = {
     blue: {
-      iconBg: "bg-blue-100 dark:bg-blue-900/30 group-hover:bg-blue-600",
-      iconColor: "text-blue-600 group-hover:text-white",
-      titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
-      borderHover: "hover:border-blue-200 dark:hover:border-blue-800",
-      gradientOverlay:
-        "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20",
-      decorative1: "from-blue-100 to-blue-200 dark:from-blue-900/20 dark:to-blue-800/20",
-      decorative2: "from-blue-200 to-blue-100 dark:from-blue-800/20 dark:to-blue-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     purple: {
-      iconBg: "bg-purple-100 dark:bg-purple-900/30 group-hover:bg-purple-600",
-      iconColor: "text-purple-600 group-hover:text-white",
-      titleHover: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
-      borderHover: "hover:border-purple-200 dark:hover:border-purple-800",
-      gradientOverlay:
-        "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20",
-      decorative1: "from-purple-100 to-purple-200 dark:from-purple-900/20 dark:to-purple-800/20",
-      decorative2: "from-purple-200 to-purple-100 dark:from-purple-800/20 dark:to-purple-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     red: {
-      iconBg: "bg-red-100 dark:bg-red-900/30 group-hover:bg-red-600",
-      iconColor: "text-red-600 group-hover:text-white",
-      titleHover: "group-hover:text-red-600 dark:group-hover:text-red-400",
-      borderHover: "hover:border-red-200 dark:hover:border-red-800",
-      gradientOverlay:
-        "from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20",
-      decorative1: "from-red-100 to-red-200 dark:from-red-900/20 dark:to-red-800/20",
-      decorative2: "from-red-200 to-red-100 dark:from-red-800/20 dark:to-red-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     green: {
-      iconBg: "bg-green-100 dark:bg-green-900/30 group-hover:bg-green-600",
-      iconColor: "text-green-600 group-hover:text-white",
-      titleHover: "group-hover:text-green-600 dark:group-hover:text-green-400",
-      borderHover: "hover:border-green-200 dark:hover:border-green-800",
-      gradientOverlay:
-        "from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20",
-      decorative1: "from-green-100 to-green-200 dark:from-green-900/20 dark:to-green-800/20",
-      decorative2: "from-green-200 to-green-100 dark:from-green-800/20 dark:to-green-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     orange: {
-      iconBg: "bg-orange-100 dark:bg-orange-900/30 group-hover:bg-orange-600",
-      iconColor: "text-orange-600 group-hover:text-white",
-      titleHover: "group-hover:text-orange-600 dark:group-hover:text-orange-400",
-      borderHover: "hover:border-orange-200 dark:hover:border-orange-800",
-      gradientOverlay:
-        "from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20",
-      decorative1: "from-orange-100 to-orange-200 dark:from-orange-900/20 dark:to-orange-800/20",
-      decorative2: "from-orange-200 to-orange-100 dark:from-orange-800/20 dark:to-orange-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     pink: {
-      iconBg: "bg-pink-100 dark:bg-pink-900/30 group-hover:bg-pink-600",
-      iconColor: "text-pink-600 group-hover:text-white",
-      titleHover: "group-hover:text-pink-600 dark:group-hover:text-pink-400",
-      borderHover: "hover:border-pink-200 dark:hover:border-pink-800",
-      gradientOverlay:
-        "from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20",
-      decorative1: "from-pink-100 to-pink-200 dark:from-pink-900/20 dark:to-pink-800/20",
-      decorative2: "from-pink-200 to-pink-100 dark:from-pink-800/20 dark:to-pink-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
     indigo: {
-      iconBg: "bg-indigo-100 dark:bg-indigo-900/30 group-hover:bg-indigo-600",
-      iconColor: "text-indigo-600 group-hover:text-white",
-      titleHover: "group-hover:text-indigo-600 dark:group-hover:text-indigo-400",
-      borderHover: "hover:border-indigo-200 dark:hover:border-indigo-800",
-      gradientOverlay:
-        "from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20",
-      decorative1: "from-indigo-100 to-indigo-200 dark:from-indigo-900/20 dark:to-indigo-800/20",
-      decorative2: "from-indigo-200 to-indigo-100 dark:from-indigo-800/20 dark:to-indigo-900/20",
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
+    },
+    teal: {
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
+    },
+    cyan: {
+      iconBg: "bg-primary/5 group-hover:bg-primary",
+      iconColor: "text-primary group-hover:text-white",
+      titleHover: "group-hover:text-primary",
+      borderHover: "hover:border-primary/20",
+      gradientOverlay: "",
+      decorative1: "",
+      decorative2: "",
     },
   };
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with Website card on the right (right-aligned with header) */}
-        <div className="mb-16 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
-          <div className="text-left w-full sm:max-w-[55%]">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              What We Build
-            </h2>
-            <p className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
-              Seven services.
-              <br />
-              One partner.
-            </p>
-
-            <p className="text-lg text-muted-foreground mt-6">
-              From your first website to enterprise-grade cloud infrastructure
-              <br />
-              WE cover the full technology stack so you never need to manage multiple agencies.
-            </p>
+    <section id="services" className="py-24 relative bg-slate-50 dark:bg-slate-900 overflow-hidden z-0">
+      {/* Premium Background Patterns */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-[-1]"></div>
+      <div className="absolute left-0 right-0 top-1/4 -z-10 m-auto h-[400px] w-[400px] rounded-full bg-blue-600 opacity-10 blur-[120px]"></div>
+      <div className="absolute right-0 bottom-0 -z-10 h-[300px] w-[300px] rounded-full bg-purple-600 opacity-10 blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+            What We Build
           </div>
-
-          <div className="w-full sm:max-w-[45%] flex justify-center">
-            {(() => {
-              const websiteService = services[0];
-              const IconComponent = websiteService.icon;
-              const colors = colorClasses[websiteService.hoverColor as keyof typeof colorClasses];
-              return (
-                <motion.div
-                  variants={itemVariants}
-                  style={{ width: 'calc(100% - 2cm)' }}
-                  className={`group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 ${colors.borderHover} hover:-translate-y-2 w-full max-w-md mx-auto`}>
-                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradientOverlay} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                  <div className="relative z-10">
-                    {websiteService.useImage && websiteService.imageSrc ? (
-                      <div className="w-full h-40 rounded-xl mb-6 overflow-hidden group-hover:scale-105 transition-all duration-500">
-                        <img src={websiteService.imageSrc} alt={websiteService.title} className="w-full h-full object-cover" />
-                      </div>
-                    ) : (
-                      <div className={`flex items-center justify-center w-16 h-16 ${colors.iconBg} rounded-xl mb-6 group-hover:scale-110 transition-all duration-500`}>
-                        <IconComponent className={`h-8 w-8 ${colors.iconColor} transition-colors duration-500`} />
-                      </div>
-                    )}
-                    <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${colors.titleHover} transition-colors duration-300`}>
-                      {websiteService.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">{websiteService.description}</p>
-                  </div>
-                  <div className={`absolute bottom-6 left-6 w-12 h-12 bg-gradient-to-br ${colors.decorative2} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500`}></div>
-                </motion.div>
-              );
-            })()}
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+            Eight services. <span className="text-blue-600">One partner.</span>
+          </h2>
+          <p className="text-lg text-slate-500">
+            From your first website to enterprise-grade cloud infrastructure, we cover the full technology stack so you never need to manage multiple agencies.
+          </p>
         </div>
 
-        {/* Services Grid (excluding Website Design and Development) */}
+        {/* Services Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.18 }}
         >
-          {services.slice(1).map((service, index) => {
+          {services.map((service, index) => {
             const IconComponent = service.icon;
             const colors = colorClasses[service.hoverColor as keyof typeof colorClasses];
             return (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 ${colors.borderHover} hover:-translate-y-2`}
+                className="group relative bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.05)] ring-1 ring-slate-900/5 hover:border-blue-500/30 hover:shadow-elegant overflow-hidden h-full hover:-translate-y-1 rounded-xl p-3 sm:p-6 flex flex-col transition-all duration-500"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradientOverlay} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                <div className="relative z-10">
+                {/* Inner card premium decorative elements */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/5 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                <div className={`absolute inset-0 ${colors.gradientOverlay} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                <div className="relative z-10 flex flex-col h-full">
                   {service.useImage && service.imageSrc ? (
-                    <div className="w-full h-48 rounded-xl mb-6 overflow-hidden group-hover:scale-105 transition-all duration-500">
+                    <div className="w-full h-16 sm:h-32 rounded-md mb-3 sm:mb-5 overflow-hidden group-hover:scale-[1.02] transition-all duration-500">
                       <img src={service.imageSrc} alt={service.title} className="w-full h-full object-cover" />
                     </div>
                   ) : (
-                    <div className={`flex items-center justify-center w-16 h-16 ${colors.iconBg} rounded-xl mb-6 group-hover:scale-110 transition-all duration-500`}>
-                      <IconComponent className={`h-8 w-8 ${colors.iconColor} transition-colors duration-500`} />
+                    <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 ${colors.iconBg} rounded-md mb-3 sm:mb-5 transition-all duration-500`}>
+                      <IconComponent className={`h-4 w-4 sm:h-5 sm:w-5 ${colors.iconColor} transition-colors duration-500`} />
                     </div>
                   )}
-                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${colors.titleHover} transition-colors duration-300`}>
+                  <h3 className={`text-[13px] sm:text-lg font-bold text-slate-800 mb-2 sm:mb-3 leading-tight ${colors.titleHover} transition-colors duration-300`}>
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">{service.description}</p>
+                  <p className="text-slate-500 leading-relaxed text-[10px] sm:text-sm flex-grow mb-3 sm:mb-6 line-clamp-2 sm:line-clamp-none">{service.description}</p>
+                  
+                  <div className="mt-auto border-t border-slate-100 pt-3 sm:pt-4">
+                    <Button 
+                      variant="ghost" 
+                      className="w-full h-8 sm:h-10 px-2 sm:px-4 justify-between text-[11px] sm:text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50/50 group/btn rounded-lg"
+                      onClick={() => {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        navigate(service.route);
+                      }}
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
                 </div>
-                <div className={`absolute bottom-6 left-6 w-12 h-12 bg-gradient-to-br ${colors.decorative2} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500`}></div>
               </motion.div>
             );
           })}

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ThemeProvider } from "@/components/ui/theme-provider";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
@@ -35,7 +35,6 @@ function ScrollToTop() {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="brantech-ui-theme">
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -59,7 +58,6 @@ const App = () => (
         <CookieConsent />
         <Analytics />
       </BrowserRouter>
-    </ThemeProvider>
   </QueryClientProvider>
 );
 

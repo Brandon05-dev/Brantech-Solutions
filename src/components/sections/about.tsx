@@ -85,7 +85,7 @@ export function About({ onContactClick }: AboutProps) {
                 alt="Our Mission" 
                 className="w-full h-auto object-contain max-h-[300px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-black/80"></div>
               <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
                 <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-5 h-5 text-white" />
@@ -110,7 +110,7 @@ export function About({ onContactClick }: AboutProps) {
                 alt="Our Vision" 
                 className="w-full h-auto object-contain max-h-[300px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-black/80"></div>
               <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
                 <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Eye className="w-5 h-5 text-white" />
@@ -135,7 +135,7 @@ export function About({ onContactClick }: AboutProps) {
                 alt="Our Core Values" 
                 className="w-full h-auto object-contain max-h-[300px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-black/80"></div>
               <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
                 <div className="w-10 h-10 mb-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Heart className="w-5 h-5 text-white" />

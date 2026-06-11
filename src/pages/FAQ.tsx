@@ -79,7 +79,7 @@ const FAQ = () => {
       <Navigation onContactClick={handleContactClick} />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary/5 to-secondary/10">
+      <section className="pt-32 pb-20 bg-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-6 py-3 rounded-full text-sm font-medium mb-8">
@@ -138,14 +138,14 @@ const FAQ = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto border border-primary/10 shadow-xl">
+          <div className="relative overflow-hidden bg-primary/10 rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto border border-primary/10 shadow-xl">
             {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full blur-2xl"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-2xl"></div>
             
             {/* Content */}
             <div className="relative z-10 text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <MessageCircle className="w-10 h-10 text-primary-foreground" />
               </div>
               
@@ -163,7 +163,7 @@ const FAQ = () => {
                   variant="default"
                   size="lg"
                   onClick={() => window.open("https://wa.me/254790889066", "_blank")}
-                  className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
+                  className="bg-primary hover:hover:text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
                 >
                   <MessageCircle className="mr-3 w-5 h-5" />
                   Contact Us

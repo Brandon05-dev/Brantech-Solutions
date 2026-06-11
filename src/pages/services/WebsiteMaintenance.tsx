@@ -10,7 +10,7 @@ const WebsiteMaintenance = () => {
     {
       icon: RefreshCw,
       title: "Regular Updates",
-      description: "Keep your website up-to-date with the latest software versions, security patches, and feature updates.",
+      description: "Keep your website up-with the latest software versions, security patches, and feature updates.",
     },
     {
       icon: Shield,
@@ -94,7 +94,7 @@ const WebsiteMaintenance = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-orange-500/10 via-background to-background">
+      <section className="pt-32 pb-20 bg-orange-500/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 text-base px-6 py-2 bg-orange-500/10 text-orange-700 dark:text-orange-300">
@@ -237,7 +237,7 @@ const WebsiteMaintenance = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-500/10 via-background to-background">
+      <section className="py-20 bg-orange-500/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="max-w-4xl mx-auto border-2 border-orange-500/20">
             <CardContent className="p-12 text-center">

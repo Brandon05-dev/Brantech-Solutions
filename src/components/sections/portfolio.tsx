@@ -14,6 +14,56 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
 
   const projects = [
     {
+      title: "GSDA Summit",
+      status: "Live",
+      category: "Event & Conference",
+      description: "Official digital platform for the Grand Salon de la Data en Afrique. Features a comprehensive event portal with an integrated ticketing system, dynamic scheduling, and interactive speaker profiles.",
+      techStack: ["React", "Next.js", "Tailwind CSS"],
+      image: "/web 2.png",
+      liveUrl: "https://www.gsdasummit.org/",
+      githubUrl: null
+    },
+    {
+      title: "Zambia Investment Summit",
+      status: "Live",
+      category: "Event & Conference",
+      description: "Premium event portal hosting high-level initiatives like the Zambia Trade & Investment Mission and Digital Currency Forum, connecting global capital with local opportunities.",
+      techStack: ["React", "Next.js", "Tailwind CSS"],
+      image: "/Web1.png",
+      liveUrl: "https://zambiainvestmentsummit.vercel.app/",
+      githubUrl: null
+    },
+    {
+      title: "Global Policy House",
+      status: "Live",
+      category: "Corporate",
+      description: "Digital presence for the Global Policy House, highlighting their international advisory services and sustainable development initiatives.",
+      techStack: ["React", "TypeScript", "Tailwind CSS"],
+      image: "/seo.png",
+      liveUrl: "https://globalpolicyhouse-ten.vercel.app/",
+      githubUrl: null
+    },
+    {
+      title: "Paychain Kenya",
+      status: "Live",
+      category: "FinTech",
+      description: "Simple tools for a secure business. Paychain makes it simple to accept secure payments while providing inflation protection, global bulk payouts, and automated business tools.",
+      techStack: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      image: "/eccomerce.png",
+      liveUrl: "https://www.paychain.co.ke/",
+      githubUrl: null
+    },
+    {
+      title: "WSHG",
+      status: "Live",
+      category: "Sustainability",
+      description: "An interdisciplinary group combating climate change through climate-smart agriculture. We design systems—from manual irrigation to agroforestry—bridging the gap between vulnerability and resilience.",
+      techStack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+      image: "/mobile dev.png",
+      liveUrl: "https://wshg.co.ke/",
+      githubUrl: null
+    },
+    {
       title: "Tattoo Nation Kenya",
       status: "Live",
       category: "Art & Design",
@@ -58,9 +108,9 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
       status: "Live",
       category: "E-Commerce",
       description: "Premium e-commerce platform for luxury leather goods with secure payments and elegant product showcase.",
-      techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      techStack: ["React", "Tailwind CSS"],
       image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
-      liveUrl: "https://brandon05-dev.github.io/BMI-Leather-Art-Design/",
+      liveUrl: "https://bmileatherart.vercel.app/",
       githubUrl: "https://github.com/brandon05-dev/BMI-Leather-Art-Design"
     },
     {
@@ -95,8 +145,8 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
     },
   ];
 
-  // Only show first 3 projects
-  const displayedProjects = projects.slice(0, 3);
+  // Only show first 6 projects
+  const displayedProjects = projects.slice(0, 6);
 
   const containerVariants = {
     hidden: {},
@@ -110,22 +160,24 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95
+      y: 40,
+      scale: 0.98,
+      filter: "blur(8px)"
     },
     show: {
       opacity: 1,
       y: 0,
       scale: 1,
+      filter: "blur(0px)",
       transition: { 
-        duration: 0.6, 
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1]
       },
     },
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-background">
+    <section id="portfolio" className="py-20 bg-slate-50 dark:bg-slate-900/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -142,7 +194,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
 
         {/* Projects grid */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -154,7 +206,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
               variants={cardVariants}
             >
               <Card 
-                className="group hover:shadow-elegant transition-all duration-500 bg-card border-border hover:border-primary/20 overflow-hidden h-full hover:-translate-y-2 hover:scale-[1.02]"
+                className="group hover:shadow-elegant transition-all duration-500 bg-white border border-slate-200 shadow-sm ring-1 ring-slate-900/5 hover:border-primary/20 overflow-hidden h-full hover:-translate-y-1 rounded-lg w-full max-w-[340px] flex flex-col"
               >
               {/* Project image */}
               <div className="aspect-video overflow-hidden bg-muted relative">
@@ -177,7 +229,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
               <CardHeader>
                 <div className="flex justify-between items-start mb-2">
                   <div>
-                    <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                    <CardTitle className="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </CardTitle>
                   </div>
@@ -185,20 +237,10 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
               </CardHeader>
 
               <CardContent>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-sm text-slate-500 mb-4 leading-relaxed flex-grow">
                   {project.description}
                 </p>
 
-                <div className="mb-4">
-                  <span className="font-semibold text-foreground text-sm mb-2 block">Tech Stack:</span>
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
 
                 <div className="mt-4 flex justify-center">
                   {project.liveUrl ? (
@@ -206,7 +248,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                       variant="default" 
                       size="sm"
                       onClick={() => window.open(project.liveUrl, '_blank')}
-                      className="w-auto px-6"
+                      className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
                     >
                       Visit Site
                       <ExternalLink className="w-4 h-4 ml-2" />
@@ -216,7 +258,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                       variant="outline" 
                       size="sm"
                       onClick={() => window.open(project.githubUrl, '_blank')}
-                      className="w-auto px-6"
+                      className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
                     >
                       GitHub
                       <Github className="w-4 h-4 ml-2" />
@@ -230,12 +272,19 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
         </motion.div>
 
         {/* Show More Button */}
-        <div className="text-center">
+        <div className="text-center max-w-2xl mx-auto mt-12 bg-slate-50 p-8 rounded-2xl border border-slate-100">
+          <h3 className="text-xl font-bold text-slate-800 mb-3">Looking for more?</h3>
+          <p className="text-slate-600 mb-6">
+            Explore our complete portfolio to see how we've helped diverse businesses scale, innovate, and achieve their digital transformation goals.
+          </p>
           <Button 
-            variant="outline" 
+            variant="default" 
             size="lg"
-            onClick={() => navigate('/projects')}
-            className="px-8 py-3"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate('/projects');
+            }}
+            className="px-8 py-3 font-medium bg-primary hover:bg-primary/90 text-white rounded-lg shadow-sm"
           >
             View All Projects
             <ArrowRight className="w-4 h-4 ml-2" />

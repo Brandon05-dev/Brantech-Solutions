@@ -91,10 +91,10 @@ This message was sent from the Brantech Solutions contact form.
           {/* Contact form */}
           <div className="lg:col-span-2">
             <Card className="bg-card/50 backdrop-blur-xl border-border/50 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-primary/5 pointer-events-none"></div>
               <CardHeader className="relative">
                 <CardTitle className="text-3xl font-bold text-foreground flex items-center gap-3 mb-2">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   Get in Touch
@@ -117,7 +117,7 @@ This message was sent from the Brantech Solutions contact form.
                           required
                           className="border-border/60 focus:border-primary bg-background/80 backdrop-blur-sm rounded-xl py-3 px-4 text-base transition-all duration-300 focus:shadow-lg focus:shadow-primary/20 group-hover:border-primary/50"
                         />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        <div className="absolute inset-0 rounded-xl bg-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                       </div>
                     </div>
                     <div className="space-y-3 group">
@@ -132,7 +132,7 @@ This message was sent from the Brantech Solutions contact form.
                           required
                           className="border-border/60 focus:border-primary bg-background/80 backdrop-blur-sm rounded-xl py-3 px-4 text-base transition-all duration-300 focus:shadow-lg focus:shadow-primary/20 group-hover:border-primary/50"
                         />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        <div className="absolute inset-0 rounded-xl bg-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                       </div>
                     </div>
                   </div>
@@ -147,7 +147,7 @@ This message was sent from the Brantech Solutions contact form.
                         placeholder="What is this regarding? (e.g., Web Development, Mobile App, etc.)"
                         className="border-border/60 focus:border-primary bg-background/80 backdrop-blur-sm rounded-xl py-3 px-4 text-base transition-all duration-300 focus:shadow-lg focus:shadow-primary/20 group-hover:border-primary/50"
                       />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-xl bg-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                     </div>
                   </div>
 
@@ -163,17 +163,17 @@ This message was sent from the Brantech Solutions contact form.
                         required
                         className="border-border/60 focus:border-primary bg-background/80 backdrop-blur-sm rounded-xl py-4 px-4 text-base resize-none transition-all duration-300 focus:shadow-lg focus:shadow-primary/20 group-hover:border-primary/50"
                       />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      <div className="absolute inset-0 rounded-xl bg-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                     </div>
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 border-0 group relative overflow-hidden"
+                    className="w-full bg-primary hover:hover:text-white font-semibold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 border-0 group relative overflow-hidden"
                     size="lg"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out"></div>
+                    <div className="absolute inset-0 bg-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out"></div>
                     <div className="relative flex items-center justify-center">
                       {isSubmitting ? (
                         <>
@@ -237,7 +237,7 @@ This message was sent from the Brantech Solutions contact form.
             </Card>
 
             {/* Response time */}
-            <Card className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground border-0 shadow-2xl">
+            <Card className="bg-primary text-primary-foreground border-0 shadow-2xl">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <MessageCircle className="w-8 h-8 text-white" />

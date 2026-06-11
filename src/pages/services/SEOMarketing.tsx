@@ -65,7 +65,7 @@ const SEOMarketing = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-pink-500/10 via-background to-background">
+      <section className="pt-32 pb-20 bg-pink-500/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 text-base px-6 py-2 bg-pink-500/10 text-pink-700 dark:text-pink-300">
@@ -200,7 +200,7 @@ const SEOMarketing = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Card className="border-2 border-pink-500/20 overflow-hidden">
-              <div className="bg-gradient-to-r from-pink-500/10 to-transparent p-8 md:p-12">
+              <div className="bg-pink-500/10 p-8 md:p-12">
                 <h2 className="text-3xl font-bold text-foreground mb-6">
                   Our Marketing Process
                 </h2>
@@ -230,7 +230,7 @@ const SEOMarketing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-pink-500/10 via-background to-background">
+      <section className="py-20 bg-pink-500/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="max-w-4xl mx-auto border-2 border-pink-500/20">
             <CardContent className="p-12 text-center">

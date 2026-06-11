@@ -12,6 +12,56 @@ export function Projects() {
   };
   const projects = [
     {
+      title: "GSDA Summit",
+      status: "Live",
+      category: "Event & Conference",
+      description: "Official digital platform for the Grand Salon de la Data en Afrique. Features a comprehensive event portal with an integrated ticketing system, dynamic scheduling, and interactive speaker profiles.",
+      techStack: ["React", "Next.js", "Tailwind CSS"],
+      image: "/web 2.png",
+      liveUrl: "https://www.gsdasummit.org/",
+      githubUrl: null
+    },
+    {
+      title: "Zambia Investment Summit",
+      status: "Live",
+      category: "Event & Conference",
+      description: "Premium event portal hosting high-level initiatives like the Zambia Trade & Investment Mission and Digital Currency Forum, connecting global capital with local opportunities.",
+      techStack: ["React", "Next.js", "Tailwind CSS"],
+      image: "/Web1.png",
+      liveUrl: "https://zambiainvestmentsummit.vercel.app/",
+      githubUrl: null
+    },
+    {
+      title: "Global Policy House",
+      status: "Live",
+      category: "Corporate",
+      description: "Digital presence for the Global Policy House, highlighting their international advisory services and sustainable development initiatives.",
+      techStack: ["React", "TypeScript", "Tailwind CSS"],
+      image: "/seo.png",
+      liveUrl: "https://globalpolicyhouse-ten.vercel.app/",
+      githubUrl: null
+    },
+    {
+      title: "Paychain Kenya",
+      status: "Live",
+      category: "FinTech",
+      description: "Simple tools for a secure business. Paychain makes it simple to accept secure payments while providing inflation protection, global bulk payouts, and automated business tools.",
+      techStack: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      image: "/eccomerce.png",
+      liveUrl: "https://www.paychain.co.ke/",
+      githubUrl: null
+    },
+    {
+      title: "WSHG",
+      status: "Live",
+      category: "Sustainability",
+      description: "An interdisciplinary group combating climate change through climate-smart agriculture. We design systems—from manual irrigation to agroforestry—bridging the gap between vulnerability and resilience.",
+      techStack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+      image: "/mobile dev.png",
+      liveUrl: "https://wshg.co.ke/",
+      githubUrl: null
+    },
+    {
       title: "Tattoo Nation Kenya",
       status: "Live",
       category: "Art & Design",
@@ -56,9 +106,9 @@ export function Projects() {
       status: "Live",
       category: "E-Commerce",
       description: "Premium e-commerce platform for luxury leather goods with secure payments and elegant product showcase.",
-      techStack: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      techStack: ["React", "Tailwind CSS"],
       image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
-      liveUrl: "https://brandon05-dev.github.io/BMI-Leather-Art-Design/",
+      liveUrl: "https://bmileatherart.vercel.app/",
       githubUrl: "https://github.com/brandon05-dev/BMI-Leather-Art-Design"
     },
     {
@@ -186,16 +236,6 @@ export function Projects() {
                     {project.description}
                   </p>
 
-                  <div className="mb-4">
-                    <span className="font-semibold text-foreground text-sm mb-2 block">Tech Stack:</span>
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
 
                   <div className="mt-4 flex justify-center">
                     {project.liveUrl ? (

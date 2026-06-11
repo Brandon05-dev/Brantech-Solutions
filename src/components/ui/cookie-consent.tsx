@@ -93,7 +93,7 @@ export function CookieConsent() {
     <>
       {/* Cookie Banner */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-500">
-        <div className="w-full max-w-4xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-700">
+        <div className="w-full max-w-4xl animate-in zoom-in-95 slide-in-duration-700">
           <div className="relative bg-white backdrop-blur-2xl border border-primary/20 rounded-2xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden">
             
             {/* Subtle grid pattern */}
@@ -146,12 +146,12 @@ export function CookieConsent() {
                     <Button
                       onClick={acceptAll}
                       size="lg"
-                      className="relative overflow-hidden bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:via-primary/90 hover:to-primary/85 text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 border border-primary/20 group"
+                      className="relative overflow-hidden bg-primary hover:hover:hover:text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 border border-primary/20 group"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         Accept All Cookies
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                      <div className="absolute inset-0 bg-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                     </Button>
                     <Button
                       onClick={acceptNecessary}
@@ -198,7 +198,7 @@ export function CookieConsent() {
             </div>
 
             {/* Bottom accent line */}
-            <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+            <div className="h-1 w-full bg-transparent"></div>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@ export function CookieConsent() {
 
       {/* Settings Dialog */}
       <Dialog open={showSettings} onOpenChange={setShowSettings}>
-        <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-background via-card to-background border-primary/20">
+        <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-background border-primary/20">
             <DialogHeader className="space-y-3 pb-2">
             <DialogTitle className="text-2xl sm:text-3xl font-bold text-foreground">
               Cookie Preferences Center
@@ -223,8 +223,8 @@ export function CookieConsent() {
 
           <div className="space-y-4 py-6">
             {/* Necessary Cookies */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 p-5 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="group relative overflow-hidden rounded-xl bg-primary/10 border-2 border-primary/30 p-5 transition-all duration-300">
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-start justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <div className="flex items-center gap-2">
@@ -251,7 +251,7 @@ export function CookieConsent() {
 
             {/* Analytics Cookies */}
             <div className="group relative overflow-hidden rounded-xl bg-card hover:bg-secondary/30 border-2 border-border/50 hover:border-primary/30 p-5 transition-all duration-300 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-start justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="analytics" className="text-base sm:text-lg font-bold text-foreground cursor-pointer flex items-center gap-2">
@@ -274,7 +274,7 @@ export function CookieConsent() {
 
             {/* Marketing Cookies */}
             <div className="group relative overflow-hidden rounded-xl bg-card hover:bg-secondary/30 border-2 border-border/50 hover:border-primary/30 p-5 transition-all duration-300 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-start justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="marketing" className="text-base sm:text-lg font-bold text-foreground cursor-pointer">
@@ -296,7 +296,7 @@ export function CookieConsent() {
 
             {/* Preference Cookies */}
             <div className="group relative overflow-hidden rounded-xl bg-card hover:bg-secondary/30 border-2 border-border/50 hover:border-primary/30 p-5 transition-all duration-300 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-start justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="preferences" className="text-base sm:text-lg font-bold text-foreground cursor-pointer">
@@ -321,10 +321,10 @@ export function CookieConsent() {
             <Button
               onClick={savePreferences}
               size="lg"
-              className="flex-1 relative overflow-hidden bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:via-primary/90 hover:to-primary/85 font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group"
+              className="flex-1 relative overflow-hidden bg-primary hover:hover:hover:font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group"
             >
               <span className="relative z-10">Save My Preferences</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Button>
             <Button
               onClick={acceptAll}

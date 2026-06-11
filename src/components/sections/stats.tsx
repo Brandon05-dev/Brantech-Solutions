@@ -62,53 +62,37 @@ export function Stats({ onContactClick }: StatsProps) {
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-12">
           {stats.map((stat, index) => {
             // Define color schemes for each stat
-            const colorSchemes = {
-              blue: {
-                icon: "text-blue-600",
-                number: "text-blue-600"
-              },
-              green: {
-                icon: "text-green-600",
-                number: "text-green-600"
-              },
-              purple: {
-                icon: "text-purple-600",
-                number: "text-purple-600"
-              },
-              orange: {
-                icon: "text-orange-600",
-                number: "text-orange-600"
-              }
+            const colors = {
+              icon: "text-primary",
+              number: "text-primary"
             };
-            
-            const colors = colorSchemes[stat.color];
             
             return (
               <div 
                 key={stat.label}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
+                className="group relative bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm hover:shadow-elegant transition-all duration-500 border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Icon */}
-                <div className="w-16 h-16 bg-transparent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-500">
-                  <stat.icon className={`w-8 h-8 ${colors.icon} transition-colors duration-500`} />
+                <div className="w-8 h-8 bg-primary/5 rounded-md flex items-center justify-center mb-3 transition-all duration-500">
+                  <stat.icon className={`w-4 h-4 ${colors.icon} transition-colors duration-500`} />
                 </div>
                 
                 {/* Number */}
-                <div className={`text-4xl font-bold ${colors.number} mb-3 group-hover:scale-105 transition-transform duration-300`}>
+                <div className={`text-xl font-bold ${colors.number} mb-1 group-hover:scale-105 transition-transform duration-300`}>
                   {stat.number}
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                   {stat.label}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                   {stat.description}
                 </p>
               </div>
@@ -123,8 +107,8 @@ export function Stats({ onContactClick }: StatsProps) {
           </h3>
           <div className="relative overflow-hidden">
             {/* Gradient overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-32 dark:z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 dark:z-10"></div>
             
             {/* Scrolling container */}
             <div className="flex animate-scroll">
@@ -285,7 +269,7 @@ export function Stats({ onContactClick }: StatsProps) {
           <Button 
             onClick={onContactClick}
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-md font-semibold transition-all duration-300 hover:shadow-md hover:-translate-y-1"
           >
             Start Your Project
             <ArrowRight className="ml-2 w-5 h-5" />
