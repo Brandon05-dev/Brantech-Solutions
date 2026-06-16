@@ -113,12 +113,12 @@ export function Stats({ onContactClick }: StatsProps) {
           <div className="px-4 md:px-8">
             <div className="flex flex-wrap justify-center gap-10 md:gap-16 items-center max-w-7xl mx-auto">
               {[
-                "/company1.png", "/company2.png", "/company3.png", 
-                "/company4.png", "/company5.png", "/company%207.png", 
-                "/company%208.png", "/company%209.png", "/company%2010.png", "/company%2011.png",
                 "/Logos/fyaluchi%20consts.png", "/Logos/gloria%20limited.png", "/Logos/gloria%20research.png", 
                 "/Logos/gsda.png", "/Logos/paychain.png", "/Logos/wshg.png", 
-                "/Logos/zambia.png"
+                "/Logos/zambia.png",
+                "/company1.png", "/company2.png", "/company3.png", 
+                "/company4.png", "/company5.png", "/company6.png", "/company%207.png", 
+                "/company%208.png", "/company%209.png", "/company%2011.png"
               ].map((src, i) => (
                 <div 
                   key={`logo-${i}`} 
