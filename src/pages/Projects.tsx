@@ -17,7 +17,7 @@ export function Projects() {
       category: "Event & Conference",
       description: "Official digital platform for the Grand Salon de la Data en Afrique. Features a comprehensive event portal with an integrated ticketing system, dynamic scheduling, and interactive speaker profiles.",
       techStack: ["React", "Next.js", "Tailwind CSS"],
-      image: "/web 2.png",
+      image: "/Portfolio/Gdsa.png",
       liveUrl: "https://www.gsdasummit.org/",
       githubUrl: null
     },
@@ -27,7 +27,7 @@ export function Projects() {
       category: "Event & Conference",
       description: "Premium event portal hosting high-level initiatives like the Zambia Trade & Investment Mission and Digital Currency Forum, connecting global capital with local opportunities.",
       techStack: ["React", "Next.js", "Tailwind CSS"],
-      image: "/Web1.png",
+      image: "/Portfolio/Zambia.png",
       liveUrl: "https://zambiainvestmentsummit.vercel.app/",
       githubUrl: null
     },
@@ -37,7 +37,7 @@ export function Projects() {
       category: "Corporate",
       description: "Digital presence for the Global Policy House, highlighting their international advisory services and sustainable development initiatives.",
       techStack: ["React", "TypeScript", "Tailwind CSS"],
-      image: "/seo.png",
+      image: "/Portfolio/Gph.png",
       liveUrl: "https://globalpolicyhouse-ten.vercel.app/",
       githubUrl: null
     },
@@ -47,7 +47,7 @@ export function Projects() {
       category: "FinTech",
       description: "Simple tools for a secure business. Paychain makes it simple to accept secure payments while providing inflation protection, global bulk payouts, and automated business tools.",
       techStack: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
-      image: "/eccomerce.png",
+      image: "/Portfolio/Paychain.png",
       liveUrl: "https://www.paychain.co.ke/",
       githubUrl: null
     },
@@ -57,7 +57,7 @@ export function Projects() {
       category: "Sustainability",
       description: "An interdisciplinary group combating climate change through climate-smart agriculture. We design systems—from manual irrigation to agroforestry—bridging the gap between vulnerability and resilience.",
       techStack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
-      image: "/mobile dev.png",
+      image: "/Portfolio/Wshg.png",
       liveUrl: "https://wshg.co.ke/",
       githubUrl: null
     },
@@ -107,7 +107,7 @@ export function Projects() {
       category: "E-Commerce",
       description: "Premium e-commerce platform for luxury leather goods with secure payments and elegant product showcase.",
       techStack: ["React", "Tailwind CSS"],
-      image: "https://brandon-omutiti.vercel.app/Images/BMI%20Project.png",
+      image: "/Portfolio/Bmi.png",
       liveUrl: "https://bmileatherart.vercel.app/",
       githubUrl: "https://github.com/brandon05-dev/BMI-Leather-Art-Design"
     },
