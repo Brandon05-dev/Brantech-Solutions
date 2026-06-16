@@ -110,32 +110,25 @@ export function Stats({ onContactClick }: StatsProps) {
             <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-border"></div>
           </div>
           
-          <div className="relative overflow-hidden group">
-            {/* Elegant Gradient overlays for smooth fading edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-            
-            {/* Scrolling container */}
-            <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused]">
-              {/* Render sets of logos for seamless loop */}
-              {[...Array(2)].map((_, setIndex) => (
-                <div key={`set-${setIndex}`} className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
-                  {[
-                    "/Logos/fyaluchi%20consts.png", "/Logos/gloria%20limited.png", "/Logos/gloria%20research.png", 
-                    "/Logos/gsda.png", "/Logos/paychain.png", "/Logos/wshg.png", 
-                    "/Logos/zambia.png"
-                  ].map((src, i) => (
-                    <div 
-                      key={`logo-${setIndex}-${i}`} 
-                      className="flex-shrink-0 w-28 h-14 md:w-40 md:h-20 flex items-center justify-center transition-all duration-700 ease-out hover:scale-110 cursor-pointer"
-                    >
-                      <img 
-                        src={src}
-                        alt={`Partner Company ${i + 1}`}
-                        className="max-w-full max-h-full object-contain transition-all duration-700 ease-out drop-shadow-sm hover:drop-shadow-md"
-                      />
-                    </div>
-                  ))}
+          <div className="px-4 md:px-8">
+            <div className="flex flex-wrap justify-center gap-10 md:gap-16 items-center max-w-7xl mx-auto">
+              {[
+                "/company1.png", "/company2.png", "/company3.png", 
+                "/company4.png", "/company5.png", "/company%207.png", 
+                "/company%208.png", "/company%209.png", "/company%2010.png", "/company%2011.png",
+                "/Logos/fyaluchi%20consts.png", "/Logos/gloria%20limited.png", "/Logos/gloria%20research.png", 
+                "/Logos/gsda.png", "/Logos/paychain.png", "/Logos/wshg.png", 
+                "/Logos/zambia.png"
+              ].map((src, i) => (
+                <div 
+                  key={`logo-${i}`} 
+                  className="w-32 h-20 md:w-48 md:h-28 flex items-center justify-center transition-transform duration-500 hover:scale-110 cursor-pointer bg-white dark:bg-gray-800/50 rounded-xl p-4 md:p-6 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-elegant hover:border-primary/20 group"
+                >
+                  <img 
+                    src={src}
+                    alt={`Partner Company ${i + 1}`}
+                    className="max-w-full max-h-full object-contain transition-all duration-500 group-hover:drop-shadow-md"
+                  />
                 </div>
               ))}
             </div>
