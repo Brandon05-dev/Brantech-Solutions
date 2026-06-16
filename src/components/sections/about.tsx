@@ -319,23 +319,23 @@ export function About({ onContactClick }: AboutProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {values.map((value, index) => (
               <Card 
                 key={value.title}
-                className="group hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 animate-fade-in"
+                className="group hover:shadow-elegant transition-all duration-300 bg-card border-border hover:border-primary/20 animate-fade-in flex flex-col h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-6 text-center">
-                  <div className="mb-6 flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300">
-                    <div className="w-16 h-16 text-primary group-hover:text-primary/80 transition-colors duration-300">
+                <CardContent className="p-4 sm:p-6 text-center flex-1 flex flex-col items-center justify-start">
+                  <div className="mb-3 sm:mb-6 flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300">
+                    <div className="w-10 h-10 sm:w-16 sm:h-16 text-primary group-hover:text-primary/80 transition-colors duration-300">
                       {value.svg}
                     </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h4 className="text-sm sm:text-lg font-semibold text-foreground mb-1.5 sm:mb-3 group-hover:text-primary transition-colors duration-300">
                     {value.title}
                   </h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                     {value.description}
                   </p>
                 </CardContent>
