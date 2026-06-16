@@ -53,7 +53,7 @@ export function CustomerSupport() {
     }
     
     if (message.includes('contact') || message.includes('talk') || message.includes('human')) {
-      return "I'd be happy to connect you with our team! 📞\n\n💬 WhatsApp: +254 790 889 066\n📧 Email: hello@brantech.solutions\n\nYou can also use the contact form on our website. Is there anything specific you'd like to discuss with them?";
+      return "I'd be happy to connect you with our team! 📞\n\n💬 WhatsApp: +254 790 889 066\n📧 Email: brandonomutiti@gmail.com\n\nYou can also use the contact form on our website. Is there anything specific you'd like to discuss with them?";
     }
     
     if (message.includes('portfolio') || message.includes('work') || message.includes('examples')) {
@@ -69,7 +69,7 @@ export function CustomerSupport() {
     }
     
     // Default response
-    return "That's a great question! 🤔 I'd recommend speaking with our team for detailed information. You can:\n\n💬 Chat with us on WhatsApp: +254 790 889 066\n📧 Email us: hello@brantech.solutions\n📝 Fill out our contact form\n\nIs there anything else I can help you with?";
+    return "That's a great question! 🤔 I'd recommend speaking with our team for detailed information. You can:\n\n💬 Chat with us on WhatsApp: +254 790 889 066\n📧 Email us: brandonomutiti@gmail.com\n📝 Fill out our contact form\n\nIs there anything else I can help you with?";
   };
 
   const handleSendMessage = async () => {

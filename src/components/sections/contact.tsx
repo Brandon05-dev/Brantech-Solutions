@@ -207,7 +207,7 @@ This message was sent from the Brantech Solutions contact form.
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-muted-foreground">hello@brantech.solutions</p>
+                    <p className="text-muted-foreground">brandonomutiti@gmail.com</p>
                   </div>
                 </div>
 

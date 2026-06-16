@@ -178,12 +178,12 @@ const BOT_RESPONSES = {
     ki: "Nĩ tũrutaga wĩra na ihenya:\n\n• **Websites:** Kiumia 2 nginya 4\n• **E-commerce:** Kiumia 4 nginya 8\n• **Application nene:** Kiumia 8 gũthiĩ na mbere."
   },
   contact: {
-    en: "Our engineering and strategy teams are readily available to discuss your technical requirements. You can establish contact via:\n\n• **Direct Email:** info@brantech.co.ke\n• **Priority WhatsApp/Call:** +254 790 889066\n• **Physical Office:** Nairobi, Kenya (Global Remote Operations available)\n\nAlternatively, utilize the 'Contact Us' form on this platform to securely transmit your project brief.",
-    fr: "Nos équipes d'ingénierie sont disponibles. Contactez-nous par e-mail : info@brantech.co.ke, WhatsApp : +254 790 889066, ou utilisez le formulaire 'Contactez-nous'.",
-    es: "Nuestros equipos de ingeniería están disponibles. Contáctenos por correo electrónico: info@brantech.co.ke, WhatsApp: +254 790 889066, o utilice el formulario de 'Contacto'.",
-    sw: "Timu yetu ya uhandisi inapatikana. Wasiliana nasi kupitia barua pepe: info@brantech.co.ke, WhatsApp/Simu: +254 790 889066, au tumia fomu ya 'Wasiliana Nasi'.",
-    sg: "Kutushika ni easy:\n\n• **Email:** info@brantech.co.ke\n• **WhatsApp/Call:** +254 790 889066\n• Ama utumie form ya 'Contact Us' hapa kwa site.",
-    ki: "Kũtũgĩa nĩ hũthũ:\n\n• **Barũa-pepe:** info@brantech.co.ke\n• **WhatsApp/Thimũ:** +254 790 889066\n• Kana ũhũthĩre fomu ya 'Contact Us' gĩtaratara-inĩ gĩkĩ."
+    en: "Our engineering and strategy teams are readily available to discuss your technical requirements. You can establish contact via:\n\n• **Direct Email:** brandonomutiti@gmail.com\n• **Priority WhatsApp/Call:** +254 790 889066\n• **Physical Office:** Nairobi, Kenya (Global Remote Operations available)\n\nAlternatively, utilize the 'Contact Us' form on this platform to securely transmit your project brief.",
+    fr: "Nos équipes d'ingénierie sont disponibles. Contactez-nous par e-mail : brandonomutiti@gmail.com, WhatsApp : +254 790 889066, ou utilisez le formulaire 'Contactez-nous'.",
+    es: "Nuestros equipos de ingeniería están disponibles. Contáctenos por correo electrónico: brandonomutiti@gmail.com, WhatsApp: +254 790 889066, o utilice el formulario de 'Contacto'.",
+    sw: "Timu yetu ya uhandisi inapatikana. Wasiliana nasi kupitia barua pepe: brandonomutiti@gmail.com, WhatsApp/Simu: +254 790 889066, au tumia fomu ya 'Wasiliana Nasi'.",
+    sg: "Kutushika ni easy:\n\n• **Email:** brandonomutiti@gmail.com\n• **WhatsApp/Call:** +254 790 889066\n• Ama utumie form ya 'Contact Us' hapa kwa site.",
+    ki: "Kũtũgĩa nĩ hũthũ:\n\n• **Barũa-pepe:** brandonomutiti@gmail.com\n• **WhatsApp/Thimũ:** +254 790 889066\n• Kana ũhũthĩre fomu ya 'Contact Us' gĩtaratara-inĩ gĩkĩ."
   },
   portfolio: {
     en: "We have engineered transformative solutions for a diverse global clientele. Notable deployments include:\n\n• **Global Sustainable Development Africa (GSDA) Summit:** A massive, high-concurrency event portal featuring complex ticketing systems, speaker profile management, and global resource networking.\n• **Paychain Kenya:** A highly secure, low-latency financial technology platform built to process digital payments, mitigate inflation risks, and handle global bulk payouts.\n• **Water, Sanitation, and Health Group (WSHG):** A corporate agroforestry platform showcasing complex climate-smart agriculture methodologies with dynamic galleries.\n\nPlease visit our 'Projects' dashboard to review the complete technical case studies and architectural overviews.",
@@ -330,7 +330,7 @@ export function Chatbot() {
     return text.split('\n').map((line, i) => {
       const formattedLine = line.split(/(\*\*.*?\*\*)/).map((part, j) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={j} className="font-semibold text-slate-900">{part.slice(2, -2)}</strong>;
+          return <strong key={j} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
         }
         return part;
       });
@@ -352,7 +352,7 @@ export function Chatbot() {
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           <Button
             onClick={() => setIsOpen(true)}
-            className="h-10 sm:h-12 py-1 px-1 pr-3 sm:pr-4 rounded-full bg-blue-600 hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-blue-500/50 flex items-center gap-2"
+            className="h-10 sm:h-12 py-1 px-1 pr-3 sm:pr-4 rounded-full bg-slate-900 hover:bg-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-slate-700/50 flex items-center gap-2"
           >
             <div className="bg-white/20 p-1.5 sm:p-2 rounded-full border border-white/10 shadow-inner flex items-center justify-center">
               <UserRound className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -367,21 +367,21 @@ export function Chatbot() {
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           <Card 
             className={cn(
-              "bg-white border border-slate-200 shadow-2xl transition-all duration-500 overflow-hidden flex flex-col",
+              "bg-slate-950 border border-slate-800 shadow-2xl transition-all duration-500 overflow-hidden flex flex-col",
               isMinimized 
                 ? "w-[calc(100vw-2rem)] sm:w-[340px] h-16 rounded-2xl" 
                 : "w-[calc(100vw-2rem)] sm:w-[400px] h-[600px] max-h-[80vh] sm:h-[680px] sm:max-h-[85vh] rounded-2xl animate-in slide-in-fade-in-0"
             )}
           >
             {/* Header */}
-            <div className="bg-slate-50 border-b border-slate-100 p-4">
+            <div className="bg-slate-900 border-b border-slate-800 p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+                  <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-700">
                     <UserRound className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900 text-sm">{ui.title}</h3>
+                    <h3 className="font-semibold text-white text-sm">{ui.title}</h3>
                     <div className="flex items-center gap-1.5 text-xs text-slate-500">
                       <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.3)]"></div>
                       <span>{ui.status}</span>
@@ -393,7 +393,7 @@ export function Chatbot() {
                     <select 
                       value={language}
                       onChange={(e) => setLanguage(e.target.value as Language)}
-                      className="appearance-none bg-transparent hover:bg-white text-slate-500 text-xs font-medium py-1.5 pl-7 pr-4 rounded-md cursor-pointer outline-none transition-colors border border-transparent hover:border-slate-200 shadow-sm"
+                      className="appearance-none bg-transparent hover:bg-slate-800 text-slate-300 text-xs font-medium py-1.5 pl-7 pr-4 rounded-md cursor-pointer outline-none transition-colors border border-transparent hover:border-slate-700 shadow-sm"
                     >
                       <option value="en">EN</option>
                       <option value="sg">Sheng</option>
@@ -408,7 +408,7 @@ export function Chatbot() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsMinimized(!isMinimized)}
-                    className="h-8 w-8 p-0 text-slate-400 hover:text-slate-600 hover:bg-white rounded-md shadow-sm"
+                    className="h-8 w-8 p-0 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md shadow-sm"
                   >
                     {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
                   </Button>
@@ -416,7 +416,7 @@ export function Chatbot() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="h-8 w-8 p-0 text-slate-400 hover:text-slate-600 hover:bg-white rounded-md shadow-sm"
+                    className="h-8 w-8 p-0 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md shadow-sm"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -427,7 +427,7 @@ export function Chatbot() {
             {!isMinimized && (
               <>
                 {/* Messages Area */}
-                <div className="flex-1 overflow-hidden bg-slate-50/50">
+                <div className="flex-1 overflow-hidden bg-slate-950">
                   <ScrollArea className="h-full p-5">
                     <div className="space-y-6">
                       {messages.map((message) => (
@@ -439,8 +439,8 @@ export function Chatbot() {
                           )}
                         >
                           {message.sender === "bot" && (
-                            <div className="w-7 h-7 bg-white rounded-md flex items-center justify-center flex-shrink-0 border border-slate-200 mt-1 shadow-sm">
-                              <UserRound className="w-3.5 h-3.5 text-blue-600" />
+                            <div className="w-7 h-7 bg-slate-900 rounded-md flex items-center justify-center flex-shrink-0 border border-slate-800 mt-1 shadow-sm">
+                              <UserRound className="w-3.5 h-3.5 text-white" />
                             </div>
                           )}
                           
@@ -448,8 +448,8 @@ export function Chatbot() {
                             className={cn(
                               "text-[14px] leading-relaxed",
                               message.sender === "user"
-                                ? "max-w-[80%] bg-blue-600 text-white px-4 py-2.5 rounded-2xl rounded-tr-sm shadow-sm"
-                                : "max-w-[90%] text-slate-700 pt-1"
+                                ? "max-w-[80%] bg-slate-800 text-white px-4 py-2.5 rounded-2xl rounded-tr-sm shadow-sm border border-slate-700"
+                                : "max-w-[90%] text-slate-300 pt-1"
                             )}
                           >
                             {message.sender === "bot" ? (
@@ -468,8 +468,8 @@ export function Chatbot() {
                       
                       {isTyping && (
                         <div className="flex gap-3 justify-start">
-                          <div className="w-7 h-7 bg-white rounded-md flex items-center justify-center flex-shrink-0 border border-slate-200 mt-1 shadow-sm">
-                            <UserRound className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+                          <div className="w-7 h-7 bg-slate-900 rounded-md flex items-center justify-center flex-shrink-0 border border-slate-800 mt-1 shadow-sm">
+                            <UserRound className="w-3.5 h-3.5 text-white animate-pulse" />
                           </div>
                         </div>
                       )}
@@ -479,7 +479,7 @@ export function Chatbot() {
                 </div>
 
                 {/* Input Area */}
-                <div className="p-4 bg-white border-t border-slate-100">
+                <div className="p-4 bg-slate-900 border-t border-slate-800">
                   {/* Suggestion Chips */}
                   {messages.length === 1 && (
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -487,7 +487,7 @@ export function Chatbot() {
                         <button
                           key={i}
                           onClick={() => handleSendMessage(prompt)}
-                          className="text-xs font-medium text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:border-slate-300 px-3 py-1.5 rounded-full transition-colors text-left"
+                          className="text-xs font-medium text-slate-300 bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-600 px-3 py-1.5 rounded-full transition-colors text-left"
                         >
                           {prompt}
                         </button>
@@ -501,20 +501,20 @@ export function Chatbot() {
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder={ui.placeholder}
-                      className="flex-1 bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus-visible:ring-1 focus-visible:ring-blue-500 rounded-xl h-12 pl-4 pr-12 shadow-sm"
+                      className="flex-1 bg-slate-950 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-1 focus-visible:ring-slate-600 rounded-xl h-12 pl-4 pr-12 shadow-sm"
                       disabled={isTyping || messages[messages.length - 1]?.isStreaming}
                     />
                     <Button
                       onClick={() => handleSendMessage()}
                       disabled={!inputValue.trim() || isTyping || messages[messages.length - 1]?.isStreaming}
-                      className="absolute right-1.5 h-9 w-9 p-0 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all disabled:opacity-50"
+                      className="absolute right-1.5 h-9 w-9 p-0 rounded-lg bg-white hover:bg-slate-200 text-slate-900 shadow-sm transition-all disabled:opacity-50"
                       size="sm"
                     >
                       <Send className="w-4 h-4 ml-0.5" />
                     </Button>
                   </div>
                   <div className="text-center mt-3">
-                    <span className="text-[10px] text-slate-400 font-medium tracking-wide uppercase">{ui.assistantFooter}</span>
+                    <span className="text-[10px] text-slate-500 font-medium tracking-wide uppercase">{ui.assistantFooter}</span>
                   </div>
                 </div>
               </>

@@ -194,15 +194,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
 
         {/* Mobile Loop (Hidden on md+) */}
         <div className="md:hidden overflow-hidden w-full relative mb-12">
-          <motion.div
-            className="flex gap-6 w-max cursor-grab active:cursor-grabbing"
-            animate={{ x: ["0%", "calc(-50% - 0.75rem)"] }}
-            transition={{
-              duration: 25,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
+          <div className="flex gap-6 w-max cursor-grab active:cursor-grabbing animate-scroll-portfolio hover:[animation-play-state:paused]">
             {[...displayedProjects, ...displayedProjects].map((project, index) => (
               <div
                 key={`${project.title}-${index}`}
@@ -271,7 +263,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                 </Card>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Desktop Grid (Hidden on mobile) */}
