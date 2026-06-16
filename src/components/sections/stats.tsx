@@ -121,9 +121,9 @@ export function Stats({ onContactClick }: StatsProps) {
               {[...Array(2)].map((_, setIndex) => (
                 <div key={`set-${setIndex}`} className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
                   {[
-                    "/company1.png", "/company2.png", "/company3.png", 
-                    "/company4.png", "/company5.png", "/company%207.png", 
-                    "/company%208.png", "/company%209.png", "/company%2010.png", "/company%2011.png"
+                    "/Logos/fyaluchi%20consts.png", "/Logos/gloria%20limited.png", "/Logos/gloria%20research.png", 
+                    "/Logos/gsda.png", "/Logos/paychain.png", "/Logos/wshg.png", 
+                    "/Logos/zambia.png"
                   ].map((src, i) => (
                     <div 
                       key={`logo-${setIndex}-${i}`} 
