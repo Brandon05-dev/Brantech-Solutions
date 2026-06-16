@@ -272,20 +272,23 @@ export function Navigation({ onContactClick }: NavigationProps) {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            "md:hidden fixed inset-0 z-50 transition-all duration-300",
+            "md:hidden fixed inset-0 z-50 transition-all duration-500",
             isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
           )}
         >
           {/* Overlay/Shadow Background */}
           <div
-            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+            className={cn(
+              "absolute inset-0 bg-slate-950/60 backdrop-blur-md transition-opacity duration-500",
+              isOpen ? "opacity-100" : "opacity-0"
+            )}
             onClick={() => setIsOpen(false)}
           />
           
           {/* Mobile Menu Content */}
           <div
             className={cn(
-              "absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
+              "absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white/95 backdrop-blur-xl border-l border-gray-100 shadow-2xl transition-transform duration-500 ease-out flex flex-col",
               isOpen ? "translate-x-0" : "translate-x-full"
             )}
           >
@@ -295,7 +298,9 @@ export function Navigation({ onContactClick }: NavigationProps) {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <div className="px-6 py-6 space-y-4 flex-1 overflow-y-auto">
+
+            {/* Menu Items */}
+            <div className="px-6 py-8 space-y-2 flex-1 overflow-y-auto hide-scrollbar">
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.section;
                   
@@ -307,54 +312,60 @@ export function Navigation({ onContactClick }: NavigationProps) {
                             setMobileServicesOpen(!mobileServicesOpen);
                           }}
                           className={cn(
-                            "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-fade-in-0",
-                            "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
+                            "block w-full text-left px-4 py-3.5 rounded-xl text-lg font-medium transition-all duration-300 border border-transparent animate-in slide-in-fade-in-0",
+                            "hover:bg-slate-50 hover:border-gray-100 hover:text-slate-900 active:scale-[0.98]",
                             isActive 
-                              ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
-                              : "text-muted-foreground"
+                              ? "text-primary font-semibold bg-primary/10 border-primary/20 shadow-sm" 
+                              : "text-slate-600"
                           )}
                           style={{
-                            animationDelay: `${index * 75}ms`,
-                            animationDuration: '300ms'
+                            animationDelay: `${index * 50}ms`,
+                            animationDuration: '500ms'
                           }}
                         >
                           <div className="flex items-center justify-between">
                             <span>{item.label}</span>
                             <ChevronDown className={cn(
-                              "h-4 w-4 transition-transform duration-200",
-                              mobileServicesOpen && "rotate-180"
+                              "h-5 w-5 transition-transform duration-300 text-slate-500",
+                              mobileServicesOpen && "rotate-180 text-slate-900"
                             )} />
                           </div>
                         </button>
                         
-                        {mobileServicesOpen && (
-                          <div className="ml-2 space-y-1 animate-in slide-in-fade-in-0">
-                            <button
-                              onClick={() => {
-                                scrollToSection(item.href, item.isRoute, item.section);
-                                setMobileServicesOpen(false);
-                              }}
-                              className="block w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-                            >
-                              View All Services
-                            </button>
-                            <div className="h-px bg-border" />
-                            {services.map((service) => (
+                        {/* Sub-menu items */}
+                        <div className={cn(
+                          "grid transition-all duration-300 ease-in-out",
+                          mobileServicesOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                        )}>
+                          <div className="overflow-hidden">
+                            <div className="ml-4 pl-4 border-l border-gray-200 space-y-1 py-2">
                               <button
-                                key={service.id}
                                 onClick={() => {
-                                  navigate(service.route);
-                                  window.scrollTo({ top: 0, behavior: "smooth" });
+                                  scrollToSection(item.href, item.isRoute, item.section);
                                   setMobileServicesOpen(false);
-                                  setIsOpen(false);
                                 }}
-                                className="block w-full text-left px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                                className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold text-primary hover:bg-primary/5 transition-colors"
                               >
-                                {service.label}
+                                View All Services
                               </button>
-                            ))}
+                              <div className="h-px bg-gray-100 my-2 mx-4" />
+                              {services.map((service) => (
+                                <button
+                                  key={service.id}
+                                  onClick={() => {
+                                    navigate(service.route);
+                                    window.scrollTo({ top: 0, behavior: "smooth" });
+                                    setMobileServicesOpen(false);
+                                    setIsOpen(false);
+                                  }}
+                                  className="block w-full text-left px-4 py-2 rounded-lg text-[13px] text-slate-500 hover:text-primary hover:bg-slate-50 transition-colors"
+                                >
+                                  {service.label}
+                                </button>
+                              ))}
+                            </div>
                           </div>
-                        )}
+                        </div>
                       </div>
                     );
                   }
@@ -364,21 +375,21 @@ export function Navigation({ onContactClick }: NavigationProps) {
                       key={item.label}
                       onClick={() => scrollToSection(item.href, item.isRoute, item.section)}
                       className={cn(
-                        "block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 border border-transparent animate-in slide-in-fade-in-0",
-                        "hover:bg-primary/10 hover:border-primary/20 hover:text-primary active:scale-95",
+                        "block w-full text-left px-4 py-3.5 rounded-xl text-lg font-medium transition-all duration-300 border border-transparent animate-in slide-in-fade-in-0",
+                        "hover:bg-slate-50 hover:border-gray-100 hover:text-slate-900 active:scale-[0.98]",
                         isActive 
-                          ? "text-primary font-semibold bg-primary/10 border-primary/30 shadow-sm" 
-                          : "text-muted-foreground"
+                          ? "text-primary font-semibold bg-primary/10 border-primary/20 shadow-sm" 
+                          : "text-slate-600"
                       )}
                       style={{
-                        animationDelay: `${index * 75}ms`,
-                        animationDuration: '300ms'
+                        animationDelay: `${index * 50}ms`,
+                        animationDuration: '500ms'
                       }}
                     >
                       <div className="flex items-center justify-between">
                         <span>{item.label}</span>
                         {isActive && (
-                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-sm" />
                         )}
                       </div>
                     </button>
@@ -386,26 +397,26 @@ export function Navigation({ onContactClick }: NavigationProps) {
                 })}
                 
                 {/* Contact CTA in mobile menu */}
-                <div className="pt-6 mt-6 border-t border-border">
+                <div className="pt-8 mt-4 border-t border-gray-100">
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Ready to start your project?
+                    <p className="text-sm text-slate-500 mb-4 font-medium">
+                      Ready to transform your business?
                     </p>
                     <Button 
                       onClick={() => {
                         if (onContactClick) onContactClick();
                         setIsOpen(false);
                       }}
-                      className="w-full"
+                      className="w-full rounded-xl shadow-sm"
                       size="lg"
                     >
-                      Get Started
+                      Start Your Project
                     </Button>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
+        </div>
         </div>
       </nav>
     </header>
