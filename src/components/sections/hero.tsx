@@ -7,7 +7,7 @@ interface HeroProps {
 
 export function Hero({ onContactClick }: HeroProps) {
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center bg-slate-950 overflow-hidden">
+    <section id="home" className="relative pt-32 pb-24 md:pt-40 md:pb-32 flex items-center justify-center bg-slate-950 overflow-hidden">
       {/* Professional Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div 
@@ -23,7 +23,7 @@ export function Hero({ onContactClick }: HeroProps) {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl mx-auto">
           
           {/* Main headline */}
