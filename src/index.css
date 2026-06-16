@@ -291,13 +291,13 @@ All colors MUST be HSL.
 }
 
 .animate-scroll {
-  animation: scroll 8s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
 /* Faster speed on mobile */
 @media (max-width: 768px) {
   .animate-scroll {
-    animation: scroll 5s linear infinite;
+    animation: scroll 30s linear infinite;
   }
 }
 
@@ -317,4 +317,11 @@ All colors MUST be HSL.
   .shift-right-lg {
     transform: translateX(5cm);
   }
+}
+@keyframes scroll-portfolio {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.75rem)); }
+}
+.animate-scroll-portfolio {
+  animation: scroll-portfolio 25s linear infinite;
 }

@@ -101,160 +101,41 @@ export function Stats({ onContactClick }: StatsProps) {
         </div>
 
         {/* Trusted By Section - Company Logos Slideshow */}
-        <div className="mt-20 mb-12">
-          <h3 className="text-center text-2xl font-bold text-foreground mb-8">
-            Trusted by Leading Companies
-          </h3>
-          <div className="relative overflow-hidden">
-            {/* Gradient overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 dark:z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 dark:z-10"></div>
+        <div className="mt-32 mb-12 relative">
+          <div className="flex items-center justify-center gap-6 mb-12">
+            <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-border"></div>
+            <h3 className="text-center text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+              Trusted by Leading Companies
+            </h3>
+            <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-border"></div>
+          </div>
+          
+          <div className="relative overflow-hidden group">
+            {/* Elegant Gradient overlays for smooth fading edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
             
             {/* Scrolling container */}
-            <div className="flex animate-scroll">
-              {/* First set of logos - repeated multiple times for continuous effect */}
-              {[...Array(3)].map((_, setIndex) => (
-                <div key={`set-${setIndex}`} className="flex gap-12 items-center px-6">
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company1.png"
-                      alt="Company 1"
-                      className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company2.png"
-                      alt="Company 2"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company3.png"
-                      alt="Company 3"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company4.png"
-                      alt="Company 4"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company5.png"
-                      alt="Company 5"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%207.png"
-                      alt="Company 7"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%208.png"
-                      alt="Company 8"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%209.png"
-                      alt="Company 9"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%2010.png"
-                      alt="Company 10"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%2011.png"
-                      alt="Company 11"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company1.png"
-                      alt="Company 1"
-                      className="max-w-full max-h-full object-contain p-4 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company2.png"
-                      alt="Company 2"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company3.png"
-                      alt="Company 3"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company4.png"
-                      alt="Company 4"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img 
-                      src="/company5.png"
-                      alt="Company 5"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%207.png"
-                      alt="Company 7"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%208.png"
-                      alt="Company 8"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%209.png"
-                      alt="Company 9"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%2010.png"
-                      alt="Company 10"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-40 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <img
-                      src="/company%2011.png"
-                      alt="Company 11"
-                      className="max-w-full max-h-full object-contain p-1 transition-all duration-300"
-                    />
-                  </div>
+            <div className="flex w-max animate-scroll group-hover:[animation-play-state:paused]">
+              {/* Render sets of logos for seamless loop */}
+              {[...Array(2)].map((_, setIndex) => (
+                <div key={`set-${setIndex}`} className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
+                  {[
+                    "/company1.png", "/company2.png", "/company3.png", 
+                    "/company4.png", "/company5.png", "/company%207.png", 
+                    "/company%208.png", "/company%209.png", "/company%2010.png", "/company%2011.png"
+                  ].map((src, i) => (
+                    <div 
+                      key={`logo-${setIndex}-${i}`} 
+                      className="flex-shrink-0 w-28 h-14 md:w-40 md:h-20 flex items-center justify-center transition-all duration-700 ease-out hover:scale-110 cursor-pointer"
+                    >
+                      <img 
+                        src={src}
+                        alt={`Partner Company ${i + 1}`}
+                        className="max-w-full max-h-full object-contain transition-all duration-700 ease-out drop-shadow-sm hover:drop-shadow-md"
+                      />
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
