@@ -24,7 +24,7 @@ export function Hero({ onContactClick }: HeroProps) {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl mx-auto">
+        <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl mx-auto mt-8 md:mt-0">
           
           {/* Main headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 animate-fade-in tracking-tight leading-tight text-balance drop-shadow-2xl" style={{ animationDelay: "0.2s" }}>
