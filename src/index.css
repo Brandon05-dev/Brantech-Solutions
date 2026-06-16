@@ -325,3 +325,18 @@ All colors MUST be HSL.
 .animate-scroll-portfolio {
   animation: scroll-portfolio 25s linear infinite;
 }
+
+@keyframes scroll-reverse {
+  0% { transform: translateX(calc(-50%)); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse 40s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .animate-scroll-reverse {
+    animation: scroll-reverse 30s linear infinite;
+  }
+}
