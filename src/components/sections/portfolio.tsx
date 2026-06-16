@@ -192,9 +192,91 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
           </p>
         </div>
 
-        {/* Projects grid */}
+        {/* Mobile Loop (Hidden on md+) */}
+        <div className="md:hidden overflow-hidden w-full relative mb-12">
+          <motion.div
+            className="flex gap-6 w-max cursor-grab active:cursor-grabbing"
+            animate={{ x: ["0%", "calc(-50% - 0.75rem)"] }}
+            transition={{
+              duration: 25,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {[...displayedProjects, ...displayedProjects].map((project, index) => (
+              <div
+                key={`${project.title}-${index}`}
+                className="w-[85vw] sm:w-[340px] flex-shrink-0 flex justify-center"
+              >
+                <Card 
+                  className="group hover:shadow-elegant transition-all duration-500 bg-white border border-slate-200 shadow-sm ring-1 ring-slate-900/5 hover:border-primary/20 overflow-hidden h-full hover:-translate-y-1 rounded-lg w-full max-w-[340px] flex flex-col"
+                >
+                  {/* Project image */}
+                  <div className="aspect-video overflow-hidden bg-muted relative">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {/* Status badge */}
+                    <div className="absolute top-4 right-4">
+                      <Badge 
+                        variant={project.status === "Live" ? "default" : "secondary"}
+                        className={project.status === "Live" ? "bg-green-500 hover:bg-green-600" : ""}
+                      >
+                        {project.status}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <CardHeader>
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <CardTitle className="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors duration-300">
+                          {project.title}
+                        </CardTitle>
+                      </div>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent>
+                    <p className="text-sm text-slate-500 mb-4 leading-relaxed flex-grow whitespace-normal">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-4 flex justify-center">
+                      {project.liveUrl ? (
+                        <Button 
+                          variant="default" 
+                          size="sm"
+                          onClick={() => window.open(project.liveUrl, '_blank')}
+                          className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
+                        >
+                          Visit Site
+                          <ExternalLink className="w-4 h-4 ml-2" />
+                        </Button>
+                      ) : (
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => window.open(project.githubUrl, '_blank')}
+                          className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
+                        >
+                          GitHub
+                          <Github className="w-4 h-4 ml-2" />
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Desktop Grid (Hidden on mobile) */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 justify-items-center"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -204,69 +286,69 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
             <motion.div
               key={project.title}
               variants={cardVariants}
+              className="w-full flex justify-center"
             >
               <Card 
                 className="group hover:shadow-elegant transition-all duration-500 bg-white border border-slate-200 shadow-sm ring-1 ring-slate-900/5 hover:border-primary/20 overflow-hidden h-full hover:-translate-y-1 rounded-lg w-full max-w-[340px] flex flex-col"
               >
-              {/* Project image */}
-              <div className="aspect-video overflow-hidden bg-muted relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {/* Status badge */}
-                <div className="absolute top-4 right-4">
-                  <Badge 
-                    variant={project.status === "Live" ? "default" : "secondary"}
-                    className={project.status === "Live" ? "bg-green-500 hover:bg-green-600" : ""}
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-              </div>
-
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <CardTitle className="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors duration-300">
-                      {project.title}
-                    </CardTitle>
+                {/* Project image */}
+                <div className="aspect-video overflow-hidden bg-muted relative">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Status badge */}
+                  <div className="absolute top-4 right-4">
+                    <Badge 
+                      variant={project.status === "Live" ? "default" : "secondary"}
+                      className={project.status === "Live" ? "bg-green-500 hover:bg-green-600" : ""}
+                    >
+                      {project.status}
+                    </Badge>
                   </div>
                 </div>
-              </CardHeader>
 
-              <CardContent>
-                <p className="text-sm text-slate-500 mb-4 leading-relaxed flex-grow">
-                  {project.description}
-                </p>
+                <CardHeader>
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <CardTitle className="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors duration-300">
+                        {project.title}
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
 
+                <CardContent>
+                  <p className="text-sm text-slate-500 mb-4 leading-relaxed flex-grow">
+                    {project.description}
+                  </p>
 
-                <div className="mt-4 flex justify-center">
-                  {project.liveUrl ? (
-                    <Button 
-                      variant="default" 
-                      size="sm"
-                      onClick={() => window.open(project.liveUrl, '_blank')}
-                      className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
-                    >
-                      Visit Site
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
-                  ) : (
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                      className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
-                    >
-                      GitHub
-                      <Github className="w-4 h-4 ml-2" />
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="mt-4 flex justify-center">
+                    {project.liveUrl ? (
+                      <Button 
+                        variant="default" 
+                        size="sm"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
+                      >
+                        Visit Site
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </Button>
+                    ) : (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        className="w-full h-9 text-xs font-semibold rounded-md shadow-sm"
+                      >
+                        GitHub
+                        <Github className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>
