@@ -6,12 +6,12 @@ interface HeroStatsProps {
 export function HeroStats({ onContactClick }: HeroStatsProps) {
   const stats = [
     {
-      number: "50+",
+      number: "70+",
       label: "Projects Shipped",
       numberClass: "text-blue-600 dark:text-blue-400",
     },
     {
-      number: "7",
+      number: "8",
       label: "Service Areas",
       numberClass: "text-green-600 dark:text-green-400",
     },
