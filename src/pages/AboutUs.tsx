@@ -28,7 +28,7 @@ const AboutUsPage = () => {
       <Navigation onContactClick={handleContactClick} />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative pt-32 pb-32 md:pt-40 md:pb-40 flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
