@@ -172,7 +172,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
             }}
           >
             <div className="w-24 h-24 flex items-center justify-center overflow-hidden">
-              <img 
+              <img fetchPriority="high" decoding="async" 
                 src="/BS Icon.png" 
                 alt="Brantech Solutions" 
                 className="w-full h-full object-contain scale-[1.3]"

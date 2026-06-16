@@ -46,7 +46,7 @@ export function Footer() {
             <div className="group cursor-pointer">
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-28 h-28 rounded-xl flex items-center justify-center overflow-hidden group-hover:scale-110 transition-all duration-500">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/BS Icon.png" 
                     alt="Brantech Solutions" 
                     className="w-full h-full object-contain"
@@ -174,7 +174,7 @@ export function Footer() {
           {/* Developer Illustration */}
           <div className="space-y-6 flex flex-col items-center justify-center">
             <div className="w-full max-w-xs">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src="/footer.png" 
                 alt="Developer working" 
                 className="w-full h-auto object-contain"

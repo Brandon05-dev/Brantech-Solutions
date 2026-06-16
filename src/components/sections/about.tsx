@@ -60,7 +60,7 @@ export function About({ onContactClick }: AboutProps) {
   ];
 
   return (
-    <section id="about" className="py-20 bg-secondary/30">
+    <section id="about" className="pt-10 pb-20 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -80,7 +80,7 @@ export function About({ onContactClick }: AboutProps) {
           {/* Mission statement */}
           <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
             <div className="relative">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src="/mission.png" 
                 alt="Our Mission" 
                 className="w-full h-auto object-contain max-h-[300px]"
@@ -105,7 +105,7 @@ export function About({ onContactClick }: AboutProps) {
           {/* Vision statement */}
           <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
             <div className="relative">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src="/vision.png" 
                 alt="Our Vision" 
                 className="w-full h-auto object-contain max-h-[300px]"
@@ -130,7 +130,7 @@ export function About({ onContactClick }: AboutProps) {
           {/* Values Card */}
           <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
             <div className="relative">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src="/values.png" 
                 alt="Our Core Values" 
                 className="w-full h-auto object-contain max-h-[300px]"
@@ -168,7 +168,7 @@ export function About({ onContactClick }: AboutProps) {
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img src="/me.jpg" alt="Brandon Omutiti - Founder & Lead Developer" className="w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src="/me.jpg" alt="Brandon Omutiti - Founder & Lead Developer" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="text-xl font-bold text-foreground">Brandon Omutiti</h4>
@@ -202,7 +202,7 @@ export function About({ onContactClick }: AboutProps) {
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img src="/BS Icon.png" alt="Co-Founder" className="w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src="/BS Icon.png" alt="Co-Founder" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="text-xl font-bold text-foreground">Amina Njoroge</h4>
@@ -236,7 +236,7 @@ export function About({ onContactClick }: AboutProps) {
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img src="/BS Icon.png" alt="AI Engineer" className="w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src="/BS Icon.png" alt="AI Engineer" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="text-xl font-bold text-foreground">Daniel Okinda</h4>
@@ -270,7 +270,7 @@ export function About({ onContactClick }: AboutProps) {
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden shadow-glow border-4 border-primary/20">
-                    <img src="/BS Icon.png" alt="Head of Marketing" className="w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src="/BS Icon.png" alt="Head of Marketing" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="text-xl font-bold text-foreground">Sarah Wanjiku</h4>

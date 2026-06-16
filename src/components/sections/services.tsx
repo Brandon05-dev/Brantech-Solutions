@@ -250,7 +250,7 @@ export function Services({ onContactClick }: ServicesProps) {
                 <div className="relative z-10 flex flex-col h-full">
                   {service.useImage && service.imageSrc ? (
                     <div className="w-full h-16 sm:h-32 rounded-md mb-3 sm:mb-5 overflow-hidden group-hover:scale-[1.02] transition-all duration-500">
-                      <img src={service.imageSrc} alt={service.title} className="w-full h-full object-cover" />
+                      <img loading="lazy" decoding="async" src={service.imageSrc} alt={service.title} className="w-full h-full object-cover" />
                     </div>
                   ) : (
                     <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 ${colors.iconBg} rounded-md mb-3 sm:mb-5 transition-all duration-500`}>

@@ -31,7 +31,7 @@ const AboutUsPage = () => {
       <section className="relative pt-32 pb-32 md:pt-40 md:pb-40 flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <img fetchPriority="high" decoding="async"
             src="/about1.png"
             alt="About Brantech Solutions"
             className="w-full h-full object-cover"
@@ -57,8 +57,6 @@ const AboutUsPage = () => {
           </motion.div>
         </div>
 
-        {/* Decorative gradient overlays */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-background z-10"></div>
       </section>
       
       {/* About Content Section */}

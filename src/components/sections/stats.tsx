@@ -129,7 +129,7 @@ export function Stats({ onContactClick }: StatsProps) {
                         key={`logo-r1-${setIndex}-${i}`} 
                         className="flex-shrink-0 w-32 h-20 md:w-48 md:h-28 flex items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer bg-white dark:bg-gray-800/50 rounded-xl p-4 md:p-6 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-elegant hover:border-primary/20"
                       >
-                        <img 
+                        <img loading="lazy" decoding="async" 
                           src={src}
                           alt="Partner Company"
                           className="max-w-full max-h-full object-contain drop-shadow-sm transition-all duration-500"
@@ -152,7 +152,7 @@ export function Stats({ onContactClick }: StatsProps) {
                         key={`logo-r2-${setIndex}-${i}`} 
                         className="flex-shrink-0 w-32 h-20 md:w-48 md:h-28 flex items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer bg-white dark:bg-gray-800/50 rounded-xl p-4 md:p-6 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-elegant hover:border-primary/20"
                       >
-                        <img 
+                        <img loading="lazy" decoding="async" 
                           src={src}
                           alt="Partner Company"
                           className="max-w-full max-h-full object-contain drop-shadow-sm transition-all duration-500"

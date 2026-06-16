@@ -205,7 +205,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
                 >
                   {/* Project image */}
                   <div className="aspect-video overflow-hidden bg-muted relative">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -285,7 +285,7 @@ export function Portfolio({ onContactClick }: PortfolioProps) {
               >
                 {/* Project image */}
                 <div className="aspect-video overflow-hidden bg-muted relative">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
